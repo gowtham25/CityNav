@@ -1,0 +1,37 @@
+@import url("./css/normalize.css");
+
+body {
+    font-family:Helvetica;
+    font-size:16px;
+}
+
+.topicHeader {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:70px;
+    background-color:dimgray;
+    color:white;
+    padding:20px 0 0 10px;
+}
+
+.topicImage {
+    margin:20px auto 0px auto;
+    text-align:center;
+}
+.topicDescTop {
+    width:90%;
+    margin:100px auto 0px auto;
+    padding:5px;
+}
+.topicDescBottom {
+    width:90%;
+    margin:15px auto 0px auto;
+    padding:5px;
+}
+.backBtn{
+    cursor:pointer;
+    position:absolute;
+    right:25px;
+}

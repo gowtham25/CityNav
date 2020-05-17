@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./static-page.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+</head>
+<body>
+<div id="target">
+
+</div>
+<script id="template" type="x-tmpl-mustache">
+<div>
+    <div class="topicHeader"><h3>{{flooding-todo-before-title}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+    <div class="topicDescTop">{{flooding-todo-before-desc}}:
+    </div>
+    <div class="topicImage">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWR0x-7FFr5D8LrEiqNnZcjIUf5W8O1tOmqzC54uLvA458Fgeu4A" />
+    </div>
+    <div class="topicDescBottom">
+    <ol>
+        <li><strong>{{flooding-todo-before-critical-step1-title}}</strong>
+            <p>{{flooding-todo-before-critical-step1-desc}}</p>
+        </li>
+        <li><strong>{{flooding-todo-before-critical-step2-title}}</strong>
+            <p>{{flooding-todo-before-critical-step2-desc}}</p>
+        </li>
+        
+        <li><strong>{{flooding-todo-before-critical-step3-title}}</strong>
+            <p>{{flooding-todo-before-critical-step3-desc}}</p>
+        </li>
+        
+        <li><strong>{{flooding-todo-before-critical-step4-title}}</strong>
+            <ul>
+                <li>{{flooding-todo-before-critical-step4-subtitle1}}
+                    <p>{{flooding-todo-before-critical-step4-subdesc1}}</p>
+                </li>
+                <li>{{flooding-todo-before-critical-step4-subtitle2}}
+                    <ul>
+                        <li>{{flooding-todo-before-critical-step4-subdesc2_1}}</li>
+                        <li>{{flooding-todo-before-critical-step4-subdesc2_2}}
+                        </li>
+                    </ul>
+                </li>
+                <li>{{flooding-todo-before-critical-step4-subtitle3}}
+                    <ul>
+                        <li>{{flooding-todo-before-critical-step4-subdesc3_1}}
+                        </li>
+                        <li>{{flooding-todo-before-critical-step4-subdesc3_2}}</li>
+                        <li>{{flooding-todo-before-critical-step4-subdesc3_3}}</li>
+                        <li>{{flooding-todo-before-critical-step4-subdesc3_4}}</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <li><strong>{{flooding-todo-before-critical-step5-title}}</strong>
+            <ul>
+                <li>{{flooding-todo-before-critical-step5-desc1}}
+                </li>
+                <li>{{flooding-todo-before-critical-step5-desc2}}
+                </li>
+                <li>{{flooding-todo-before-critical-step5-desc3}}:
+                    <ul>
+                        <li>{{flooding-todo-before-critical-step5-desc3_1}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_2}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_3}}/li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_4}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_5}}/li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_6}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_7}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_8}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_9}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_10}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_11}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_12}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_13}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_14}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_15}}</li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_16}}
+                            <ul>
+                                <li>{{flooding-todo-before-critical-step5-desc3_16_1}}</li>
+                                <li>{{flooding-todo-before-critical-step5-desc3_16_2}}</li>
+                                <li>{{flooding-todo-before-critical-step5-desc3_16_3}}</li>
+                                <li>{{flooding-todo-before-critical-step5-desc3_16_4}}</li>
+                            </ul>
+                        </li>
+                        <li>{{flooding-todo-before-critical-step5-desc3_17}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+    </ol>
+    </div>
+</div>
+</script>
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=1"></script>
+<script src="./static-page.js?v=1"></script>
+
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'flooding-todo-before-title' : 'What to do before',
+        'flooding-todo-before-desc' : 'Flooding can occur anywhere, but areas near flood plains are at higher risk. Floods could cause loss of life, damage to structures, crops, land, roads, water supply, etc. Flooding could also lead to erosion, landslides, and even can carry debris and toxic products causing secondary damage. In extreme cases, heavy rains can also cause flooding in areas far from streams and rivers.  Given the danger posed by floods, it is important to be prepared, informed and know what to do when the need arises. Preparing for a flood before it happens can save you valuable time when you need it most. Know your risks, plan a possible evacuation and organize yourself in advance. These measures will help you avoid damage to life and property. Below are the critical steps for your preparation',
+        'flooding-todo-before-critical-step1-title' : 'Determine if you live in or near a floodplain',
+        'flooding-todo-before-critical-step1-desc' : 'Find your location in relation to the floodplain by entering your address or the nearest point of interest to your home (e. g. hospital, school, church) into the flood management application (app). Please also consult your local authorities for more information based on previous floods in your area of residence.',
+        'flooding-todo-before-critical-step2-title' : 'Know your emergency and disaster management focal point',
+        'flooding-todo-before-critical-step2-desc' : 'Consult the neighborhood chief, mayor or sub-divisional officer office for information on coordinating emergencies and disasters in your neighborhood. In addition, visit the link with toll-free numbers and emergency services if available in your city.',
+        'flooding-todo-before-critical-step3-title' : 'Identifier l’emplacement des point d‘intérêts critiques',
+        'flooding-todo-before-critical-step3-desc' : 'Locate the nearest shelters and hospitals and make sure to follow published evacuation routes in case of flood or disaster.',
+        'flooding-todo-before-critical-step4-title' : 'Organize yourself in a practical way',
+        'flooding-todo-before-critical-step4-subtitle1' : 'Get Connected',
+        'flooding-todo-before-critical-step4-subdesc1' : 'Make sure that your mobile phone is charged and able to receive SMS alerts. In addition, be reassured that you have subscribed to the DFIS automatic alert service. These alerts notify you of emergency situations in your residential area. However, it is also recommended to follow TV and radio and contact your local coordination center for more information in case of an emergency.',
+        'flooding-todo-before-critical-step4-subtitle2' : 'Organize important documents',
+        'flooding-todo-before-critical-step4-subdesc2_1' : 'Make sure that copies of important documents such as diplomas, birth and marriage certificates, insurance policies, land titles etc. are in a flood-proof place such as a safe.',
+        'flooding-todo-before-critical-step4-subdesc2_2' : 'Have an inventory of your property for insurance purposes, including serial numbers, and take pictures if possible, of your important property and documents',
+        'flooding-todo-before-critical-step4-subtitle3' : 'Prepare your vehicles',
+        'flooding-todo-before-critical-step4-subdesc3_1' : "Flood waters can make a vehicle's electronic system non-operational, so make sure your vehicles have a tool to break the windshield or door windows; preferably keep this tool in the center console, door pocket or glove compartment. It will allow you to get out easily if you get stuck in your vehicle in rising floodwaters.",
+        'flooding-todo-before-critical-step4-subdesc3_2' : 'Make sure you also have a tool that allows you to cut the seat belt if necessary.',
+        'flooding-todo-before-critical-step4-subdesc3_3' : 'Place all electrical appliances at least 30 centimeters above the ground.',
+        'flooding-todo-before-critical-step4-subdesc3_4' : 'Anchor all fuel tanks.',
+        'flooding-todo-before-critical-step5-title' : 'Prepare your action plan',
+        'flooding-todo-before-critical-step5-desc1' : 'Develop an emergency plan, including evacuation routes and procedures for dealing with pets. Know the location of your shelter.',
+        'flooding-todo-before-critical-step5-desc2' : 'Make sure everyone in the family knows how to call toll-free and emergency numbers if available in your city.',
+        'flooding-todo-before-critical-step5-desc3' : 'Prepare a "backpack". A backpack should contain everything you would need if you had to evacuate your home. Adapt the contents of your Emergency Supply Bag to your family\'s needs. The elements to be taken into account include, but are not limited to:',
+        'flooding-todo-before-critical-step5-desc3_1' : 'National Meteorological Service Radio',
+        'flooding-todo-before-critical-step5-desc3_2' : 'Flashlight',
+        'flooding-todo-before-critical-step5-desc3_3' : 'Additional batteries for radio and flashlight',
+        'flooding-todo-before-critical-step5-desc3_4' : 'Whistle for help',
+        'flooding-todo-before-critical-step5-desc3_5' : 'First aid kit',
+        'flooding-todo-before-critical-step5-desc3_6' : 'Local map and evacuation routes',
+        'flooding-todo-before-critical-step5-desc3_7' : 'Mobile phone and charger',
+        'flooding-todo-before-critical-step5-desc3_8' : 'Cash and credit cards',
+        'flooding-todo-before-critical-step5-desc3_9' : 'Prescription drugs',
+        'flooding-todo-before-critical-step5-desc3_10' : 'Extra clothing for 2-3 days',
+        'flooding-todo-before-critical-step5-desc3_11' : 'Drinking water supply 3 days (3-4 liters per person per day)',
+        'flooding-todo-before-critical-step5-desc3_12' : 'Reserve of non-perishable food for at least three days',
+        'flooding-todo-before-critical-step5-desc3_13' : 'Manual can opener',
+        'flooding-todo-before-critical-step5-desc3_14' : 'Garbage bags with plastic attachments',
+        'flooding-todo-before-critical-step5-desc3_15' : 'Wet wipes or hand sanitizer',
+        'flooding-todo-before-critical-step5-desc3_16' : 'Supplies for children',
+        'flooding-todo-before-critical-step5-desc3_16_1' : 'Foodstuffs',
+        'flooding-todo-before-critical-step5-desc3_16_2' : 'Layers',
+        'flooding-todo-before-critical-step5-desc3_16_3' : 'Medicines',
+        'flooding-todo-before-critical-step5-desc3_16_4' : 'Toys',
+        'flooding-todo-before-critical-step5-desc3_17' : 'Food and means of transport for your animals. Also follow tips from your local support team to prepare yourself more thoroughly before a flood.'
+    },
+    "fr" : {
+        'flooding-todo-before-title' : 'Que faire avant les inondations',
+        'flooding-todo-before-desc' : "Les inondations peuvent se produire n'importe où, et les zones proches des plaines inondables sont les exposées aux risques d’inondation. Les inondations peuvent entraîner des pertes en vie humaine, le dommage de structures, de vos cultures, des terres, routes voire la perturbation de l'approvisionnement en eau, etc. Dans des cas extrêmes, de fortes pluies peuvent également provoquer des inondations dans des zones éloignées des ruisseaux et des rivières. Compte tenu du danger posé par les inondations, il est important d'être préparé, informé et de savoir quoi faire en cas de besoin. Se préparer à une inondation avant qu'elle ne se produise peut vous faire gagner un temps précieux lorsque vous en avez le plus besoin. Connaissez vos risques, planifiez une éventuelle évacuation et organisez-vous à l'avance. Ces mesures vous aideront à sauver des vies et éviter des dommages. Voici les étapes critiques à votre préparation",
+        'flooding-todo-before-critical-step1-title' : "Déterminez si vous vivez dans ou près d'une plaine inondable",
+        'flooding-todo-before-critical-step1-desc' : "Trouvez votre emplacement par rapport à la plaine inondable et identifiez le point d'intérêt le plus proche de votre domicile (par exemple hôpital, école, église) dans l'application de gestion des inondations (application). Veuillez également consulter vos autorités locales pour plus d'informations sur les inondations précédentes dans votre zone de résidence.",
+        'flooding-todo-before-critical-step2-title' : "Ayez les informations du point focal de gestion",
+        'flooding-todo-before-critical-step2-desc' : "des urgences et des catastrophesConsultez le chef de quartier, le maire ou les sapeurs-pompiers pour obtenir des informations sur la coordination des urgences et des catastrophes dans votre quartier. En plus, visitez le lien Internet et les numéros vert des services d'urgence si disponibles dans votre ville.",
+        'flooding-todo-before-critical-step3-title' : "Identifiez l’emplacement des points d’intérêts critiques",
+        'flooding-todo-before-critical-step3-desc' : "Localisez les abris et les hôpitaux les plus proches et rassurez-vous par rapports aux itinéraires d'évacuation publiés en cas d'inondation ou de catastrophe.",
+        'flooding-todo-before-critical-step4-title' : "Organisez-vous de manière pratique",
+        'flooding-todo-before-critical-step4-subtitle1' : '­Soyez connectés',
+        'flooding-todo-before-critical-step4-subdesc1' : "Assurez-vous que votre téléphone portable est chargé et capable de recevoir des alertes SMS. De plus, soyez assuré que vous êtes abonné au service d'alerte automatique de votre ville (si disponible). Ces alertes vous informent par rapport aux situations d'urgence dans votre quartier résidentiel. Cependant, il est également recommandé de suivre la télévision et la radio et de contacter votre centre de coordination local pour plus d'informations en cas d'urgence.",
+        'flooding-todo-before-critical-step4-subtitle2' : "­Organisez les documents importants",
+        'flooding-todo-before-critical-step4-subdesc2_1' : "Assurez-vous que les copies de documents importants tels que les diplômes, les certificats de naissance et de mariage, les polices d'assurance, les titres fonciers, etc. sont dans un endroit protégé contre les inondations, comme un coffre-fort.",
+        'flooding-todo-before-critical-step4-subdesc2_2' : "Ayez un inventaire de votre propriété à des fins d'assurance, y compris les numéros de série, et prenez des photos si possible de vos biens et documents importants",
+        'flooding-todo-before-critical-step4-subtitle3' : "­Préparez vos véhicules",
+        'flooding-todo-before-critical-step4-subdesc3_1' : "Les eaux de crue peuvent rendre le système électronique d'un véhicule non opérationnel, alors assurez-vous que vos véhicules disposent d'un outil pour briser le pare-brise ou les vitres des portes; conservez de préférence cet outil dans la console centrale, la poche de la portière chauffeur ou la boîte à gants. Il vous permettra de sortir facilement si vous êtes coincé dans votre véhicule par les eaux de crue montantes.",
+        'flooding-todo-before-critical-step4-subdesc3_2' : "Assurez-vous d'avoir également un outil qui vous permet de couper la ceinture de sécurité si nécessaire.",
+        'flooding-todo-before-critical-step4-subdesc3_3' : "Placez tous les appareils électriques au moins 30 centimètres au-dessus du sol.",
+        'flooding-todo-before-critical-step4-subdesc3_4' : "Ancrez tous les réservoirs de carburant.",
+        'flooding-todo-before-critical-step5-title' : "Préparez votre plan d'action",
+        'flooding-todo-before-critical-step5-desc1' : "­Élaborez un plan d'urgence, y compris des itinéraires d'évacuation et des procédures pour sauver les animaux domestique. Rassurer vous d’avoir localise l'emplacement de l’abri le plus proche.",
+        'flooding-todo-before-critical-step5-desc2' : "­Assurez-vous que tous les membres de votre famille savent comment appeler les numéros verts et d'urgence, s'ils sont disponibles dans votre ville.",
+        'flooding-todo-before-critical-step5-desc3' : "Préparez un \"sac à dos\" contenant tout ce dont vous auriez besoin si vous deviez évacuer votre maison. Adaptez le contenu de votre sac d'urgence aux besoins de votre famille. Les éléments à prendre en compte comprennent",
+        'flooding-todo-before-critical-step5-desc3_1' : 'Radio pour les infos du service météorologique national',
+        'flooding-todo-before-critical-step5-desc3_2' : 'Lampe de poche',
+        'flooding-todo-before-critical-step5-desc3_3' : 'Piles supplémentaires pour radio et lampe de poche',
+        'flooding-todo-before-critical-step5-desc3_4' : "Sifflet pour obtenir de l'aide",
+        'flooding-todo-before-critical-step5-desc3_5' : 'Trousse de premiers secours',
+        'flooding-todo-before-critical-step5-desc3_6' : "Carte locale et itinéraires d'évacuation",
+        'flooding-todo-before-critical-step5-desc3_7' : "Téléphone portable et chargeur",
+        'flooding-todo-before-critical-step5-desc3_8' : 'Espèces et cartes de crédit',
+        'flooding-todo-before-critical-step5-desc3_9' : "Médicaments d'urgence",
+        'flooding-todo-before-critical-step5-desc3_10' : "Vêtements supplémentaires pour 2-3 jours",
+        'flooding-todo-before-critical-step5-desc3_11' : "Approvisionnement en eau potable 3 jours (3-4 litres/personne/jour)",
+        'flooding-todo-before-critical-step5-desc3_12' : "Réserve de denrées non périssables pendant au moins trois jours",
+        'flooding-todo-before-critical-step5-desc3_13' : "Ouvre-boîte",
+        'flooding-todo-before-critical-step5-desc3_14' : "Sacs à ordures avec accessoires en plastique",
+        'flooding-todo-before-critical-step5-desc3_15' : "Lingettes humides ou désinfectant pour les mains",
+        'flooding-todo-before-critical-step5-desc3_16' : "Fournitures pour enfants",
+        'flooding-todo-before-critical-step5-desc3_16_1' : 'denrées alimentaires',
+        'flooding-todo-before-critical-step5-desc3_16_2' : 'couches',
+        'flooding-todo-before-critical-step5-desc3_16_3' : 'médicaments',
+        'flooding-todo-before-critical-step5-desc3_16_4' : 'jouets',
+        'flooding-todo-before-critical-step5-desc3_17' : "Nourriture et moyens de transport pour vos animaux domestique. Suivez également les conseils de votre équipe d'assistance locale pour mieux vous préparer."
+    }
+}   
+
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+</body>
+</html>

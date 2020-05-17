@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159161641-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-159161641-2');
+</script>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<style>
+@import url("./css/normalize.css");
+</style>
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+
+    .pageHeader {
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 50px;
+        background-color: #09E;
+        color: white;
+        padding: 10px 0 0 10px;
+        position: fixed;
+        z-index: 100;
+    }
+    .pageBody {
+        margin: 60px auto 0 auto;
+        padding: 0px 15px 0px 15px;
+    }
+    .fieldContainer {
+        margin: 0 auto 10px 20px;
+    }
+    .backBtn {
+        cursor: pointer;
+        position: absolute;
+        right: 25px;
+    }
+    .msgWrapper {
+        margin-bottom: 20px;
+        padding: 2px;
+        border-radius: 3px;
+        border-left-width: 4px !important;
+        border-top-color: #ECECEC !important;
+        border-right-color: #ECECEC !important;
+        border-bottom-color: #ECECEC !important;
+        cursor: pointer;
+        background: #ffffff;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+        /* IE6-9 */
+        box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+    }
+    .msgWrapper:hover {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f9fe+0,d6f0fd+100;White+3D+%232 */
+        background: #f2f9fe;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #f2f9fe 0%, #d6f0fd 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #f2f9fe 0%, #d6f0fd 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #f2f9fe 0%, #d6f0fd 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9fe', endColorstr='#d6f0fd', GradientType=0);
+        /* IE6-9 */
+    }
+    .msg-timestamp {
+        color: #09E;
+        font-size: 14px;
+        display: block;
+        text-align: left;
+        margin: 10px 10px 0;
+    }
+    .msg {
+        padding: 10px;
+        color: #666;
+        text-align: left;
+        line-height: 20px;
+    }
+
+    #searchAndMsgCategoryWrapper {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        flex-flow: column;
+    }
+    #msgCategoryWrapper, #searchWrapper {
+        margin-bottom: 25px;
+    }
+    #msgCategoryWrapper label.btn {
+        display: inline-block;
+        width: 110px;
+        text-transform: uppercase;
+	opacity: 0.8;
+        padding: 4px;
+        outline: none !important;
+        font-size: 12px;
+        font-weight: bold;
+	color: #FFF;
+    }
+    #searchWrapper {
+        border: 1px Solid #CCC;
+        border-radius: 3px;
+        padding-right: 6px;
+    }
+    #searchWrapper input {
+        border: none;
+        outline: none !important;
+        color: #09E;
+    }
+
+    #msgCategoryWrapper label.active {
+        color: #FFF;
+        opacity: 1; 
+        border-color: #333;
+        box-shadow: none !important;
+    }
+
+    #msgCategoryWrapper label.focus {
+        box-shadow: none !important;
+    }
+
+    #msgCategoryWrapper label i{
+        color: #600;
+        display: inline-block;
+        margin-right: 4px; 
+        width: 10px;
+        text-align: center;
+    }
+
+    #msgCategoryWrapper label.active i{
+        color: #050;
+        width: 10px;
+    }
+
+    #msgCategoryWrapper label i:before{
+        content: "\f00d";
+    }
+
+    #msgCategoryWrapper label.active i:before{
+        content: "\f00c";
+    }
+
+    #searchBtn {
+        margin-left: 5px;
+    }
+    .unreadMsg {
+        color: #09E;
+        background: #feffff;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef', GradientType=0);
+        /* IE6-9 */
+        font-weight: 400;
+    }
+    .unreadMsg:hover {
+        background: #f0f9ff;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff', GradientType=0);
+        /* IE6-9 */
+    }
+</style>
+</head>
+<body>  
+
+<div id="target">
+
+</div>
+<script id="template" type="x-tmpl-mustache">
+<div class="pageHeader">
+    <h3>{{messages-header}}<i class="fa fa-angle-double-left backBtn"></i></h3>
+</div>
+<div class="pageBody">
+    <div id="searchAndMsgCategoryWrapper">
+        <div id="msgCategoryWrapper" class="text-center">
+            
+            <div id="messageCategory" role="group" class="btn-group-sm btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-success active">
+                    <input type="checkbox" name="info" id="info" value="info" checked /> <i class="fa"></i> {{messages-cat-info}}
+                </label>
+                <label class="btn btn-warning">
+                    <input type="checkbox" name="alert" id="alert" value="alert" checked /> <i class="fa"></i> {{messages-cat-alert}}
+                </label>
+                <label class="btn btn-danger">
+                    <input type="checkbox" name="emergency" id="emergency" value="emergency" checked /> <i class="fa"></i> {{messages-cat-emergency}}
+                </label>
+            </div>   
+            
+            
+            
+        </div>
+        <div id="searchWrapper">
+        <input id="search" type="text" name="search" placeholder="{{messages-search-msg}}" style="border-radius:5px;padding:5px;width:250px;" />
+        <i class="fa fa-search" aria-hidden="true" id="searchBtn"></i>
+        </div>
+    </div>
+    <div id="allMsgWrapper"></div>
+</div>
+</script>
+
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="./common.js?v=1"></script>
+<script src="./static-page.js?v=1"></script>
+<script>
+    let msgDataArr = [];
+
+    function getFilteredMsgs() {
+        let filters = [];
+        if ($('#info').is(':checked')) {
+            filters.push($('#info').val());
+        }
+        if ($('#alert').is(':checked')) {
+            filters.push($('#alert').val());
+        }
+        if ($('#emergency').is(':checked')) {
+            filters.push($('#emergency').val());
+        }
+        let filteredMsgs = msgDataArr.filter(function(msgArr) {
+            msgCategory = msgArr[2].toLowerCase();
+            return filters.indexOf(msgCategory) != -1;
+        });
+        let searchText = $('#search').val();
+        if (searchText != '') {
+            filteredMsgs = filteredMsgs.filter(function(msgArr) {
+                msg = msgArr[3].toLowerCase();
+                searchText = searchText.toLowerCase();
+                return msg.indexOf(searchText) != -1;
+            });
+        }
+        return filteredMsgs;
+    }
+
+    function filterMsg() {
+        let filteredMsgs = getFilteredMsgs();
+        $('#allMsgWrapper').html('');
+        renderMessages(filteredMsgs);
+    }
+
+    function searchMsg() {
+        let filteredMsgs = getFilteredMsgs();
+        $('#allMsgWrapper').html('');
+        renderMessages(filteredMsgs);
+    }
+
+    function init() {
+        let msgDataStr = sessionStorage.getItem(msgDataKey);
+        msgDataArr = msgDataStr != null ? JSON.parse(msgDataStr) : null;
+        let lastMsgFetchTimeStamp = localStorage.getItem(lastMsgFetchTimeStampKey);
+        let timeDiff = 0;
+        if (lastMsgFetchTimeStamp == null) {
+            lastMsgFetchTimeStamp = new Date();
+            fetchMessages();
+            localStorage.setItem(lastMsgFetchTimeStampKey, lastMsgFetchTimeStamp);
+        } else {
+            //timeDiff in ms
+            timeDiff = new Date().getTime() - new Date(localStorage.getItem(lastMsgFetchTimeStampKey)).getTime();
+            if (timeDiff > msgCacheTimeout) { // Make the call to server to get messages
+                fetchMessages();
+            } else {
+                renderMessages(msgDataArr);
+                let maxMsgIndex = localStorage.getItem(maxMsgIndexKey);
+                localStorage.setItem(currentMaxMsgIndexKey, maxMsgIndex);
+                localStorage.setItem(maxMsgIndexKey, maxMsgIndex);
+                localStorage.setItem(newMsgCountKey, 0);
+            }
+        }
+    }
+
+    function fetchMessages() {
+        var url = 'https://hawkaidata.net/api/eas.php?key=' + cityApiKey;
+        var r = $.post(url, {}, function(resp, textStatus, jqXHR) {
+            let msgsArray = resp.data;
+            msgDataArr = msgsArray;
+            let msgsLen = resp.data.length;
+            let maxMsgIndex = localStorage.getItem(maxMsgIndexKey);
+            maxMsgIndex = maxMsgIndex != null ? maxMsgIndex : 0;
+            for (let i = 0; i < msgsLen; i++) {
+                if (msgsArray[i][0] > maxMsgIndex) {
+                    maxMsgIndex = msgsArray[i][0];
+                }
+            }
+            renderMessages(msgsArray);
+            sessionStorage.setItem(msgDataKey, JSON.stringify(msgsArray));
+            localStorage.setItem(currentMaxMsgIndexKey, maxMsgIndex);
+            localStorage.setItem(maxMsgIndexKey, maxMsgIndex);
+            localStorage.setItem(newMsgCountKey, 0);
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            alert(textStatus);
+        });
+    }
+
+    function convertTextUrlToClickableURL(content) {
+        var exp_match = /(\b(https?|):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+        var element_content = content.replace(exp_match, "<a target='_blank' href='$1'>$1</a>");
+        var new_exp_match = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+        var new_content = element_content.replace(new_exp_match, '$1<a target="_blank" href="http://$2">$2</a>');
+        return new_content;
+    }
+
+    function renderMessages(msgsArray) {
+        let msgsLen = msgsArray.length;
+        let msgHTML = '';
+        let msgCategoryColors = {
+            'info': 'infobg',
+            'emergency': 'emergencybg',
+            'alert': 'alertbg'
+        };
+        let currentMaxMsgIndex = localStorage.getItem(currentMaxMsgIndexKey);
+        currentMaxMsgIndex = currentMaxMsgIndex == null ? 0 : currentMaxMsgIndex;
+        let userLocale = langLocaleMap[userLang];
+        for (let i = 0; i < msgsLen; i++) {
+            let msg = msgsArray[i][3];
+            msg = convertTextUrlToClickableURL(msg);
+            let msgCategory = msgsArray[i][2];
+            let msgCategoryClass = msgCategoryColors[msgCategory];
+            let msgCategoryInLocale = '';
+            if (msgCategory == 'info') {
+                msgCategoryInLocale = labels[userLang]['messages-cat-info'];
+            } else if (msgCategory == 'alert') {
+                msgCategoryInLocale = labels[userLang]['messages-cat-alert'];
+            } else if (msgCategory == 'emergency') {
+                msgCategoryInLocale = labels[userLang]['messages-cat-emergency'];
+            }
+            let msgDateTimeSplittedArr = msgsArray[i][1].split(' ');
+            let msgDate = msgDateTimeSplittedArr[0];
+            let msgTime = msgDateTimeSplittedArr[1];
+            let msgDateSplittedArr = msgDate.split('-');
+            let msgYear = msgDateSplittedArr[0];
+            let msgMonth = msgDateSplittedArr[1];
+            let msgDay = msgDateSplittedArr[2];
+            //msgDateTime in another format
+            let msgDateTime = new Date(msgYear + '/' + msgMonth + '/' + msgDay + ' ' + msgTime);
+            let dateLocaleOptions = {
+                year: 'numeric',
+                month: 'short',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            let timeStamp = msgDateTime.toLocaleString(userLocale, dateLocaleOptions);
+            let unreadMsgClass = '';
+            if (msgsArray[i][0] > currentMaxMsgIndex) {
+                unreadMsgClass = 'unreadMsg'; // TODO -- we'll apply this class. Read msgs will have empty value for this
+            }
+            var classN = "success";
+            if (msgCategory == "alert") {
+                classN = "warning";
+            } else if (msgCategory == "emergency") {
+                classN = "danger";
+            }
+            msgHTML += '<div class="msgWrapper ' + unreadMsgClass + ' border border-' + classN + '">';
+            msgHTML += '<div><span class="msg-timestamp">' + timeStamp + '</span></div>';
+            msgHTML += '<div class="msg">' + msg + '</div>';
+            msgHTML += '</div>';
+        }
+        $(msgHTML).appendTo('#allMsgWrapper');
+    }
+    $(document).ready(function() {
+        init();
+        $('#searchBtn').click(function() {
+            searchMsg();
+        });
+        $('#info, #alert, #emergency').click(function() {
+            filterMsg();
+        });
+        $('#search').keyup(function(event) {
+            searchMsg();
+        });
+    });
+</script>
+
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'messages-header' : 'Messages',
+        'messages-cat-info' : 'info',
+        'messages-cat-alert' : 'alert',
+        'messages-cat-emergency' : 'emergency',
+        'messages-search-msg' : 'Search Messages'
+    },
+    "fr" : {
+        'messages-header' : 'Messages',
+        'messages-cat-info' : 'info',
+        'messages-cat-alert' : 'alerte',
+        'messages-cat-emergency' : 'urgence',
+        'messages-search-msg' : 'Rechercher des messages'
+    }
+}   
+
+
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+</body>
+</html>

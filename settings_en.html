@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159161641-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-159161641-2');
+</script>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<style>
+@import url("./css/normalize.css");
+</style>
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/prettydropdowns.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+body{
+  font-size:14px; 
+  font-family:Helvetica;
+}
+.pageHeader{
+    top:0;
+    left:0;
+    width:100vw;
+    height:50px;
+    background-color:#4a3175;
+    color:white;
+    padding:10px 0 0 10px;    
+}
+.pageBody{
+    margin:0 auto;
+    padding:15px;
+}
+.prettydropdown > ul {
+    position:relative;
+    font-size:14px;
+    font-family:Helvetica;
+}
+.prettydropdown > select {
+    position: absolute;
+}
+.fieldContainer{
+    margin: 0 auto 20px 20px;    
+}
+.inputContainer{
+    margin-top:3px;
+}
+.navElem{
+  display: flex;
+  position: relative;
+  width:220px;
+  border:1px solid #a9a9a9;      
+  height:28px;
+  cursor:pointer;
+}
+.navFieldText{
+  width:200px;
+  padding:8px 0px 8px 12px;
+}
+.navFieldArrow{
+ color:#a9a9a9;
+ font-size:18px;
+ align-self: center;
+ width:20px;
+}
+.backBtn{
+    cursor:pointer;
+    position:absolute;
+    right:25px;
+}
+</style>
+
+</head>
+<body>
+<div id="settingsContainer">
+    <div class="pageHeader"><h3><label id="settings-header">Settings</label><i class="fa fa-angle-double-left backBtn"></i></h3></div>
+    <div class="pageBody">
+            <div class="fieldContainer">
+                <div><label id="settings-lang">Language</label></div>
+                <div class="inputContainer">
+                    <select name="lang" id="lang" class="pretty">
+                        <option value="en"><label id="settings-en">English</option>
+                        <option value="fr"><label id="settings-fr">French</label></option>
+                        <!--<option value="pt"><label id="settings-pt">Portuguese</label></option>-->
+                    </select>
+                </div>
+            </div>
+
+            <div class="fieldContainer">
+                <div><label id="settings-sel-country">Select Country</label></div>
+                <div class="inputContainer">
+                    <select name="country" id="country" class="pretty">
+                        <!--<option value="accra_GH">Accra, Ghana</option>-->
+                        <option value="CM"><label id="settings-douala">Cameroon</label></option>
+                        <option value="GH"><label id="settings-ahafo">Ghana</label></option>
+                        <option value="GN"><label id="settings-kamsar">Guinea</label></option>
+                        <option value="ET"><label id="settings-mekelle">Ethiopia</label></option>
+                        <option value="MZ"><label id="settings-pemba">Mozambique</label></option>
+                        <option value="NG"><label id="settings-harcourt">Nigeria</label></option>
+                        <option value="US"><label id="settings-philadelphia">United States</label></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="fieldContainer">
+                <div><label id="settings-sel-city">Select City</label></div>
+                <div class="inputContainer">
+                    <select name="city" id="city" class="pretty">
+                        <!--<option value="accra_GH">Accra, Ghana</option>-->
+                        <option value="douala_CM"><label id="settings-douala">Douala, Cameroon</label></option>
+                        <option value="kamsar_GN"><label id="settings-kamsar">Kamsar, Guinea</label></option>
+                        <option value="mekelle_ET"><label id="settings-mekelle">Mekelle, Ethiopia</label></option>
+                        <option value="pemba_MZ"><label id="settings-pemba">Pemba, Mozambique</label></option>
+                        <option value="port-harcourt_NG"><label id="settings-harcourt">Port Harcourt, Nigeria</label></option>
+                        <option value="ahafo_GH"><label id="settings-ahafo">Ahafo, Ghana</label></option>
+                        <option value="philadelphia_US"><label id="settings-philadelphia">Philadelphia, US</label></option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="fieldContainer">
+                <div id="profileField" class="navElem">
+                    <div class="navFieldText"><label id="settings-profile">Profile</label></div>
+                    <div class="navFieldArrow"><i class="fa fa-chevron-right"></i></div>
+                </div>
+            </div>
+            
+            <!--<div class="fieldContainer">
+                <div id="defaultCatField" class="navElem">
+                    <div class="navFieldText"><label id="settings-default-cat">Select Default Categories</label></div>
+                    <div class="navFieldArrow"><i class="fa fa-chevron-right"></i></div>
+                </div>
+            </div>
+            
+            <div class="fieldContainer">
+                <div id="subscribeToMsgField" class="navElem">
+                    <div class="navFieldText"><label id="settings-subscribe-msg">Subscribe to Messages</label></div>
+                    <div class="navFieldArrow"><i class="fa fa-chevron-right"></i></div>
+                </div>
+            </div>
+            -->
+    </div>
+</div>
+      
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=3"></script>
+<script src="./static-page.js?v=2"></script>
+<script src="./js/jquery.prettydropdowns.js"></script>
+<script>
+$dropdown = null;
+$(document).ready(function() {
+  $('#lang').val(userLang);
+  $('#country').val(userCountry);
+  $('#city').empty();
+  populateCitiesForCountry(userCountry);
+  $('#city').val(userCity);
+  $dropdown = $('select').prettyDropdown({height:30});
+  updateLang();
+});
+    
+$("#lang").change(function() {
+  localStorage.setItem('userLang', $(this).val());
+  updateLang();
+});
+    
+function updateLang(){
+    var userLang = localStorage.getItem('userLang');
+    var userLangLabels = labels[userLang];
+    
+    for(var key in userLangLabels){
+        $('#' + key).html(userLangLabels[key]);
+    }
+}
+
+function populateCitiesForCountry(selCountry){
+  let selCountryCities = countryCityMap[selCountry]['cities'];
+  $('#city').empty();
+  for (let i=0,len=selCountryCities.length;i<len;i++){
+    let currentCityVal = selCountryCities[i];
+    let currentCityDetails = cityDetails[currentCityVal];
+    let currentCityName = currentCityDetails['name'];
+    $('#city').append(new Option(currentCityName, currentCityVal));
+  }
+  if($dropdown){
+    $dropdown.refresh();
+  }
+}
+
+$("#country").change(function() {
+  let selCountry = $(this).val();
+  populateCitiesForCountry(selCountry);
+  localStorage.setItem('userCountry', selCountry);
+  localStorage.setItem('userCity', $('#city').val());
+});
+
+$("#city").change(function() {
+  localStorage.setItem('userCity', $(this).val());
+});
+
+$("#profileField").click(function(){
+   window.open('./profile-settings_en.html', '_self');
+});
+$("#defaultCatField").click(function(){
+    window.open('./default-cat-settings_en.html', '_self');
+});
+$("#subscribeToMsgField").click(function(){
+    window.open('./subscribe-to-msg-settings_en.html', '_self');
+});
+</script>
+<script>
+    var labels = {
+    "en" : {
+        'settings-header' : 'Settings',
+        'settings-lang' : 'Language',
+        'settings-en' : 'English',
+        'settings-fr' : 'French',
+        'settings-pt' : 'Portuguese',
+        'settings-sel-country' : 'Select Country',
+        'settings-sel-city' : 'Select City',
+        'settings-douala' : 'Douala, Cameroon',
+        'settings-kamsar' : 'Kamsar, Guinea',
+        'settings-mekelle' : 'Mekelle, Ethiopia',
+        'settings-pemba' : 'Pemba, Mozambique',
+        'settings-harcourt' : 'Port Harcourt, Nigeria',
+        'settings-ahafo' : 'Ahafo, Ghana',
+        'settings-philadelphia' : 'Philadelphia, PA',
+        'settings-profile' : 'Profile',
+        'settings-default-cat' : 'Select Default Categories',
+        'settings-subscribe-msg' : 'Subscribe to Messages'
+    },
+    "fr" : {
+        'settings-header' : 'Réglages',
+        'settings-lang' : 'Langue',
+        'settings-en' : 'English',
+        'settings-fr' : 'French',
+        'settings-pt' : 'Portuguese',
+        'settings-sel-country' : 'Sélectionnez un pays',
+        'settings-sel-city' : 'Sélectionnez une ville',
+        'settings-douala' : 'Douala, Cameroon',
+        'settings-kamsar' : 'Kamsar, Guinea',
+        'settings-mekelle' : 'Mekelle, Ethiopia',
+        'settings-pemba' : 'Pemba, Mozambique',
+        'settings-harcourt' : 'Port Harcourt, Nigeria',
+        'settings-ahafo' : 'Ahafo, Ghana',
+        'settings-philadelphia' : 'Philadelphia, PA',
+        'settings-profile' : 'Profil',
+        'settings-default-cat' : 'Select Default Categories',
+        'settings-subscribe-msg' : 'Abonnez-vous aux messages'
+    }, 
+    "pt" : {},
+};
+</script>
+</body>
+</html>

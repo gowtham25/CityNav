@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<style>
+@import url("./css/normalize.css");
+</style>
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/prettydropdowns.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+html,body{
+  font-size:12px; 
+  font-family:Helvetica;
+  margin:0; 
+  padding:0;
+}
+.pageHeader{
+    height:50px;
+    background-color:dimgray;
+    color:white;
+    padding:10px 0 0 10px;    
+}
+.pageBody{
+    margin:0 auto;
+    padding:15px;
+}
+.backBtn{
+    cursor:pointer;
+    position:absolute;
+    right:25px;
+}
+#newLocationContainer{
+   background-color:lightgray;
+   height:100vh;
+}
+#messageContainer{
+    width:80vw;
+    margin: 0 auto;
+    background-color:white;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    min-height:85vh;
+    border-radius:5px;
+}
+#success-tick-icon{
+    margin-top:20px;
+}
+#thankyou-msg{
+    margin-top:20px;     
+}
+#submitted-msg{
+    margin-top:20px;     
+}
+#home-icon{
+    cursor : pointer;
+    margin-top:50px;      
+}
+</style>
+</head>
+<body>
+<div id="newLocationContainer">
+    <div class="pageHeader"><h3>Thank you!</h3></div>
+    <div class="pageBody">
+      <div id="messageContainer">
+          <div id="success-tick-icon"><img src="./icons/success-tick.png" /></div>
+          <div id="thankyou-msg"><h3>Thank you</h3></div>
+          <div id="submitted-msg">Your data has been successfully submitted.</div>
+          <div id="home-icon"><img src="./icons/home.png" /></div>
+      </div>
+    </div>
+</div>
+      
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=2"></script>
+<script src="./static-page.js?v=2"></script>
+<script>
+$(document).ready(function(){
+    $('#home-icon').click(function(){
+        location.href = './portal.html';
+    });
+}); 
+</script>
+</body>
+</html>

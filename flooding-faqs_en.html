@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./static-page.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+</head>
+<body>
+<div id="target">
+</div>
+<script id="template" type="x-tmpl-mustache">
+<div>
+    <div class="topicHeader"><h3>{{flood-faq-title}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+    <div class="topicDescTop">
+    <ol>
+    <li>
+        <strong>{{flood-faq-q1}}</strong>
+        <p>{{flood-faq-a1}}</p>
+    </li>
+        
+    <li>
+        <strong>{{flood-faq-q2}}</strong>
+        <p>{{flood-faq-a2}}</p>
+    </li>
+        
+    <li>
+        <strong>{{flood-faq-q3}}</strong>
+        <p>{{flood-faq-a3}}</p>
+    </li>
+        
+    <li>
+        <strong>{{flood-faq-q4}}</strong>
+        <p>{{flood-faq-a4}}</p>
+    </li>
+        
+    <li>
+        <strong>{{flood-faq-q5}}</strong>
+        <p>{{flood-faq-a5}}</p>
+    </li>
+        
+    <li>
+        <strong>{{flood-faq-q6}}</strong>
+        <p>{{flood-faq-a6}}</p>
+    </li>
+        
+    <li>
+        <strong>{{flood-faq-q7}}</strong>
+        <p>{{flood-faq-a7}}</p>
+    </li>
+        
+    <li>
+        <strong>{{flood-faq-q8}}</strong>
+        <p>{{flood-faq-a8}}</p>
+    </li>
+        
+    <li>
+        <strong>{{flood-faq-q9}}</strong>
+        <p>{{flood-faq-a9}}</p>
+    </li>
+    
+    <li>
+        <strong>{{flood-faq-q10}}</strong>
+        <ul>
+            <li>{{flood-faq-a10-1}}</li>
+            <li>{{flood-faq-a10-2}}</li>
+            <li>{{flood-faq-a10-3}}</li>
+            <li>{{flood-faq-a10-4}}</li>
+            <li>{{flood-faq-a10-5}}</li>
+            <li>{{flood-faq-a10-6}}</li>
+            <li>{{flood-faq-a10-7}}</li>
+            <li>{{flood-faq-a10-8}}</li>
+            <li>{{flood-faq-a10-9}}</li>
+            <li>{{flood-faq-a10-10}}</li>
+            <li>{{flood-faq-a10-11}}</li>
+            <li>{{flood-faq-a10-12}}</li>
+        </ul>
+    </ol>
+    </div>
+</div>
+</script>
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=1"></script>
+<script src="./static-page.js?v=1"></script>
+
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'flood-faq-title' : 'Flood FAQs',
+        'flood-faq-q1' : 'What makes flooding worse in urban areas?',
+        'flood-faq-a1' : 'In flood-prone areas, urban and economic development is one of the main aggravating factors, increasing vulnerability. In addition, the chronic lack of maintenance by local residents aggravate the hazards.',
+        'flood-faq-q2' : 'What risks do debris pose?',
+        'flood-faq-a2' : 'Finally, the occupation of floodplains by water-sensitive buildings and materials can generate, in the event of flooding, a transport and storage of undesirable products, likely to form ice jams. Their rupture can cause sudden flooding of downstream areas.',
+        'flood-faq-q3' : 'How does the construction type impact floods?',
+        'flood-faq-a3' : 'When the physical landscape is modified by artificial structures, the way water flows on the ground is also modified. Structures located both upstream and downstream of your location can have an impact on your vulnerability to flooding.',
+        'flood-faq-q4' : 'What is the link between building permits and flooding?',
+        'flood-faq-a4' : 'It is important to obtain a building permit for any development in a floodplain because some construction work may require modification of drainage channels and cause flooding. For example, a poorly erected fence or an obstruction of water flow paths by a building built without a building permit. Be aware of the threats that any changes around your property may pose.',
+        'flood-faq-q5' : 'Can road conditions have an impact on the severity of flooding?',
+        'flood-faq-a5' : 'Unpaved surfaces can increase the risk of flooding by allowing water to penetrate the ground and slowly infiltrate into drainage channels. On the other hand, paved surfaces facilitate the rapid flow of water to rivers and thus reduce the risk of flooding.',
+        'flood-faq-q6' : 'How to manage flood risks?',
+        'flood-faq-a6' : 'Flooding is a foreseeable risk in its intensity, but it is difficult to know when it will occur. It is important to read information related to what one should do before, during and after a flood.',
+        'flood-faq-q7' : 'How long can I stay in my shelter room?',
+        'flood-faq-a7' : 'You must remain in your sealed room until the local authorities notify you that it is safe. Pay particular attention to all official warnings and instructions to continue. You must include a battery-powered radio with extra batteries in your emergency power kit that you store in the room where you are.',
+        'flood-faq-q8' : 'How to get to safety when you are not at home?',
+        'flood-faq-a8' : 'Move quickly into a small room with fewer windows and outside walls. Use any material in the area to prevent air from circulating easily in the room. This may include packaging tape, carpets, plastic bags, newspaper or clothing. These are not the preferred materials for sealing a part, but it would be better than not having protective measures in place.',
+        'flood-faq-q9' : 'Should I choose a room without windows for a shelter?',
+        'flood-faq-a9' : 'The best room is the room with the fewest windows and doors. Since each opening will require time to seal, reducing the number of parts to be sealed will reduce the time required to reduce the air flow in the room. The room must be easily accessible and provide adequate space for family members.',
+        'flood-faq-q10' : 'What are the most useful steps to prepare for flooding?',
+        'flood-faq-a10-1' : 'Sign up to receive alerts and warnings',
+        'flood-faq-a10-2' : 'Develop a plan',
+        'flood-faq-a10-3' : 'Save for rainy days',
+        'flood-faq-a10-4' : 'Practice emergency exercises',
+        'flood-faq-a10-5' : 'Test the family communication plan',
+        'flood-faq-a10-6' : 'Backup documents',
+        'flood-faq-a10-7' : 'Plan with neighbors',
+        'flood-faq-a10-8' : 'Making our home safer',
+        'flood-faq-a10-9' : 'Know the evacuation routers',
+        'flood-faq-a10-10' : 'Assemble or update supplies',
+        'flood-faq-a10-11' : 'Get involved in your community',
+        'flood-faq-a10-12' : 'Document and insure real estate assets.'
+    },
+    "fr" : {
+        'flood-faq-title' : 'FAQ sur les inondations',
+        'flood-faq-q1' : "Qu'est-ce qui aggrave les inondations dans les zones urbaines?",
+        'flood-faq-a1' : "Dans les zones sujettes aux inondations, le développement urbain et économique est l'un des principaux facteurs aggravants la vulnérabilité. De plus, le manque chronique d'entretien des égouts et aggrave les risques.",
+        'flood-faq-q2' : 'Quels risques posent les débris?',
+        'flood-faq-a2' : "L'occupation des plaines inondables par des bâtiments et des matériaux sensibles à l'eau peut générer, en cas d'inondation, un transport et un stockage de produits indésirables, susceptibles de former des embâcles. Leur rupture peut provoquer une inondation soudaine des zones en aval.",
+        'flood-faq-q3' : 'Comment le type de construction impacte-t-il les inondations?',
+        'flood-faq-a3' : "Lorsque le paysage physique est modifié par des structures artificielles, la façon dont l'eau coule sur le sol est également modifiée. Les structures situées à la fois en amont et en aval de votre emplacement peuvent avoir un impact sur votre vulnérabilité aux inondations.",
+        'flood-faq-q4' : 'Quel est le lien entre les permis de construire et les inondations?',
+        'flood-faq-a4' : "Il est important d'obtenir un permis de construire pour tout aménagement dans une plaine inondable car certains travaux de construction peuvent nécessiter la modification des canaux de drainage et provoquer des inondations. Par exemple, une clôture mal érigée ou une obstruction des voies d'écoulement d'eau par un bâtiment construit sans permis de construire. Soyez conscient des menaces que tout changement autour de votre propriété peut représenter.",
+        'flood-faq-q5' : 'Les conditions routières peuvent-elles avoir un impact sur la gravité des inondations?',
+        'flood-faq-a5' : "Les surfaces non pavées peuvent augmenter le risque d'inondation en permettant à l'eau de pénétrer dans le sol et de s'infiltrer lentement dans les canaux de drainage. D'autre part, les surfaces pavées facilitent l'écoulement rapide de l'eau vers les rivières et réduisent ainsi le risque d'inondation.",
+        'flood-faq-q6' : "Comment gérer les risques d'inondation?",
+        'flood-faq-a6' : 'Les inondations sont un risque prévisible dans son intensité, mais il est difficile de savoir quand il se produira. Il est important de lire les informations relatives aux précautions avant, pendant et après une inondation.',
+        'flood-faq-q7' : 'Combien de temps puis-je rester dans mon abris?',
+        'flood-faq-a7' : "Vous devez rester dans votre abris scellé jusqu'à ce que les autorités locales vous avisent que vous pouvez sortir sans risque. Portez une attention particulière à tous les avertissements et instructions officiels pour continuer. Ayez une radio alimentée par batterie et des batteries supplémentaires dans votre kit d'alimentation d'urgence et stockez le dans la pièce où vous vous trouvez.",
+        'flood-faq-q8' : "Comment se mettre en sécurité lorsque vous n'êtes pas chez vous?",
+        'flood-faq-a8' : "Trouvez une petite pièce avec peu de fenêtres et de murs extérieurs. Utilisez n'importe quel matériau dans la zone pour empêcher l'air de circuler facilement dans la pièce. Cela peut inclure du ruban d'emballage, des tapis, des sacs en plastique, du papier journal ou des vêtements. Ce ne sont pas les matériaux préférés pour sceller une pièce, mais ce serait mieux que de ne pas avoir de mesures de protection en place.",
+        'flood-faq-q9' : 'Dois-je choisir une pièce sans fenêtre comme abri?',
+        'flood-faq-a9' : "La meilleure pièce est celle avec le moins de fenêtres et de portes. Étant donné que chaque ouverture nécessitera du temps pour se sceller, la réduction du nombre de pièces à sceller réduira le temps nécessaire pour réduire le débit d'air dans la pièce. La chambre doit être facilement accessible et offrir suffisamment d'espace aux membres de la famille.",
+        'flood-faq-q10' : 'Quelles sont les étapes les plus utiles pour se préparer aux inondations?',
+        'flood-faq-a10-1' : '­Enregistrez-vous pour recevoir des alertes et des avertissements',
+        'flood-faq-a10-2' : '­Développez un plan d’evacuation',
+        'flood-faq-a10-3' : '­Économisez pour les jours de pluie',
+        'flood-faq-a10-4' : '­Testez le plan de communication familial',
+        'flood-faq-a10-5' : '­Sauvegardez vos documents',
+        'flood-faq-a10-6' : '­Planifiez avec vos voisins',
+        'flood-faq-a10-7' : '­Rendez notre maison plus sûre',
+        'flood-faq-a10-8' : "Maitrisez les routeurs d'évacuation",
+        'flood-faq-a10-9' : '­Assemblez ou mettre à jour les fournitures',
+        'flood-faq-a10-10' : '­Impliquez-vous dans votre communauté',
+        'flood-faq-a10-11' : '­Documentez et assurer les actifs immobiliers.'
+    }
+}   
+
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+
+</body>
+</html>

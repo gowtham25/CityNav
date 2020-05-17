@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159161641-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-159161641-2');
+</script>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<style>
+@import url("./css/normalize.css");
+</style>
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+body{
+/*  font-size:12px; */
+  font-family:Helvetica;
+}
+.pageHeader{
+top:0;
+left:0;
+width:100vw;
+height:50px;
+background-color:#4a3175;
+color:white;
+padding:10px 0 0 10px;    
+position: fixed;
+}
+.pageBody{
+margin:55px auto 0 auto;
+padding:15px;
+}
+.fieldContainer{
+margin: 0 auto 10px 20px;    
+}
+.backBtn{
+cursor:pointer;
+position:absolute;
+right:25px;
+}
+.line-item{
+background-color:aliceblue;
+border-radius:5px;
+padding:15px;
+margin-top:20px;
+height:40px;
+line-height:40px;
+font-size: 16px;
+color:royalblue;
+font-weight:bold;
+cursor: pointer;
+}
+.nav-right-arrow{
+    position:absolute;
+    right:20px;
+    font-weight:bold;
+    line-height:40px;
+}
+</style>
+</head>
+<body>     
+<div id="target">
+</div>
+<script id="template" type="x-tmpl-mustache">
+<div class="pageHeader">
+    <h3>{{covid19-header}}<i class="fa fa-angle-double-left backBtn"></i></h3>
+</div>
+<div class="pageBody">
+    <div class="line-item" data-link-file="covid19-faqs">{{covid19-faq}} <i class="fa fa-chevron-right nav-right-arrow" aria-hidden="true"></i></div>
+    <div class="line-item" data-link-file="covid19-tracker">{{covid19-tracker}} <i class="fa fa-chevron-right nav-right-arrow" aria-hidden="true"></i></div>  
+</div>
+</script>
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=1"></script>
+<script src="./static-page.js?v=1"></script>
+<script>
+$(document).ready(function(){
+  $('.line-item').click(function(evt){
+        evt.preventDefault();
+        var fileName = $(this).attr('data-link-file');
+        if(fileName != ''){
+            var userLang = localStorage.getItem('userLang');
+            userLang = userLang ? userLang : "en";
+            //window.open('./' + fileName + '_' + userLang + '.html', '_self');
+            window.open('./' + fileName + '_en' + '.html', '_self');
+        }
+  });
+});
+</script>
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'covid19-header' : 'Corona/COVID-19',
+        'covid19-tracker' : 'COVID-19 Tracker',
+        'covid19-faq' : 'COVID-19 FAQs'
+    },
+    "fr" : {
+        'covid19-header' : 'Corona/COVID-19',
+        'covid19-tracker' : 'Traqueur de Covid-19',
+        'covid19-faq' : 'COVID-19 FAQs'
+    }
+}   
+
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+</body>
+</html>

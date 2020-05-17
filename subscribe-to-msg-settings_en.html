@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<style>
+@import url("./css/normalize.css");
+</style>
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+body{
+  font-size:12px; 
+  font-family:Helvetica;
+}
+.pageHeader{
+    top:0;
+    left:0;
+    width:100vw;
+    height:50px;
+    background-color:#4a3175;
+    color:white;
+    padding:20px 0 0 10px;    
+}
+.pageBody{
+    margin:0 auto;
+    padding:15px;
+}
+.fieldContainer{
+    margin: 0 auto 10px 10px;    
+}
+#messageTypeList{
+ display:grid;
+ grid-row-gap: 5px;
+}
+.message{
+    display:grid;
+    width:320px;
+    align-items:center;
+    justify-content: flex-start;
+    grid-template-columns: 290px 30px;
+    margin-left:10px;
+}
+.separator{
+    width:320px;
+    margin-left:10px;
+}
+.backBtn{
+    cursor:pointer;
+    position:absolute;
+    right:25px;
+}
+@media only screen and (max-device-width: 320px){
+    .message{
+        display:grid;
+        width:280px;
+        align-items:center;
+        justify-content: flex-start;
+        grid-template-columns: 250px 30px;
+        margin-left:10px;
+    }
+    .separator{
+        width:280px;
+        margin-left:10px;
+    }
+}
+</style>
+</head>
+<body>
+<div id="target">
+
+</div>
+<script id="template" type="x-tmpl-mustache">
+<div id="subscribeToMessagesContainer">
+    <div class="pageHeader"><h3>{{subscribe-msg}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+    <div class="pageBody">
+        <div id="messageTypeList">
+            <div class="message">
+                {{emergency-alerts}}
+                <input type="checkbox" name="" value="Y" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="message">
+                {{flood-alerts}}
+                <input type="checkbox" name="" value="Y" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="message">
+                {{weather-alerts}}
+                <input type="checkbox" name="" value="Y" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="message">
+                {{general-alerts}}
+                <input type="checkbox" name="" value="Y" />
+            </div>
+            <div class="separator"><hr /></div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=1"></script>
+<script src="./static-page.js?v=1"></script>
+
+
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+      'subscribe-msg' : 'Subscribe To Messages',
+      'emergency-alerts' : 'Emergency Alerts',
+      'flood-alerts' : 'Flood Alerts',
+      'weather-alerts' : 'Weather Alerts',
+      'general-alerts' : 'General Alerts'
+    },
+    "fr" : {
+      'subscribe-msg' : 'Abonnez-vous aux messages',
+      'emergency-alerts' : "Alertes d'urgence",
+      'flood-alerts' : "Alertes d'inondation",
+      'weather-alerts' : 'Alertes Météo',
+      'general-alerts' : 'Alertes Générales'
+    }
+}   
+
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+</body>
+</html>

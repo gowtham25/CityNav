@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./static-page.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+</head>
+<body>
+<div id="target">
+
+</div>
+<script id="template" type="x-tmpl-mustache">
+<div>
+    <div class="topicHeader"><h3>{{flooding-101-title}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+    <div class="topicDescTop">{{flooding-101-desc}}
+    <ol>
+        <li>
+            <strong>{{flooding-101-prepare-title}}</strong>
+            <p>{{flooding-101-prepare-desc}}</p>
+        </li>
+        <li>
+            <strong>{{flooding-101-resources-title}}</strong>
+            <ul>
+                <li>{{flooding-101-resources-desc-1}}</li>
+                <li>{{flooding-101-resources-desc-2}}</li>
+                <li>{{flooding-101-resources-desc-3}}</li>
+                <li>{{flooding-101-resources-desc-4}}</li>
+            </ul>
+        </li>
+    </ol>
+    </div>
+</div>
+</script>
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=1"></script>
+<script src="./static-page.js?v=1"></script>
+
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'flooding-101-title' : 'Flooding 101',
+        'flooding-101-desc' : 'Floods could cause loss of life and damage to structures, crops, land, flood control structures, roads and public services. Flooding could also cause erosion and landslides, and even can carry debris and toxic products causing secondary damage.',
+        'flooding-101-prepare-title' : 'Prepare for unexpected spills',
+        'flooding-101-prepare-desc' : 'All rivers in the Douala region can be flooded, and all structures in their floodplains are at risk of being flooded. In extreme cases, heavy rains can also cause flooding in areas far from streams and rivers. Use the resources below to access information on flood safety tips, current weather conditions and proper sandbag construction.',
+        'flooding-101-resources-title' : 'Resources',
+        'flooding-101-resources-desc-1' : 'First of all, prepare yourself for the flood. Understand all steps outlined in the "Before the Flood Section"',
+        'flooding-101-resources-desc-2' : 'Document the damage and start cleaning.',
+        'flooding-101-resources-desc-3' : 'How can I start my flood claim?',
+        'flooding-101-resources-desc-4' : 'Dissatisfied with the payment of your request'
+    },
+    "fr" : {
+        'flooding-101-title' : 'Comprendre les inondations',
+        'flooding-101-desc' : "Les inondations peuvent causer des pertes de vie et endommager les structures, les cultures, les terres, les routes et les services publics. Les inondations peuvent également provoquer de l'érosion et des glissements de terrain, et souvent même transporter des débris et des produits toxiques causant des dommages secondaires.",
+        'flooding-101-prepare-title' : "Préparez-vous aux déversements et éboulements imprévus",
+        'flooding-101-prepare-desc' : "Toutes les rivières dans la région de Douala sont susceptibles aux inondations et toutes les structures riveraines sont aussi sous le même risque. Dans des cas extrêmes, de fortes pluies peuvent également provoquer des inondations dans les zones éloignées des ruisseaux et rivières. Utilisez les ressources ci-dessous pour accéder aux informations relatives aux conseils de sécurité contre les inondations, les conditions météorologiques actuelles et la bonne disposition des sacs de sable.",
+        'flooding-101-resources-title' : 'Ressources',
+        'flooding-101-resources-desc-1' : "Tout d'abord, préparez-vous au déluge. Faites un effort de comprendre toutes les étapes décrites dans la section \"Avant l'inondation\"",
+        'flooding-101-resources-desc-2' : '­Documentez les dommages et commencez le nettoyage',
+        'flooding-101-resources-desc-3' : '­Si vous êtes assuré, rassemblez les informations nécessaires pour commencer votre réclamation pour les dommages relatifs à vos dommages.',
+        'flooding-101-resources-desc-4' : 'Dissatisfied with the payment of your request'
+    }
+}   
+
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+</body>
+</html>

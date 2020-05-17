@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<style>
+@import url("./css/normalize.css");
+</style>
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/prettydropdowns.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+body{
+  font-size:12px; 
+  font-family:Helvetica;
+}
+.pageHeader{
+    top:0;
+    left:0;
+    width:100vw;
+    height:50px;
+    background-color:dimgray;
+    color:white;
+    padding:20px 0 0 10px;    
+}
+.pageBody{
+    margin:0 auto;
+    padding:15px;
+}
+.prettydropdown > ul {
+    font-size:12px;
+    font-family:Helvetica;
+}
+.fieldContainer{
+    margin: 0 auto 10px 20px;    
+}
+#categoryList{
+ display:grid;
+ grid-row-gap: 5px;
+}
+.category{
+    display:grid;
+    width:360px;
+    align-items:center;
+    justify-content: flex-start;
+    grid-template-columns: 60px 250px 50px;
+    
+}
+.category input[type=checkbox]{
+    justify-self:center;
+}
+.separator{
+    width:360px;
+}
+.backBtn{
+    cursor:pointer;
+    position:absolute;
+    right:25px;
+}
+    
+@media only screen and (max-device-width: 320px){
+    .category{
+        display:grid;
+        width:300px;
+        align-items:center;
+        justify-content: flex-start;
+        grid-template-columns: 60px 200px 40px;
+    }
+    .separator{
+        width:300px;
+    }
+}
+</style>
+</head>
+<body>
+<div id="defaultCategoriesContainer">
+    <div class="pageHeader"><h3>Select Default Categories<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+    <div class="pageBody">
+        <div id="categoryList">
+            <div class="category">
+                <img src="./icons/communication.png" />
+                Communication
+                <input type="checkbox" name="category" value="communication" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/education.png" />
+                Education
+                <input type="checkbox" name="category" value="education" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/shelter.png" />
+                Shelter & Services
+                <input type="checkbox" name="category" value="shelter" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/health.png" />
+                Health & Medical
+                <input type="checkbox" name="category" value="health" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/water.png" />
+                Water & Sanitation
+                <input type="checkbox" name="category" value="water" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/road-network.png" />
+                Road Network
+                <input type="checkbox" name="category" value="road-network" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/energy.png" />
+                Energy
+                <input type="checkbox" name="category" value="energy" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/religious.png" />
+                Religious
+                <input type="checkbox" name="category" value="religious" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/open-space.png" />
+                Open Space
+                <input type="checkbox" name="category" value="open-space" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/solid-waste.png" />
+                Solid Waste
+                <input type="checkbox" name="category" value="solid-waste" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/shopping.png" />
+                Shopping
+                <input type="checkbox" name="category" value="shopping" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/government.png" />
+                Government
+                <input type="checkbox" name="category" value="government" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/public-safety.png" />
+                Public Safety
+                <input type="checkbox" name="category" value="public-safety" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+            <div class="category">
+                <img src="./icons/transportation.png" />
+                Transportation
+                <input type="checkbox" name="category" value="transportation" class="categoryCheckbox" />
+            </div>
+            <div class="separator"><hr /></div>
+        </div>
+    </div>
+</div>
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./static-page.js?v=1"></script>
+<script>
+let savedCategoriesObj = JSON.parse(localStorage.getItem(userSelCategoriesKey));
+let userSelCategories = savedCategoriesObj || {};
+$('.categoryCheckbox').click(function(){
+    if($(this).is(':checked')){
+        userSelCategories[$(this).val()] = 'Y';
+    } else {
+        if(userSelCategories[$(this).val()]){
+            delete userSelCategories[$(this).val()];
+        }
+    }
+    localStorage.setItem(userSelCategoriesKey, JSON.stringify(userSelCategories));
+    console.log(localStorage.getItem(userSelCategoriesKey));
+});
+    
+
+let savedCategories = Object.keys(savedCategoriesObj);
+for(let i=0;i<savedCategories.length;i++){
+    console.log(savedCategories[i]);
+    $('input[type=checkbox][value='+savedCategories[i]+']').attr('checked', true);
+}
+</script>
+</body>
+</html>

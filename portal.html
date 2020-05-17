@@ -1,0 +1,276 @@
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159161641-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-159161641-2');
+</script>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+<link rel="apple-touch-startup-image" href="img/City-Nav_512x512.png">
+
+<link rel="apple-touch-startup-image" href="img/splash/splash-portrait-0640x1136.png" media="(device-width:  320px) and (device-height:  568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-portrait-0750x1334.png" media="(device-width:  375px) and (device-height:  667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-portrait-0828x1792.png" media="(device-width:  414px) and (device-height:  896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-portrait-1125x2436.png" media="(device-width:  375px) and (device-height:  812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-portrait-1242x2208.png" media="(device-width:  414px) and (device-height:  736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-portrait-1242x2688.png" media="(device-width:  414px) and (device-height:  896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-portrait-1536x2048.png" media="(device-width:  768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-portrait-1668x2224.png" media="(device-width:  834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-portrait-1668x2388.png" media="(device-width:  834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-portrait-2048x2732.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+
+<link rel="apple-touch-startup-image" href="img/splash/splash-landscape-1136x0640.png" media="(device-width:  320px) and (device-height:  568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-landscape-1334x0750.png" media="(device-width:  375px) and (device-height:  667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-landscape-1792x0828.png" media="(device-width:  414px) and (device-height:  896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-landscape-2436x1125.png" media="(device-width:  375px) and (device-height:  812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-landscape-2208x1242.png" media="(device-width:  414px) and (device-height:  736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-landscape-2688x1242.png" media="(device-width:  414px) and (device-height:  896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-landscape-2048x1536.png" media="(device-width:  768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-landscape-2224x1668.png" media="(device-width:  834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-landscape-2388x1668.png" media="(device-width:  834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+<link rel="apple-touch-startup-image" href="img/splash/splash-landscape-2732x2048.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
+    
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./portal.css?v=2">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+<link rel="stylesheet" type="text/css" href="./css/MarkerCluster.Default.css">
+<link rel="stylesheet" type="text/css" href="./css/MarkerCluster.css">
+<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
+    
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<link rel="stylesheet" type="text/css" href="./css/fontawesome-pro-master/web/css/all.min.css" />
+    <style>
+        @import url("./css/common.css");
+        @import url("./css/toolTip.css");
+    </style>
+<script>
+/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+    
+<style type="text/css">
+.topicPage{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    z-index:2000;
+    background-color:white;
+    display:none;
+}
+.topicHeader{
+ height:10vh;
+ background-color:dimgray;
+ color:white;
+ padding:15px 0 0 10px;
+}
+.topicImage{
+margin:20px auto 0px auto;
+text-align:center;
+}
+.topicDesc{
+width:90%;
+margin:15px auto 0px auto;
+padding:5px;
+}
+</style>
+</head>
+<body>
+  
+  <div id="target">
+
+  </div>
+  
+  <script id="template" type="x-tmpl-mustache">
+  <div id="categoriesContainer">
+      <div id="categoriesCloseBtnContainer"><i class="far fa-times-circle fa-2x" id="categoriesCloseBtn"></i></div>
+      <ul id="categoriesList">
+        <li class="category" id="communicationCat"><img src="./icons/communication.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-communication}}</span></li>
+        <li class="category" id="educationCat"><img src="./icons/education.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-education}}</span></li>
+        <li class="category" id="shelterCat"><img src="./icons/shelter.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-shelter}}</span></li>
+        <li class="category" id="healthCat"><img src="./icons/health.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-health}}</span></li>
+        <li class="category" id="waterCat"><img src="./icons/water.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-water}}</span></li>
+        <li class="category" id="roadCat"><img src="./icons/road-network.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-road}}</span></li>
+        <li class="category" id="energyCat"><img src="./icons/energy.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-energy}}</span></li>
+        <li class="category" id="religiousCat"><img src="./icons/religious.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-religious}}</span></li>
+        <li class="category" id="openSpaceCat"><img src="./icons/open-space.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-open-space}}</span></li>
+        <li class="category" id="solidWasteCat"><img src="./icons/solid-waste.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-solid-waste}}</span></li>
+        <li class="category" id="shoppingCat"><img src="./icons/shopping.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-shopping}}</span></li>
+        <li class="category" id="governmentCat"><img src="./icons/government.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-government}}</span></li>
+        <li class="category" id="publicSafetyCat"><img src="./icons/public-safety.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-public-safety}}</span></li>
+        <li class="category" id="transportationCat"><img src="./icons/transportation.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-transportation}}</span></li>
+      </ul>
+  </div>
+    
+  <div id="sideNavContainer">
+      <div id="sideNavCloseBtnContainer"><i class="far fa-times-circle fa-2x" id="sideNavCloseBtn"></i></div>
+      <ul id="sideNavMenu">
+        <li class="sideNavMenuItem" id="nav-menu-apps"><img src="./icons/svg/Apps_Icon.svg" class="navIcons" />{{apps}}
+          <ul>
+              <li class="sideNavSubMenuItem" id="covid19SubMenuItem" data-link-file="covid19-home"><img src="./icons/svg/COVID_Icon.svg" class="navIcons" />{{app-covid19}}</li>
+              <li class="sideNavSubMenuItem" id="serviceFinderSubMenuItem" data-link-file="service-finder"><img src="./icons/svg/Service_Finder_Icon.svg" class="navIcons" style="width:24px"/>{{app-service-finder}}</li>
+              <!--<li class="sideNavSubMenuItem" id="bloodSubMenuItem" data-link-file=""><img src="./icons/svg/Blood_Icon.svg" class="navIcons" />{{app-blood}}</li>-->
+              <li class="sideNavSubMenuItem" id="floodSubMenuItem" data-link-file="flood-home"><img src="./icons/svg/Flood_Icon.svg" class="navIcons" />{{app-flood}}
+              </li>
+<!--              <li class="sideNavSubMenuItem" id="garbageSubMenuItem" data-link-file="garbage-home"><img src="./icons/svg/Trash_Icon.svg" class="navIcons" />{{app-garbage}}</li> -->
+          </ul>
+          
+        </li>
+        
+        <li class="sideNavMenuItem" id="messagesSubMenuItem" data-filename="messages"><img src="./icons/svg/Message_Icon.svg" class="navIcons" />{{messages}}<span id="newMsgCount"></span</li>
+        <li class="sideNavMenuItem" id="newLocationSubMenuItem" data-filename="new-location-sel-category"><img src="./icons/svg/New_Location_Icon.svg" class="navIcons" />{{new-location}}</li>
+        <li class="sideNavMenuItem" data-filename="settings"><img src="./icons/svg/Settings_Icon.svg" class="navIcons" />{{settings}}</li>
+        <li class="sideNavMenuItem" data-filename="how-to-guide"><img src="./icons/svg/How_to_Guide_Icon.svg" class="navIcons" />{{how-to-guide}}</li>
+      </ul>
+  </div>
+    
+    
+  <div id="searchContainer">
+    <i class="fa fa-bars fa-lg" id="hamburgerIcon"></i>
+    <input type="text" id="searchItem" name="searchItem" placeholder="{{where-to}}" autocomplete="off" />
+    <i class="fa fa-search" id="searchIcon"></i>
+  </div>
+    
+  <div id="originDestContainer">
+      <div id="originContainer">
+          <input type="text" id="origin" name="origin" placeholder="" autocomplete="off" />
+      </div>
+      <div id="destContainer">
+          <input type="text" id="dest" name="dest" placeholder="" autocomplete="off" />
+      </div>
+      <div id="transitContainer">
+          <input type="checkbox" name="useTransit" value="" /> Use Transit
+      </div>
+  </div>
+<!-- seth code ends -->
+<!--
+<div id ="logo"><a href="http://hawkai.net"><img src="../ui/images/HawkaiAppLogo.png" id="logo-image"></a></div>
+-->
+    
+<div id="bottomBar">
+    <div id="bottomNavBackBtn"><i class="fa fa-arrow-circle-left fa-2x"></i></div>
+    <div id="chooseCategory">{{choose-a-cat}}</div>  
+    <div id="routeDetailsBtn">ROUTE DETAILS</div>
+    <div id="bottomNavGoBtn"><img src="./icons/bottom-nav-go.png" /></div>
+</div>
+    
+<div id="routeDetailsContainer">  
+</div>
+          
+<div id="contents" style="overflow:hidden;"></div>
+<div id="footer" class="footer_collapsed">
+    <a href="#" class=active id="showDetails">Show Details</a>
+</div>
+<div id="footer_content" style="width:100vw;" class="footer_content"></div>
+</script>
+
+<!-- Load all javascript files -->
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./js/jquery-ui.min.js"></script>
+<script src="./js/d3.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script src="./js/leaflet.RotatedMarker.js"></script>
+<script src="./js/leaflet.markercluster.js"></script>
+<script src="./js/leaflet.markercluster.layersupport.js"></script>
+<script src="./js/leaflet-heat.js"></script>
+<script src="./js/MovingMarker.js"></script>
+<script src="./js/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.3/mobile-detect.min.js"></script>
+<script src="./common.js?v=3"></script>
+<script src="./portal.js?v=3"></script>
+
+
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'apps' : 'Apps',
+        'app-covid19' : 'Corona/Covid-19',
+        'app-service-finder' : 'Service Finder',
+        'app-blood' : 'Blood',
+        'app-flood' : 'Flooding',
+        'app-garbage' : 'Trash Collection',
+        'messages' : 'Messages',
+        'new-location' : 'New Location',
+        'settings' : 'Settings',
+        'how-to-guide' : 'How To Guide',
+        'where-to' : 'Where To',
+        'choose-a-cat' : 'CHOOSE A CATEGORY',
+        'cat-communication' : 'Communication',
+        'cat-education' : 'Education',
+        'cat-shelter' : 'Shelter & Services',
+        'cat-health' : 'Health & Medical',
+        'cat-water' : 'Water & Sanitation',
+        'cat-road' : 'Road Network',
+        'cat-energy' : 'Energy',
+        'cat-religious' : 'Religious',
+        'cat-open-space' : 'Open Space',
+        'cat-solid-waste' : 'Solid Waste',
+        'cat-shopping' : 'Shopping',
+        'cat-government' : 'Government',
+        'cat-public-safety' : 'Public Safety',
+        'cat-transportation' : 'Transportation',
+    },
+    "fr" : {
+        'apps' : 'Apps',
+        'app-covid19' : 'Corona/Covid-19',
+        'app-service-finder' : 'Service Finder',
+        'app-blood' : 'Du sang',
+        'app-flood' : 'Inondations',
+        'app-garbage' : "Collection d'ordures",
+        'messages' : 'Messages',
+        'new-location' : 'Nouvel emplacement',
+        'settings' : 'Réglages',
+        'how-to-guide' : "Guide d'aide",
+        'where-to' : 'Où aller',
+        'choose-a-cat' : 'Choisissez une catégorie',
+        'cat-communication' : 'La communication',
+        'cat-education' : 'Éducation',
+        'cat-shelter' : 'Hébergement et services',
+        'cat-health' : 'Santé et médecine',
+        'cat-water' : 'Eau et assainissement',
+        'cat-road' : 'Réseau routier',
+        'cat-energy' : 'Énergie',
+        'cat-religious' : 'Religieux',
+        'cat-open-space' : 'Espace ouvert',
+        'cat-solid-waste' : 'Déchets solides',
+        'cat-shopping' : 'Achats',
+        'cat-government' : 'Gouvernement',
+        'cat-public-safety' : 'La sécurité publique',
+        'cat-transportation' : 'Transport',
+    }
+}   
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+    
+</body>
+</html>

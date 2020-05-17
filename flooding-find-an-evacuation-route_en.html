@@ -1,0 +1,114 @@
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./portal.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+<link rel="stylesheet" type="text/css" href="./css/MarkerCluster.Default.css">
+<link rel="stylesheet" type="text/css" href="./css/MarkerCluster.css">
+<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
+    
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<script>
+/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+    
+<style type="text/css">
+.pageHeader{
+    top:0;
+    left:0;
+    width:100vw;
+    height:50px;
+    background-color:dimgray;
+    color:white;
+    padding:10px 0 0 10px;    
+}
+.backBtn{
+    cursor:pointer;
+    position:absolute;
+    right:25px;
+}
+.nav-right-arrow{
+        position:absolute;
+        right:20px;
+        font-weight:bold;
+        line-height:40px;
+}
+</style>
+</head>
+<body>       
+<div id="target">
+</div>
+<script id="template" type="x-tmpl-mustache">
+<div class="pageHeader">
+    <h3>{{flooding-find-an-evacuation-route}}<i class="fa fa-angle-double-left backBtn"></i></h3>
+</div>
+<!-- seth code ends -->
+<!--
+<div id ="logo"><a href="http://hawkai.net"><img src="../ui/images/HawkaiAppLogo.png" id="logo-image"></a></div>
+-->
+
+          
+<div id="contents" style="overflow:hidden;"></div>
+<div id="footer" class="footer_collapsed">
+    <a href="#" class=active id="showDetails">Show Details</a>
+</div>
+<div id="footer_content" style="width:100vw;" class="footer_content"></div>
+</script>
+<!-- Load all javascript files -->
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./js/jquery-ui.min.js"></script>
+<script src="./js/d3.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script src="./js/leaflet.RotatedMarker.js"></script>
+<script src="./js/leaflet.markercluster.js"></script>
+<script src="./js/leaflet.markercluster.layersupport.js"></script>
+<script src="./js/leaflet-heat.js"></script>
+<script src="./js/MovingMarker.js"></script>
+<script src="./js/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.3/mobile-detect.min.js"></script>
+<script src="./common.js?v=1"></script>
+<script src="./flooding-find-an-evacuation-route.js"></script>
+<script src="./static-page.js?v=1"></script>
+    
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+      'flooding-find-an-evacuation-route' : 'Find an evacuation route'
+    },
+    "fr" : {
+      'flooding-find-an-evacuation-route' : "Trouver un itinéraire d'évacuation"
+    }
+}   
+
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+</body>
+</html>

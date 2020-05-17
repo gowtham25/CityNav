@@ -1,0 +1,131 @@
+.topicHeader,
+.pageHeader {
+    color: white;
+    /* padding: 10px 0 0 10px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.pageBody {
+    padding: 15px;
+}
+.backBtn {
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+}
+.nav-right-arrow {
+    position: absolute;
+    right: 20px;
+    font-weight: bold;
+    line-height: 40px;
+}
+.pageHeader {
+    background-color: #4a3175;
+}
+.topicHeader {
+    background-color: dimgray;
+}
+.topicHeader h3,
+.pageHeader h3 {
+    margin: 18px 0 18px 12px;
+}
+.topicDescTop {
+    width: 90%;
+    margin: 0px auto 0px auto;
+    padding: 5px;
+}
+
+/*Cameroon*/
+/* #c91225 */
+/* #f5cb16 */
+/* #1bae49 */
+/* .bg-cm-header {
+    background-image: linear-gradient(
+        -20deg,
+        #c91225 0%,
+        #f5cb16 100%,
+        #1bae49 100%
+    ) !important;
+} */
+
+/*Nigeria*/
+/* #02834f */
+/* #f8f8f8 */
+/* #02834f */
+/* .bg-ng-header {
+    background-image: linear-gradient(
+        45deg,
+        #02834f 0%,
+        #f8f8f8 50%,
+        #02834f 100%
+    ) !important;
+} */
+
+/*Ethiopia*/
+/* #489ed1 */
+/* #c91225 */
+/* #f5cb16 */
+/* #1bae49 */
+/* .bg-et-header {
+    background-image: linear-gradient(
+        120deg,
+        #c91225 0%,
+        #489ed1 30%,
+        #f5cb16 65%,
+        #1bae49 100%
+    ) !important;
+} */
+
+/*Ivory Coast*/
+/* #f17b04 */
+/* #f8f8f8 */
+/* #03995d */
+/* .bg-ci-header {
+    background-image: linear-gradient(
+        120deg,
+        #f17b04 0%,
+        #f8f8f8 50%,
+        #03995d 100%
+    ) !important;
+} */
+
+/*Ghana*/
+/* #c91225 */
+/* #f5cb16 */
+/* #1bae49 */
+/* #000 */
+/* .bg-gh-header {
+    background-image: linear-gradient(
+        120deg,
+        #c91225 0%,
+        #f5cb16 50%,
+        #1bae49 100%
+    ) !important;
+} */
+
+/*Guinea*/
+/* #c91225 */
+/* #f5cb16 */
+/* #1bae49 */
+/* .bg-gn-header {
+    background-image: linear-gradient(
+        120deg,
+        #c91225 0%,
+        #f5cb16 50%,
+        #1bae49 100%
+    ) !important;
+} */
+
+/*Nepal*/
+/* #d6153a */
+/* #02368f */
+/* #f8f8f8 */
+/* .bg-np-header {
+    background-image: linear-gradient(
+        120deg,
+        #d6153a 0%,
+        #f8f8f8 50%,
+        #02368f 100%
+    ) !important;
+} */

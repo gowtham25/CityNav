@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<style>
+@import url("./css/normalize.css");
+</style>
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/prettydropdowns.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+body{
+  font-size:12px; 
+  font-family:Helvetica;
+}
+.pageHeader{
+    top:0;
+    left:0;
+    width:100vw;
+    height:50px;
+    background-color:#4a3175;
+    color:white;
+    padding:10px 0 0 10px;    
+}
+.pageBody{
+    margin:0 auto;
+    padding:15px;
+}
+.backBtn{
+    cursor:pointer;
+    position:absolute;
+    right:25px;
+}
+    
+#categoriesContainer{
+    background:white;
+    border-radius:5px;
+}
+
+#categoriesList {
+    padding:0;
+    list-style:none;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    align-items: flex-start;
+    justify-content: center;
+    text-align:center;
+}
+.category {
+    margin-bottom:10px;
+    cursor:pointer;
+}
+.categoryIcon {
+    width:48px;
+    height:48px;
+}
+.categoryLabel {
+    margin-left:4px;   
+}
+</style>
+</head>
+<body>
+<div id="target">
+
+</div>
+    
+<script id="template" type="x-tmpl-mustache">
+<div id="newLocationContainer">
+    <div class="pageHeader"><h3>{{select-cat}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+    <div class="pageBody">
+      <div id="categoriesContainer">
+          <ul id="categoriesList">
+            <li class="category" id="communication"><img src="./icons/communication.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-communication}}</span></li>
+            <li class="category" id="education"><img src="./icons/education.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-education}}</span></li>
+            <li class="category" id="emergency"><img src="./icons/shelter.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-shelter}}</span></li>
+            <li class="category" id="health_medical"><img src="./icons/health.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-health}}</span></li>
+            <li class="category" id="water_sanitation"><img src="./icons/water.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-water}}</span></li>
+            <li class="category" id="road_network"><img src="./icons/road-network.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-road}}</span></li>
+            <li class="category" id="energy"><img src="./icons/energy.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-energy}}</span></li>
+            <li class="category" id="religious"><img src="./icons/religious.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-religious}}</span></li>
+            <li class="category" id="open_space"><img src="./icons/open-space.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-open-space}}</span></li>
+            <li class="category" id="solid_waste"><img src="./icons/solid-waste.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-solid-waste}}</span></li>
+            <li class="category" id="shopping"><img src="./icons/shopping.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-shopping}}</span></li>
+            <li class="category" id="government"><img src="./icons/government.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-government}}</span></li>
+            <li class="category" id="public_safety"><img src="./icons/public-safety.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-public-safety}}</span></li>
+            <li class="category" id="transportation"><img src="./icons/transportation.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-transportation}}</span></li>
+          </ul>
+      </div>
+    </div>
+</div>
+</script>
+
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=2"></script>
+<script src="./static-page.js?v=2"></script>
+<script>
+$(document).ready(function(){
+    let selCatId = sessionStorage.getItem('new-location-sel-category-id');
+    if(selCatId){
+        $('#'+selCatId).css('border', '1px solid gray');
+        $('#'+selCatId).css('background-color', 'lightgray');
+    }
+    $('.category').click(function(){
+        if(selCatId){
+            $('#'+selCatId).css('border', 'none');
+            $('#'+selCatId).css('background-color', 'transparent');
+        }
+        let catId = $(this).attr('id');
+        $('#'+catId).css('border', '1px solid gray');
+        $('#'+catId).css('background-color', 'lightgray');
+        sessionStorage.setItem(newLocationSelCategoryIdKey, catId);
+        //location.href = './new-location-add-details_' + userLang + '.html';
+        location.href = './new-location-add-details_' + 'en' + '.html';
+    });
+    
+
+    
+});    
+</script>
+
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'select-cat' : 'Select Category',
+        'cat-communication' : 'Communication',
+        'cat-education' : 'Education',
+        'cat-shelter' : 'Shelter & Services',
+        'cat-health' : 'Health & Medical',
+        'cat-water' : 'Water & Sanitation',
+        'cat-road' : 'Road Network',
+        'cat-energy' : 'Energy',
+        'cat-religious' : 'Religious',
+        'cat-open-space' : 'Open Space',
+        'cat-solid-waste' : 'Solid Waste',
+        'cat-shopping' : 'Shopping',
+        'cat-government' : 'Government',
+        'cat-public-safety' : 'Public Safety',
+        'cat-transportation' : 'Transportation',
+    },
+    "fr" : {
+        'select-cat' : 'Choisir une catégorie',
+        'cat-communication' : 'La communication',
+        'cat-education' : 'Éducation',
+        'cat-shelter' : 'Hébergement et services',
+        'cat-health' : 'Santé et médecine',
+        'cat-water' : 'Eau et assainissement',
+        'cat-road' : 'Réseau routier',
+        'cat-energy' : 'Énergie',
+        'cat-religious' : 'Religieux',
+        'cat-open-space' : 'Espace ouvert',
+        'cat-solid-waste' : 'Déchets solides',
+        'cat-shopping' : 'Achats',
+        'cat-government' : 'Gouvernement',
+        'cat-public-safety' : 'La sécurité publique',
+        'cat-transportation' : 'Transport',
+    }
+}   
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+</body>
+</html>

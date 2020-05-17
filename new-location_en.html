@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159161641-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-159161641-2');
+</script>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<style>
+@import url("./css/normalize.css");
+</style>
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/prettydropdowns.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+body{
+  font-size:12px; 
+  font-family:Helvetica;
+}
+.pageHeader{
+    top:0;
+    left:0;
+    width:100vw;
+    height:50px;
+    background-color:dimgray;
+    color:white;
+    padding:10px 0 0 10px;    
+}
+.pageBody{
+    margin:0 auto;
+    padding:15px;
+}
+.backBtn{
+    cursor:pointer;
+    position:absolute;
+    right:25px;
+}
+    
+#categoriesContainer{
+    background:white;
+    border-radius:5px;
+}
+
+#categoriesList {
+    padding:0;
+    list-style:none;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    align-items: flex-start;
+    justify-content: center;
+    text-align:center;
+}
+.category {
+    margin-bottom:10px;
+    cursor:pointer;
+}
+.categoryIcon {
+    width:48px;
+    height:48px;
+}
+.categoryLabel {
+    margin-left:4px;   
+}
+    
+.fieldContainer{
+    margin: 0 auto 10px 20px;    
+}
+
+</style>
+</head>
+<body>
+<div id="newLocationContainer">
+    <div class="pageHeader"><h3>Select Category<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+    <div class="pageBody">
+        
+      <div id="categoriesContainer">
+          <ul id="categoriesList">
+            <li class="category" id="communicationCat"><img src="./icons/communication.png" class="categoryIcon" /><br /><span class="categoryLabel">Communication</span></li>
+            <li class="category" id="educationCat"><img src="./icons/education.png" class="categoryIcon" /><br /><span class="categoryLabel">Education</span></li>
+            <li class="category" id="shelterCat"><img src="./icons/shelter.png" class="categoryIcon" /><br /><span class="categoryLabel">Shelter &amp; Services</span></li>
+            <li class="category" id="healthCat"><img src="./icons/health.png" class="categoryIcon" /><br /><span class="categoryLabel">Health &amp; Medical</span></li>
+            <li class="category" id="waterCat"><img src="./icons/water.png" class="categoryIcon" /><br /><span class="categoryLabel">Water &amp; Sanitation</span></li>
+            <li class="category" id="roadCat"><img src="./icons/road-network.png" class="categoryIcon" /><br /><span class="categoryLabel">Road Network</span></li>
+            <li class="category" id="energyCat"><img src="./icons/energy.png" class="categoryIcon" /><br /><span class="categoryLabel">Energy</span></li>
+            <li class="category" id="religiousCat"><img src="./icons/religious.png" class="categoryIcon" /><br /><span class="categoryLabel">Religious</span></li>
+            <li class="category" id="openSpaceCat"><img src="./icons/open-space.png" class="categoryIcon" /><br /><span class="categoryLabel">Open Space</span></li>
+            <li class="category" id="solidWasteCat"><img src="./icons/solid-waste.png" class="categoryIcon" /><br /><span class="categoryLabel">Solid Waste</span></li>
+            <li class="category" id="shoppingCat"><img src="./icons/shopping.png" class="categoryIcon" /><br /><span class="categoryLabel">Shopping</span></li>
+            <li class="category" id="governmentCat"><img src="./icons/government.png" class="categoryIcon" /><br /><span class="categoryLabel">Government</span></li>
+            <li class="category" id="publicSafetyCat"><img src="./icons/public-safety.png" class="categoryIcon" /><br /><span class="categoryLabel">Public Safety</span></li>
+            <li class="category" id="transportationCat"><img src="./icons/transportation.png" class="categoryIcon" /><br /><span class="categoryLabel">Transportation</span></li>
+          </ul>
+      </div>
+        
+      <div id="addNewDetailsContainer">
+            <div class="fieldContainer">
+                <div>Name</div>
+                <div>
+                    <input name="establishmentName" id="establishmentName" value="" placeholder="Name of Establishment" />
+                </div>
+            </div>
+            <div class="fieldContainer">
+                <div>Type</div>
+                <div>
+                    <select name="establishmentType" id="establishmentType" class="pretty">
+                    </select>
+                </div>
+            </div>
+            
+            <div class="fieldContainer">
+                <div>
+                    <div class="navFieldText">Description</div>
+                    <input name="establishmentDesc" id="establishmentDesc" value="" placeholder="Type Details" />
+                </div>
+            </div>
+          
+            <div class="fieldContainer">
+                <div id="profileField" class="navElem">
+                    <div class="navFieldText">Photo</div>
+                    <div class=""></div>
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+      
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=2"></script>
+<script src="./static-page.js?v=2"></script>
+<script src="./js/jquery.prettydropdowns.js"></script>
+<script>
+$(document).ready(function(){
+  for(estTypes of establishmentTypeObj['education']){
+    $('#establishmentType').append(new Option(estTypes['displayName'], estTypes['value']));
+  }
+  $('select').prettyDropdown({height:30});
+});
+</script>
+</body>
+</html>

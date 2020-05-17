@@ -1,0 +1,24 @@
+{
+  "name": "City Navigator",
+  "short_name": "City Navigator",
+  "lang": "en-US",
+  "start_url": "./portal.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#c6acee",
+  "background_color": "#000000",
+  "icons": [
+    {
+      "src": "img/City-Nav_Android_144x144.png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "img/City-Nav_Android_192x192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "img/City-Nav_512x512.png",
+      "sizes": "512x512"
+    }
+  ]
+}

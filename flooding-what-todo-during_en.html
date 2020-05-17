@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./static-page.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+</head>
+<body>  
+<div id="target">
+</div>
+<script id="template" type="x-tmpl-mustache">  
+<div>
+    <div class="topicHeader"><h3>{{flooding-what-todo-during-title}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+    <div class="topicDescTop">{{flooding-what-todo-during-desc}}:</div>
+    <div class="topicImage">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWR0x-7FFr5D8LrEiqNnZcjIUf5W8O1tOmqzC54uLvA458Fgeu4A" />
+    </div>
+    <div class="topicDescBottom">
+    <ol>
+        <li><strong>{{flooding-what-todo-during-step1-title}}</strong>
+            <p>{{flooding-what-todo-during-step1-desc}}:</p>
+            <ul>
+                <li>{{flooding-what-todo-during-step1-listitem1-desc}}</li>
+                <li>{{flooding-what-todo-during-step1-listitem2-desc}}</li>
+            </ul>
+        </li>
+        
+        <li><strong>{{flooding-what-todo-during-step2-title}}</strong>
+            <p>{{flooding-what-todo-during-step2-desc}}:</p>
+            <ul>
+                <li>{{flooding-what-todo-during-step2-listitem1-desc}}</li>
+                <li>{{flooding-what-todo-during-step2-listitem2-desc}}</li>
+                <li>{{flooding-what-todo-during-step2-listitem3-desc}}</li>
+                <li>{{flooding-what-todo-during-step2-listitem4-desc}}</li>
+            </ul>
+        </li>
+        
+        
+        <li><strong>{{flooding-what-todo-during-step3-title}}</strong>
+            <p>{{flooding-what-todo-during-step3-desc}}:</p>
+            <ul>
+                <li>{{flooding-what-todo-during-step3-listitem1-desc}}</li>
+                <li>{{flooding-what-todo-during-step3-listitem2-desc}}</li>
+                <li>{{flooding-what-todo-during-step3-listitem3-desc}}Turn off your water supply and gas bottle.</li>
+                <li>{{flooding-what-todo-during-step3-listitem4-desc}}Lock all doors and windows.</li>
+                <li>{{flooding-what-todo-during-step3-listitem5-desc}}Take your Emergency Supply Bag.</li>
+                <li>{{flooding-what-todo-during-step3-listitem6-desc}}Leave your home by taking a car if possible, to avoid separating family members.</li>
+                <li>{{flooding-what-todo-during-step3-listitem7-desc}}Turn around, don't drown! If there is water on the road, do not try to cross it. About 60% of flood-related deaths occur in vehicles, often as a direct result of an attempt to cross shallow flooded railway crossings. Do not drive around the barricades; they are there for your protection. If the water starts to surround your car, get out. If your vehicle stalls during the evacuation, abandon it.</li>
+                <li>{{flooding-what-todo-during-step3-listitem8-desc}}Go to the heights if possible and go to your local emergency shelter.</li>
+                <li>{{flooding-what-todo-during-step3-listitem9-desc}}Never walk or swim in running water. Water 15 centimeters deep can spill over if it moves quickly. If water flows over your ankles, turn around and go in another direction.</li>
+            </ul>
+        </li>
+    </ol>
+    </div>
+</div>    
+</script>
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=1"></script>
+<script src="./static-page.js?v=1"></script>
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'flooding-what-todo-during-title' : 'What to do during',
+        'flooding-what-todo-during-desc' : 'During a rainfall that lasts for hours or even days, it is important to assess your situation and determine whether you should take cover or evacuate. Below are the 3 most critical steps',
+        'flooding-what-todo-during-step1-title' : 'Know your situation',
+        'flooding-what-todo-during-step1-desc' : 'During a flood, it is important to know what is happening outside your home so that you can adapt to changing weather conditions. In addition, you should remain informed at all times about the evolution of the floods by',
+        'flooding-what-todo-during-step1-listitem1-desc' : 'Checking alerts on your mobile phone (for this, it is important that you are a subscriber to the city\'s alert system and that your phone is able to receive SMS messages)',
+        'flooding-what-todo-during-step1-listitem2-desc' : 'Contacting the focal point for the latest information on flood progress.',
+        
+        'flooding-what-todo-during-step2-title' : 'Stay or evacuate your home',
+        'flooding-what-todo-during-step2-desc' : 'Based on weather and flood updates from the focal point, evaluate your options and decide whether to stay or leave. Should you decide to stay',
+        'flooding-what-todo-during-step2-listitem1-desc' : 'Make sure you have enough reserves to last for 2-3 days',
+        'flooding-what-todo-during-step2-listitem2-desc' : 'Make sure you have taken all precautions defined in the "Before the floods" step',
+        'flooding-what-todo-during-step2-listitem3-desc' : 'Make sure you can evacuate should there be a sudden change in the situation',
+        'flooding-what-todo-during-step2-listitem4-desc' : 'Evaluate which family members can stay with you. It is important to ensure that children and the elderly are safe in case the situation deteriorates.',
+
+        'flooding-what-todo-during-step3-title' : 'Reduce risks during evacuation',
+        'flooding-what-todo-during-step3-desc' : 'In case you choose to evacuate the area',
+        'flooding-what-todo-during-step3-listitem1-desc' : 'Choose a clear escape route. It is important to remain informed through alerts to ensure the escape routes you have chosen are still opened.',
+        'flooding-what-todo-during-step3-listitem2-desc' : 'Turn off power at break.',
+        'flooding-what-todo-during-step3-listitem3-desc' : 'Turn off your water supply and gas bottle.',
+        'flooding-what-todo-during-step3-listitem4-desc' : 'Lock all doors and windows.',
+        'flooding-what-todo-during-step3-listitem5-desc' : 'Take your Emergency Supply Bag.',
+        'flooding-what-todo-during-step3-listitem6-desc' : 'Leave your home by taking a car if possible, to avoid separating family members.',
+        'flooding-what-todo-during-step3-listitem7-desc' : 'Turn around, don\'t drown! If there is water on the road, do not try to cross it. About 60% of flood-related deaths occur in vehicles, often as a direct result of an attempt to cross shallow flooded railway crossings. Do not drive around the barricades; they are there for your protection. If the water starts to surround your car, get out. If your vehicle stalls during the evacuation, abandon it.',
+        'flooding-what-todo-during-step3-listitem8-desc' : 'Go to the heights if possible and go to your local emergency shelter.',
+        'flooding-what-todo-during-step3-listitem9-desc' : 'Never walk or swim in running water. Water 15 centimeters deep can spill over if it moves quickly. If water flows over your ankles, turn around and go in another direction.' 
+    },
+    "fr" : {
+        'flooding-what-todo-during-title' : 'Pendant l’Inondation',
+        'flooding-what-todo-during-desc' : "Lors d'une pluie qui dure des heures, voire des jours, il est important d'évaluer votre situation et de déterminer si vous devez vous mettre à couvert ou évacuer. Voici les 3 étapes les plus critiques",
+        'flooding-what-todo-during-step1-title' : 'Connaissez votre situation',
+        'flooding-what-todo-during-step1-desc' : "Lors d'une inondation, il est important de savoir ce qui se passe à l'extérieur de votre maison afin de pouvoir vous adapter aux conditions météorologiques changeantes. De plus, vous devez rester informé à tout moment de l'évolution des inondations en",
+        'flooding-what-todo-during-step1-listitem1-desc' : "­Vérifiant les alertes reçues sur votre téléphone mobile (pour cela, il est important que vous soyez abonné au système d'alerte de la ville et que votre téléphone puisse recevoir des SMS)",
+        'flooding-what-todo-during-step1-listitem2-desc' : "­Contactant le point focal pour les dernières informations relatives à la progression des inondations.",
+        
+        'flooding-what-todo-during-step2-title' : 'Restez ou évacuez votre maison',
+        'flooding-what-todo-during-step2-desc' : "Sur la base des mises à jour météorologiques et des inondations venant du point focal, évaluez vos options et décidez de rester ou de partir. Si vous décidez de rester",
+        'flooding-what-todo-during-step2-listitem1-desc' : "Assurez-vous d'avoir assez de réserves pour 2-3 jours",
+        'flooding-what-todo-during-step2-listitem2-desc' : "Assurez-vous d'avoir pris toutes les précautions définies à l'étape \"Avant les inondations\"",
+        'flooding-what-todo-during-step2-listitem3-desc' : '­Assurez-vous que vous pouvez évacuer en cas de changement soudain de situation',
+        'flooding-what-todo-during-step2-listitem4-desc' : '­Évaluez quels membres de votre famille peuvent rester avec vous. Il est important de garantir la sécurité des enfants et des personnes âgées au cas où la situation se détériorerait.',
+
+        'flooding-what-todo-during-step3-title' : 'Réduisez les risques pendant les évacuations',
+        'flooding-what-todo-during-step3-desc' : "Si vous décidez d'évacuer la zone inondée",
+        'flooding-what-todo-during-step3-listitem1-desc' : "Choisissez une voie d'évacuation claire. Il est important de rester informé grâce par les service alertes pour vous assurer que les voies d'évacuation que vous avez choisies sont toujours ouvertes.",
+        'flooding-what-todo-during-step3-listitem2-desc' : "Coupez l'alimentation du courant électrique",
+        'flooding-what-todo-during-step3-listitem3-desc' : '­Fermez votre alimentation en eau et fermez votre bouteille de gaz.',
+        'flooding-what-todo-during-step3-listitem4-desc' : '­Verrouillez toutes les portes et fenêtres.',
+        'flooding-what-todo-during-step3-listitem5-desc' : "Prenez un sac avec vos fournitures d'urgence.",
+        'flooding-what-todo-during-step3-listitem6-desc' : '­Quittez votre domicile en prenant une voiture si possible, pour éviter de séparer les membres votre famille.',
+        'flooding-what-todo-during-step3-listitem7-desc' : "­Retournez-vous constamment pour évaluer votre situation ! Si les voies sont inondées, n'essayez pas de les traverser. Environ 60% des décès liés aux inondations se produisent dans des véhicules, souvent en conséquence directe d'une tentative de franchir des passages à niveau peu profonds. Ne conduisez contournez  pas les barricades; elles sont là pour votre protection. Si l'eau commence à entourer votre voiture, sortez. Si votre véhicule cale pendant l'évacuation, abandonnez-le.",
+        'flooding-what-todo-during-step3-listitem8-desc' : "Allez aux hauteurs si possibles et rejoignez votre refuge d'urgence.",
+        'flooding-what-todo-during-step3-listitem9-desc' : "­Ne marchez et ne nagez jamais dans l'eau courante. Une eau de 15 centimètres de profondeur peut déborder si elle se déplace rapidement. Si l'eau dépasse vos chevilles, faites demi-tour et allez dans une autre direction." 
+    }
+}   
+
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+
+</body>
+</html>

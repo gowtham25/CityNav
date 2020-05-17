@@ -1,0 +1,218 @@
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-159161641-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-159161641-2');
+</script>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./service-finder.css?v=2">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+<link rel="stylesheet" type="text/css" href="./css/MarkerCluster.Default.css">
+<link rel="stylesheet" type="text/css" href="./css/MarkerCluster.css">
+<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
+    
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<link rel="stylesheet" type="text/css" href="./css/fontawesome-pro-master/web/css/all.min.css" />
+    <style>
+        @import url("./css/common.css");
+        @import url("./css/toolTip.css");
+    </style>
+<script>
+/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+    
+<style type="text/css">
+.pageHeader{
+    top:0;
+    left:0;
+    width:100vw;
+    height:50px;
+    background-color:#4a3175;
+    color:white;
+    padding:10px 0 0 10px;    
+}
+.backBtn{
+    cursor:pointer;
+    position:absolute;
+    right:25px;
+}
+.topicPage{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    z-index:2000;
+    background-color:white;
+    display:none;
+}
+.topicHeader{
+ height:10vh;
+ background-color:dimgray;
+ color:white;
+ padding:15px 0 0 10px;
+}
+.topicImage{
+margin:20px auto 0px auto;
+text-align:center;
+}
+.topicDesc{
+width:90%;
+margin:15px auto 0px auto;
+padding:5px;
+}
+</style>
+</head>
+<body>
+  
+  <div id="target">
+
+  </div>
+  
+  <script id="template" type="x-tmpl-mustache">
+  <div class="pageHeader">
+      <h3>{{service-finder-title}}<i class="fa fa-angle-double-left backBtn"></i></h3>
+  </div>
+  <div id="categoriesContainer">
+      <div id="categoriesCloseBtnContainer"><i class="far fa-times-circle fa-2x" id="categoriesCloseBtn"></i></div>
+      <ul id="categoriesList">
+        <li class="category" id="pharmaciesCat"><span class="categoryIcon" style="color:grey"><i class="fas fa-hospital-symbol"></i></span><br /><span class="categoryLabel">{{cat-pharmacies}}</span></li>
+        <li class="category" id="gasStationsCat"><span class="categoryIcon" style="color:grey"><i class="fas fa-gas-pump"></i></span><br /><span class="categoryLabel">{{cat-gas-stations}}</span></li>
+        <li class="category" id="hospitalsCat"><span class="categoryIcon" style="color:grey"><i class="fas fa-ambulance"></i></span><br /><span class="categoryLabel">{{cat-hospitals}}</span></li>
+      </ul>
+  </div>
+    
+  <div id="sideNavContainer">
+      <div id="sideNavCloseBtnContainer"><i class="far fa-times-circle fa-2x" id="sideNavCloseBtn"></i></div>
+      <ul id="sideNavMenu">
+        <li class="sideNavMenuItem" id="nav-menu-apps"><img src="./icons/nav-apps.png" class="navIcons" />{{apps}}
+          <ul>
+              <li class="sideNavSubMenuItem" id="covid19SubMenuItem" data-link-file="covid19-home"><img src="./icons/nav-covid19.png" class="navIcons" />{{app-covid19}}</li>
+              <!--<li class="sideNavSubMenuItem" id="bloodSubMenuItem" data-link-file=""><img src="./icons/nav-blood.png" class="navIcons" />{{app-blood}}</li>-->
+              <li class="sideNavSubMenuItem" id="floodSubMenuItem" data-link-file="flood-home"><img src="./icons/nav-flood.png" class="navIcons" />{{app-flood}}
+              </li>
+              <li class="sideNavSubMenuItem" id="garbageSubMenuItem" data-link-file="garbage-home"><img src="./icons/nav-garbage.png" class="navIcons" />{{app-garbage}}</li>
+          </ul>
+          
+        </li>
+        
+        <li class="sideNavMenuItem" id="messagesSubMenuItem" data-filename="messages"><img src="./icons/nav-messages.png" class="navIcons" />{{messages}}<span id="newMsgCount"></span</li>
+        <li class="sideNavMenuItem" id="newLocationSubMenuItem" data-filename="new-location-sel-category"><img src="./icons/nav-new-location.png" class="navIcons" />{{new-location}}</li>
+        <li class="sideNavMenuItem" data-filename="settings"><img src="./icons/nav-settings.png" class="navIcons" />{{settings}}</li>
+        <li class="sideNavMenuItem" data-filename="how-to-guide"><img src="./icons/nav-how-to-guide.png" class="navIcons" />{{how-to-guide}}</li>
+      </ul>
+  </div>
+    
+    
+  <div id="searchContainer">
+    <input type="text" id="searchItem" name="searchItem" placeholder="{{where-to}}" autocomplete="off" />
+    <i class="fa fa-search" id="searchIcon"></i>
+  </div>
+    
+  <div id="originDestContainer">
+      <div id="originContainer">
+          <input type="text" id="origin" name="origin" placeholder="" autocomplete="off" />
+      </div>
+      <div id="destContainer">
+          <input type="text" id="dest" name="dest" placeholder="" autocomplete="off" />
+      </div>
+      <div id="transitContainer">
+          <input type="checkbox" name="useTransit" value="" /> Use Transit
+      </div>
+  </div>
+<!-- seth code ends -->
+<!--
+<div id ="logo"><a href="http://hawkai.net"><img src="../ui/images/HawkaiAppLogo.png" id="logo-image"></a></div>
+-->
+    
+<div id="bottomBar">
+    <div id="bottomNavBackBtn"><i class="fa fa-arrow-circle-left fa-2x"></i></div>
+    <div id="chooseCategory">{{choose-a-cat}}</div>  
+    <div id="routeDetailsBtn">ROUTE DETAILS</div>
+    <div id="bottomNavGoBtn"><img src="./icons/bottom-nav-go.png" /></div>
+</div>
+    
+<div id="routeDetailsContainer">  
+</div>
+          
+<div id="contents" style="overflow:hidden;"></div>
+<div id="footer" class="footer_collapsed">
+    <a href="#" class=active id="showDetails">Show Details</a>
+</div>
+<div id="footer_content" style="width:100vw;" class="footer_content"></div>
+</script>
+
+<!-- Load all javascript files -->
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./js/jquery-ui.min.js"></script>
+<script src="./js/d3.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script src="./js/leaflet.RotatedMarker.js"></script>
+<script src="./js/leaflet.markercluster.js"></script>
+<script src="./js/leaflet.markercluster.layersupport.js"></script>
+<script src="./js/leaflet-heat.js"></script>
+<script src="./js/MovingMarker.js"></script>
+<script src="./js/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.3/mobile-detect.min.js"></script>
+<script src="./common.js?v=2"></script>
+<script src="./service-finder.js?v=2"></script>
+<script src="./static-page.js?v=2"></script>
+
+
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'service-finder-title' : 'Service Finder',
+        'where-to' : 'What are you looking for?',
+        'choose-a-cat' : 'CHOOSE A CATEGORY',
+        'cat-pharmacies' : 'Pharmacies',
+        'cat-gas-stations' : 'Gas Stations',
+        'cat-hospitals' : 'Hospitals'
+    },
+    "fr" : {
+        'service-finder-title' : 'Recherche de service',
+        'where-to' : 'Que cherchez-vous',
+        'choose-a-cat' : 'Choisissez une catégorie',
+        'cat-pharmacies' : 'Pharmacies',
+        'cat-gas-stations' : 'Les stations-service',
+        'cat-hospitals' : 'Les hôpitaux'
+    }
+}   
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+    
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<style>
+@import url("./css/normalize.css");
+</style>
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/Africa_Icon_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/Africa_Icon_144x144.png" />
+<style>
+body{
+/*  font-size:12px; */
+font-family:Helvetica;
+}
+.pageHeader{
+top:0;
+left:0;
+width:100vw;
+height:50px;
+background-color:#4a3175;
+color:white;
+padding:10px 0 0 10px;    
+position: fixed;
+}
+.pageBody{
+margin:70px auto 0 auto;
+padding:15px;
+}
+.fieldContainer{
+margin: 0 auto 10px 20px;    
+}
+.backBtn{
+cursor:pointer;
+position:absolute;
+right:25px;
+}
+.msgWrapper{
+margin-bottom:20px;        
+}
+.msg-timestamp{
+color:gray;
+font-size:14px;
+font-weight:bold;
+text-align:center;
+margin-bottom:8px;
+}
+.msg{
+margin-top:4px;
+background-color:aliceblue;
+border-radius:5px;
+padding:15px;
+}
+
+.infobg{
+    background-color: #3ac47d;
+    color:#FFF;
+    padding:2px 5px;
+    margin-left:5px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight:bold;
+    text-transform: uppercase;
+}
+.alertbg{
+    background-color: #f7b924;
+    padding:2px 5px;
+    margin-left:5px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight:bold;
+    text-transform: uppercase;
+}
+
+.emergencybg{
+    background-color: #d92550;
+    color:#FFF;
+    padding:2px 5px;
+    margin-left:5px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight:bold;
+    text-transform: uppercase;
+}
+
+#searchAndMsgCategoryWrapper{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-flow: column;
+}
+
+#msgCategoryWrapper, #searchWrapper{
+    margin-bottom: 10px;
+}
+
+#searchBtn{
+    margin-left:5px;
+}
+
+.unreadMsg{
+    background-color:lightblue;
+}
+</style>
+</head>
+<body>  
+
+<div id="target">
+
+</div>
+<script id="template" type="x-tmpl-mustache">
+<div class="pageHeader">
+    <h3>{{messages-header}}<i class="fa fa-angle-double-left backBtn"></i></h3>
+</div>
+<div class="pageBody">
+<div id="searchAndMsgCategoryWrapper">
+    <div id="msgCategoryWrapper">
+        <input type="checkbox" name="info" id="info" value="info" checked /> {{messages-cat-info}}
+        <input type="checkbox" name="alert" id="alert" value="alert" checked /> {{messages-cat-alert}}
+        <input type="checkbox" name="emergency" id="emergency" value="emergency" checked /> {{messages-cat-emergency}}
+    </div>
+    <div id="searchWrapper">
+    <input id="search" type="text" name="search" placeholder="{{messages-search-msg}}" style="border-radius:5px;padding:5px;width:250px;" />
+    <i class="fa fa-search" aria-hidden="true" id="searchBtn"></i>
+    </div>
+</div>
+<div id="allMsgWrapper"></div>
+</div>
+</script>
+
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=1"></script>
+<script src="./static-page.js?v=1"></script>
+<script>
+let msgDataArr = [];
+function getFilteredMsgs(){
+  let filters = [];
+  if($('#info').is(':checked')){
+   filters.push($('#info').val());
+  }
+  if($('#alert').is(':checked')){
+   filters.push($('#alert').val());
+  }
+  if($('#emergency').is(':checked')){
+   filters.push($('#emergency').val());
+  }
+
+  let filteredMsgs = msgDataArr.filter(function(msgArr){
+        msgCategory =  msgArr[2].toLowerCase();
+        return filters.indexOf(msgCategory) != -1;
+  });
+
+  let searchText = $('#search').val();
+  if(searchText != ''){
+    filteredMsgs = filteredMsgs.filter(function(msgArr){
+        msg =  msgArr[3].toLowerCase();
+        searchText = searchText.toLowerCase();
+        return msg.indexOf(searchText) != -1;
+    });
+  }
+  return filteredMsgs;
+}
+
+function filterMsg(){
+  let filteredMsgs = getFilteredMsgs();
+  $('#allMsgWrapper').html('');
+  renderMessages(filteredMsgs);
+}
+
+function searchMsg(){
+  let filteredMsgs = getFilteredMsgs();
+  $('#allMsgWrapper').html('');
+  renderMessages(filteredMsgs);
+}
+
+function init(){
+    let msgDataStr = sessionStorage.getItem(msgDataKey);
+    msgDataArr = msgDataStr != null ? JSON.parse(msgDataStr) : null;
+
+    let lastMsgFetchTimeStamp = localStorage.getItem(lastMsgFetchTimeStampKey);
+    let timeDiff = 0;
+    if(lastMsgFetchTimeStamp == null){
+        lastMsgFetchTimeStamp = new Date();
+        fetchMessages();
+        localStorage.setItem(lastMsgFetchTimeStampKey, lastMsgFetchTimeStamp);
+    } else {
+        //timeDiff in ms
+        timeDiff = new Date().getTime() - new Date(localStorage.getItem(lastMsgFetchTimeStampKey)).getTime(); 
+        if(timeDiff > msgCacheTimeout){ // Make the call to server to get messages
+            fetchMessages();
+        } else {
+            renderMessages(msgDataArr);
+            let maxMsgIndex = localStorage.getItem(maxMsgIndexKey);
+            localStorage.setItem(currentMaxMsgIndexKey, maxMsgIndex);
+            localStorage.setItem(maxMsgIndexKey, maxMsgIndex);
+            localStorage.setItem(newMsgCountKey, 0);
+        }
+    }
+}
+
+function fetchMessages(){
+    var url = 'https://hawkaidata.net/api/eas.php?key=' + cityApiKey;
+    var r = $.post(url, {}, function (resp, textStatus, jqXHR){
+        if(!resp.data){
+            console.log("message data is null");
+            return;
+        }
+        let msgsArray = resp.data;
+        msgDataArr = msgsArray;
+
+        let msgsLen = resp.data.length;
+        let maxMsgIndex = localStorage.getItem(maxMsgIndexKey);
+        maxMsgIndex = maxMsgIndex != null ? maxMsgIndex : 0;
+        for(let i=0;i<msgsLen;i++){
+            if(msgsArray[i][0] > maxMsgIndex){
+                maxMsgIndex = msgsArray[i][0];
+            }
+        }
+        renderMessages(msgsArray);
+        sessionStorage.setItem(msgDataKey, JSON.stringify(msgsArray));
+        localStorage.setItem(currentMaxMsgIndexKey, maxMsgIndex);
+        localStorage.setItem(maxMsgIndexKey, maxMsgIndex);
+        localStorage.setItem(newMsgCountKey, 0);
+    }).fail(function(jqXHR, textStatus, errorThrown){
+        alert(textStatus);
+    }
+    );
+}
+
+function convertTextUrlToClickableURL(content)
+{
+   var exp_match = /(\b(https?|):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+   var element_content=content.replace(exp_match, "<a target='_blank' href='$1'>$1</a>");
+   var new_exp_match =/(^|[^\/])(www\.[\S]+(\b|$))/gim;
+   var new_content=element_content.replace(new_exp_match, '$1<a target="_blank" href="http://$2">$2</a>');
+   return new_content;
+}
+
+
+function renderMessages(msgsArray){
+    if(!msgsArray)
+        return;
+    let msgsLen = msgsArray.length;
+    let msgHTML = '';
+    let msgCategoryColors = {'info' : 'infobg', 'emergency' : 'emergencybg', 'alert' : 'alertbg'};
+    let currentMaxMsgIndex = localStorage.getItem(currentMaxMsgIndexKey);
+    currentMaxMsgIndex = currentMaxMsgIndex == null ? 0 : currentMaxMsgIndex;
+    let userLocale = langLocaleMap[userLang];
+    
+    for(let i=0;i<msgsLen;i++){
+            let msg = msgsArray[i][3];
+            msg = convertTextUrlToClickableURL(msg);
+            let msgCategory = msgsArray[i][2];
+            let msgCategoryClass = msgCategoryColors[msgCategory];
+            let msgCategoryInLocale = '';
+            if(msgCategory == 'info'){
+                msgCategoryInLocale = labels[userLang]['messages-cat-info'];
+            } else if(msgCategory == 'alert'){
+                msgCategoryInLocale = labels[userLang]['messages-cat-alert'];
+            } else if(msgCategory == 'emergency'){
+                msgCategoryInLocale = labels[userLang]['messages-cat-emergency'];
+            }
+            let msgDateTimeSplittedArr = msgsArray[i][1].split(' ');
+            let msgDate = msgDateTimeSplittedArr[0];
+            let msgTime = msgDateTimeSplittedArr[1];
+            let msgDateSplittedArr = msgDate.split('-');
+            
+            let msgYear = msgDateSplittedArr[0];
+            let msgMonth = msgDateSplittedArr[1];
+            let msgDay = msgDateSplittedArr[2];
+
+            //msgDateTime in another format
+            let msgDateTime = new Date(msgYear+'/'+msgMonth+'/'+msgDay+ ' ' + msgTime);
+            let dateLocaleOptions = {year:'numeric', month : 'short', day:'2-digit', hour:'2-digit', minute:'2-digit'};
+            let timeStamp = msgDateTime.toLocaleString(userLocale,dateLocaleOptions);
+            
+            let unreadMsgClass = '';
+        
+            if(msgsArray[i][0] > currentMaxMsgIndex){
+                unreadMsgClass = 'unreadMsg'; // TODO -- we'll apply this class. Read msgs will have empty value for this
+            }
+            msgHTML += '<div class="msgWrapper">';
+            msgHTML += '<div><span class="msg-timestamp">' + timeStamp + '</span> <span class="'+ msgCategoryClass +'">' + msgCategoryInLocale + '</div>';
+            msgHTML += '<div class="msg '+unreadMsgClass+'">'+msg+'</div>';
+            msgHTML += '</div>';
+    }
+    $(msgHTML).appendTo('#allMsgWrapper');
+}
+
+$(document).ready(function(){
+    init();
+
+    $('#searchBtn').click(function(){
+        searchMsg();
+    });
+
+    $('#info, #alert, #emergency').click(function(){
+        filterMsg();
+    });
+
+    $('#search').keyup(function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            $("#searchBtn").trigger('click');
+        }
+        if($(this).val() == ''){
+            $("#searchBtn").trigger('click');
+        }
+    });
+});
+</script>
+
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'messages-header' : 'Messages',
+        'messages-cat-info' : 'info',
+        'messages-cat-alert' : 'alert',
+        'messages-cat-emergency' : 'emergency',
+        'messages-search-msg' : 'Search Messages'
+    },
+    "fr" : {
+        'messages-header' : 'Messages',
+        'messages-cat-info' : 'info',
+        'messages-cat-alert' : 'alerte',
+        'messages-cat-emergency' : 'urgence',
+        'messages-search-msg' : 'Rechercher des messages'
+    }
+}   
+
+
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+</body>
+</html>

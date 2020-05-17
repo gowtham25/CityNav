@@ -1,0 +1,385 @@
+@import url("./css/normalize.css");
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+
+body {
+    height: 100vh;
+    min-height: 100vh;
+    position: absolute; top:0;bottom:0;right:0;left:0;
+    font-family:Helvetica;
+/*    font-size:14px; */
+/*    overflow: hidden; */
+}
+
+* {
+ margin:0;
+ padding:0;
+}
+
+/* Style the navigation menu */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+  display: none;
+}
+
+#myLinks {
+  height: 200px;
+  overflow-y: auto;
+}
+
+/* Style navigation menu links */
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the active link (or home/logo) */
+.active {
+/*  background-color: #4CAF50; */
+  background-color: #32c3ed;
+  color: white;
+}
+
+.footer_collapsed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+/*    height: 60px; */
+    background-color: #32c3ed;
+    display: none;
+    z-index: 1000;
+}
+
+.footer_content {
+/*    padding: 0 8px; */
+    max-height: 0;
+    overflow: scroll;
+    transition: max-height 0.4s ease-out;
+    background-color: #f1f1f1;
+    opacity: 0.8;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 500;
+    padding: 60px 0px 0px 60px;
+    display:none;
+    box-sizing: border-box;
+}
+
+#footer a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+
+#newMsgCount{
+  font-weight:bold;
+}
+
+#searchContainer {
+  display:flex;
+  position:absolute;
+  top:10px;
+  left:60px;
+  z-index:501;
+  background-color:white;
+  width:90%;
+  max-width:280px;
+  padding:12px;
+  border-radius:5px;
+  box-shadow:0px 1px 3px 1px #bbbaba;
+  align-items:center;
+  justify-content:center;
+}
+
+#originDestContainer {
+  display:none;
+  position:absolute;
+  top:10px;
+  left:60px;
+  z-index:501;
+  background-color:gray;
+  width:100%;
+  max-width:280px;
+  padding:10px 20px 10px 20px;
+  box-shadow:0px 1px 3px 1px #bbbaba;
+}
+
+#originContainer, #destContainer{
+  width:100%;
+  margin:10px auto;
+}
+
+#origin, #dest{
+  width:100%;
+  max-width:280px;
+  background-color:darkgray;
+  color:white;
+  outline:none;
+  border:none;
+  height:22px;
+  font-size:14px;
+  padding-left:10px;
+}
+
+@media only screen and (max-device-width: 414px){
+    #searchContainer {
+      display:flex;
+      position:absolute;
+      top:10px;
+      left:50%;
+      margin-left:-140px;
+      z-index:501;
+      background-color:white;
+      width:280px;
+      padding:12px;
+      border-radius:5px;
+      box-shadow:0px 1px 3px 1px #bbbaba;
+      align-items:center;
+      justify-content:center;
+    }
+    #originDestContainer {
+      max-width:100%;
+      left:0;
+      top:0;
+      text-align: center;
+    }
+    #origin, #dest{
+      height:32px;
+    }
+}
+
+#searchItem{
+  width:90%;
+  margin:0 5px 0 12px;
+  border:none;
+  outline:none;
+  font-size:14px;
+}
+
+#hamburgerIcon, #searchIcon{
+    cursor:pointer;
+}
+
+.navIcons{
+    vertical-align: middle;
+    margin-right:10px;
+    width: 24px;
+}
+
+#sideNavContainer{
+    position:absolute;
+    top:0;
+    left:0;
+    width:auto;
+    background:white;
+    z-index:1100;
+    padding:25px 25px 10px 15px;
+    display:none;
+}
+
+#sideNavCloseBtn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    cursor:pointer;
+}
+
+#sideNavMenu{
+    list-style:none;
+    
+}
+.sideNavMenuItem{
+    margin:10px 0 20px 0;
+    cursor:pointer;
+    font-size:16px;
+}
+.sideNavSubMenuItem {
+    display:none;
+    list-style:none;
+    margin:10px 0 0 25px;
+    cursor:pointer;
+}
+.sideNavSubMenuItemDetails {
+    list-style:none;
+    margin:12px 0 0 15px;
+}
+.sideNavMenuItemLinks, .sideNavSubMenuItemLinks{
+    text-decoration: none;
+}
+
+.sideNavSubMenuItemLinks{
+    margin-left:10px;
+}
+
+#floodSubMenuItemDetails{
+    display:none;
+}
+#routeDetailsCloseBtnContainer{
+    height:28px;
+}
+#routeDetailsCloseBtn{
+    cursor:pointer;
+    position: absolute;
+    right:10px;
+    top:10px;
+}
+
+#directionsGoBtn{
+    display:none;
+    width:36px;
+    border-radius:36px;
+    height:36px;
+    background-color:#1A73E8;
+    position:fixed;
+    bottom:50px;
+    right:20px;
+    z-index:1499;
+    margin:6px;
+    padding:8px;
+    cursor:pointer;
+}
+
+#routeDetailsContainer{
+    display:none;
+    position:fixed;
+    bottom:0;
+    left: 0;
+    width:100vw;
+    height:350px;
+    background:white;
+    padding:15px 10px 10px 15px;
+    z-index:1500;
+    border-radius:5px;
+    overflow:scroll;
+}
+
+#chooseCategory{
+    cursor:pointer;
+    text-align:center;
+}
+
+#bottomBar{
+    position:fixed;
+    display:flex;
+    bottom:0;
+    z-index:1500;
+    width:100%;
+    background-color:#4a3175;
+    color:white;
+    height:50px;
+    align-items: center;
+    justify-content: center;
+}
+
+#bottomNavBackBtn{
+    display:none;
+    position:absolute;
+    top:12px;
+    left:10px;
+    z-index:1499;
+    cursor:pointer;
+}
+
+#bottomNavGoBtn{
+    display:none;
+    position:absolute;
+    top:0;
+    right:5px;
+    z-index:1499;
+    cursor:pointer;
+}
+
+#routeDetailsBtn{
+  cursor:pointer;
+  display:none;
+  background-color:dodgerblue;
+  color:white;
+  align-items:center;
+  justify-content: center;
+}
+
+#categoriesContainer{
+    position:fixed;
+    bottom:0;
+    left: 50%;
+    transform: translateX(-50%);
+    width:90vw;
+    background:white;
+    padding:15px 10px 10px 15px;
+    z-index:1200;
+    border-radius:5px;
+    display:none;
+}
+
+#categoriesCloseBtnContainer {
+    height:28px;
+}
+#categoriesCloseBtn {
+    position:absolute;
+    top:10px;
+    right:10px;
+    cursor:pointer;
+}
+#categoriesList {
+    list-style:none;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    align-items: flex-start;
+    justify-content: center;
+    text-align:center;
+}
+.category {
+    margin-bottom:10px;
+    cursor:pointer;
+}
+.categoryIcon {
+    width:48px;
+    height:48px;
+}
+.categoryLabel {
+    margin-left:4px;   
+}
+.disabledText {
+    opacity:0.3;  
+}
+
+#transitContainer{
+ text-align:left;
+ padding:5px 0 0 30px;
+}
+

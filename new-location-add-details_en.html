@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="manifest" href="manifest.json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!-- meta tags for iOS to support PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="City Navigator">
+    
+<style>
+@import url("./css/normalize.css");
+</style>
+<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/prettydropdowns.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
+<link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+body{
+  font-size:12px; 
+  font-family:Helvetica;
+}
+.pageHeader{
+    top:0;
+    left:0;
+    width:100vw;
+    height:50px;
+    background-color:#4a3175;
+    color:white;
+    padding:10px 0 0 10px;    
+}
+.pageBody{
+    margin:0 auto;
+    padding:15px;
+}
+.prettydropdown > ul {
+    position: relative;
+    font-size:12px;
+    font-family:Helvetica;
+}
+.prettydropdown > select {
+    position: absolute;
+}
+.backBtn{
+    cursor:pointer;
+    position:absolute;
+    right:25px;
+}    
+.fieldContainer{
+    width:260px;
+    margin: 0 auto 15px 20px;
+}
+.fieldLabel{    
+    width:260px;
+    margin-bottom:5px;
+}
+.fieldInput{    
+    width:260px;
+}
+.textField{
+  padding-left:10px;
+  height:30px;
+  width:245px;
+}
+#photoField{
+  height:150px;
+  width:260px;
+  border:1px solid gray;
+  position: relative;
+}
+#add-photo{
+  position:absolute;
+  top:40px;
+  left:95px;
+}
+#nextBtnContainer{
+    margin-top:40px;
+    width:260px;
+}
+#nextBtn{
+  background-color:dodgerblue;
+  color:white;
+  height:30px;
+  text-align: center;
+  vertical-align:middle;
+  line-height: 30px;
+  width:120px;
+  margin : 0 auto;
+  cursor: pointer;
+}
+#add-photo-input{
+    display: none;
+}
+#remove-photo{
+   display: none; 
+   position: absolute;
+   top:0px;
+   right:5px;
+   font-size:18px;
+   cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div id="target">
+
+</div>
+
+<script id="template" type="x-tmpl-mustache">
+<div class="pageHeader"><h3>{{add-details-header}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+<div class="pageBody">   
+    <div class="fieldContainer">
+        <div class="fieldLabel">{{add-details-est-name}}</div>
+        <div class="fieldInput">
+            <input name="establishmentName" id="establishmentName" value="" placeholder="{{add-details-est-name-placeholder}}" class="textField" />
+        </div>
+    </div>
+    <div class="fieldContainer">
+        <div class="fieldLabel">{{add-details-est-type}}</div>
+        <div class="fieldInput">
+            <select name="establishmentType" id="establishmentType" class="pretty">
+            </select>
+        </div>
+    </div>
+
+    <div class="fieldContainer">
+        <div class="fieldLabel">{{add-details-est-desc}}</div>
+        <div class="fieldInput">
+            <input name="establishmentDesc" id="establishmentDesc" value="" placeholder="{{add-details-est-desc-placeholder}}" class="textField" />
+        </div>
+    </div>
+    
+    <div class="fieldContainer">
+        <div class="fieldLabel">{{add-details-photo}}</div>
+        <div class="fieldUpload" id="photoField">
+            <img src="./icons/add-photo.png" id="add-photo" />
+            <input type="file" accept="image/*" id="add-photo-input" />
+            <i class="fa fa-remove" id="remove-photo"></i>
+        </div>
+    </div>
+    
+    <div id="nextBtnContainer">
+        <div id="nextBtn">{{add-details-next}}</div>
+    </div>
+</div> 
+</script>
+
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./common.js?v=2"></script>
+<script src="./static-page.js?v=2"></script>
+<script src="./js/jquery.prettydropdowns.js"></script>
+
+<script>
+function setUIFieldValues(){
+    let estName = sessionStorage.getItem(newLocationEstNameKey);
+    let estType = sessionStorage.getItem(newLocationEstTypeKey);
+    let estDesc = sessionStorage.getItem(newLocationEstDescKey);
+    let estPhotoImg = sessionStorage.getItem(newLocationPhotoImageKey);  
+    let estPhotoImgExt = sessionStorage.getItem(newLocationPhotoImageExtKey);  
+    
+    if(estName){
+        $('#establishmentName').val(estName);
+    }
+    if(estType){
+        $('#establishmentType').val(estType);
+    }
+    if(estDesc){
+        $('#establishmentDesc').val(estDesc);
+    }
+    
+    if(estPhotoImg) {
+        $('#add-photo').hide();    
+        populateImage(estPhotoImg);
+    }
+}
+    
+function populateImage(base64ImgData){    
+        $('#photoField').css('background-image', 'url('+base64ImgData+')');
+        $('#photoField').css('background-size', 'contain');
+        $('#photoField').css('background-repeat', 'no-repeat');
+        $('#photoField').css('background-position', 'center');
+        $('#remove-photo').show();
+}
+
+$(document).ready(function(){
+  let selectedCategory = sessionStorage.getItem(newLocationSelCategoryIdKey);
+  for(estTypes of establishmentTypeObj[selectedCategory]){
+    //$('#establishmentType').append(new Option(estTypes['displayName'], estTypes['value']));
+    $('#establishmentType').append(new Option(estTypes['displayName'], estTypes['displayName']));
+  }
+    
+  setUIFieldValues(); // For the edit flow
+  
+  $('select').prettyDropdown({height:30});
+
+  $('#add-photo').click(function(){
+      $("#add-photo-input").trigger('click');
+  });
+    
+  $('#remove-photo').click(function(){
+       $('#add-photo').show();
+       $('#photoField').css('background','transparent');
+       $('#remove-photo').hide();
+       sessionStorage.removeItem('new-location-photo-image');
+       sessionStorage.removeItem('new-location-photo-image-ext');
+  });
+  
+  $('#nextBtn').click(function(){
+      
+    sessionStorage.setItem(newLocationEstNameKey, $('#establishmentName').val());  
+    sessionStorage.setItem(newLocationEstTypeKey, $('#establishmentType').val());
+    sessionStorage.setItem(newLocationEstDescKey, $('#establishmentDesc').val());
+    
+    //window.location.href = './new-location-coords_' + userLang + '.html';
+    window.location.href = './new-location-coords_' + 'en' + '.html';
+  });
+    
+var reader;
+var latitude;
+var longitude;
+var file;
+$("#add-photo-input").change(function() {
+if (window.File && window.FileReader && window.FileList && window.Blob)
+{
+    file = this.files[0];
+    if (file.type.indexOf('image') != -1)
+    { 
+
+    reader = new FileReader();
+	reader.onload = function(e)
+	{
+        
+	    var url = 'https://hawkaidata.net/api/addToDataset.php?key=' + cityApiKey;
+    	    var image = e.target.result;
+	    var extension = e.target.fileName.split('.').pop().toLowerCase();
+        extension = extension != 'jpg' ? extension : 'jpeg';
+        console.log(image, "un-compressed image");
+        
+        sessionStorage.setItem(newLocationPhotoImageExtKey, extension);
+        $('#add-photo').hide();
+        populateImage(image);
+
+        // Compress image in JS and store the compressed image's base64 in session storage
+        let oldBase64 = image;
+        resizeBase64Img(oldBase64, extension).then(function(compressedImgData){
+            console.log(compressedImgData, "compressed image");
+            sessionStorage.setItem(newLocationPhotoImageKey, compressedImgData);
+        });        
+	}
+	reader.fileName = file.name;
+    reader.readAsDataURL(file);
+	//getLocation();
+    }
+}
+});
+
+    function resizeBase64Img(base64, extension) {
+        var canvas = document.createElement("canvas");
+        var context = canvas.getContext("2d");
+        var deferred = $.Deferred();
+
+        $("<img/>").attr("src", base64).on('load', function() {
+
+            let imageAR = this.width / this.height;
+            width = 600;
+            height = width / imageAR;
+
+            canvas.width = width;
+            canvas.height = height;
+            context.scale(width/this.width,  height/this.height);
+            context.drawImage(this, 0, 0);
+            //deferred.resolve($("<img/>").attr("src", canvas.toDataURL()));
+            
+            deferred.resolve(canvas.toDataURL('image/' + extension, 1.0));
+        });
+ 
+
+        return deferred.promise();
+
+    }
+    function getLocation()
+    {
+        navigator.geolocation.getCurrentPosition(getPosition);
+    }
+
+    function getPosition(position)
+    {
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+	reader.latitude = latitude;
+	reader.longitude = longitude;
+	console.log("latitude: " + latitude);
+	console.log("longitude: " + longitude);
+	reader.readAsDataURL(file);
+    }
+  
+});
+</script>
+
+<!-- i18n specific code starts -->
+<script src="https://unpkg.com/mustache@latest"></script>
+<script>
+var labels = {
+    "en" : {
+        'add-details-header' : 'Add Details',
+        'add-details-est-name' : 'Name',
+        'add-details-est-name-placeholder' :'Name of Establishment',
+        'add-details-est-type' : 'Type',
+        'add-details-est-desc' : 'Description',
+        'add-details-est-desc-placeholder' : 'Type Details',
+        'add-details-photo' : 'Photo',
+        'add-details-next' : 'NEXT'
+    },
+    "fr" : {
+        'add-details-header' : 'Ajouter des détails',
+        'add-details-est-name' : 'Nom',
+        'add-details-est-name-placeholder' :"Nom de l'établissement",
+        'add-details-est-type' : 'Type',
+        'add-details-est-desc' : 'La description',
+        'add-details-est-desc-placeholder' : "Détails de l'établissement",
+        'add-details-photo' : 'Photo',
+        'add-details-next' : 'Prochain'
+    }
+}   
+
+
+var userLangLabels = labels[userLang];
+var template = document.getElementById('template').innerHTML;
+var rendered = Mustache.render(template, userLangLabels);
+document.getElementById('target').innerHTML = rendered;
+</script>
+<!-- i18n specific code ends -->
+
+</body>
+</html>
