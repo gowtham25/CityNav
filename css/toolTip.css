@@ -223,6 +223,9 @@ td .badge {
 .text-indigo{
     color: #3f51b5 !important;
 }
+.tool-tip-common-color {
+  color: #09E !important;
+}
 
 .marker-cattype i {
     margin-right: 4px;

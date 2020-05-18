@@ -9,20 +9,23 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="City Navigator">
-    
+
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./static-page.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
 <link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+    @import url("./css/common.css");
+</style>
 </head>
 <body>
 <div id="target">
 </div>
 <script id="template" type="x-tmpl-mustache">
 <div>
-    <div class="topicHeader"><h3>{{flooding-what-todo-after-title}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+<div class="topicHeader bg-{{className}}-header"><h3>{{flooding-what-todo-after-title}}</h3><i class="fas fa-arrow-circle-left backBtn"></i></div>
     <div class="topicDescTop">
     {{flooding-what-todo-after-desc}}:
     </div>
@@ -45,15 +48,15 @@
                 </li>
             </ul>
         </li>
-        
+
         <li><strong>{{flooding-what-todo-after-step2-title}}</strong>
             <ul>
                 <li>{{flooding-what-todo-after-step2-listitem1-desc}}</li>
                 <li>{{flooding-what-todo-after-step2-listitem2-desc}}</li>
             </ul>
         </li>
-        
-        
+
+
         <li><strong>{{flooding-what-todo-after-step3-title}}</strong>
             <ul>
                 <li>{{flooding-what-todo-after-step3-listitem1-desc}}</li>
@@ -83,7 +86,7 @@ var labels = {
         'flooding-what-todo-after-step1-listitem2-subitem3-desc' : 'A structure may have been moved from its foundation, so be careful of collapsed and exposed nails/bolts or other fasteners.',
         'flooding-what-todo-after-step1-listitem2-subitem4-desc' : 'Wildlife may have found a dry spot in your home, so be on the lookout.',
         'flooding-what-todo-after-step1-listitem2-subitem5-desc' : 'Mold will start to grow on wet surfaces. Be aware of the potential for high mold counts if you or a family member is allergic or asthmatic.',
-        
+
         'flooding-what-todo-after-step2-title' : 'Seek post-disaster support',
         'flooding-what-todo-after-step2-listitem1-desc' : 'If you are insured, call your insurance representative and start the compensation process. If you do not have insurance coverage, you will have to rely on your own resources as well as those put at your disposal by the city, the government or outside organizations.',
         'flooding-what-todo-after-step2-listitem2-desc' : 'Go to your focal point/neighborhood point of contact to determine the support provided by the city, the government or NGOs. Many sources of support are available after a flood. If you need assistance immediately after an event, contact your focal point. Assistance from the Red Cross or other organizations is often available and local staff is often the best source of information on these types of resources. In addition, various sources of government assistance can be made available to individuals and communities recovering from flooding and working to increase their resilience.',
@@ -103,7 +106,7 @@ var labels = {
         'flooding-what-todo-after-step1-listitem2-subitem3-desc' : 'Une structure peut avoir été déplacée de sa fondation, alors faites attention aux clous/structures affaissées et exposées.',
         'flooding-what-todo-after-step1-listitem2-subitem4-desc' : "La faune a peut-être trouvé un endroit sec dans votre maison, alors soyez à l'affût.",
         'flooding-what-todo-after-step1-listitem2-subitem5-desc' : 'La moisissure tend à se développer rapidement sur les surfaces humides. Soyez prudent si vous ou un membre de votre famille est allergique ou asthmatique.',
-        
+
         'flooding-what-todo-after-step2-title' : 'Cherchez du soutien après une catastrophe',
         'flooding-what-todo-after-step2-listitem1-desc' : "Si vous êtes assuré, appelez votre courtier d'assurance et lancez le processus d'indemnisation. Si vous n'avez pas de couverture d'assurance, vous serez obligé de compter sur vos propres ressources ainsi que celles mises à votre disposition par la ville, le gouvernement ou des organismes extérieurs.",
         'flooding-what-todo-after-step2-listitem2-desc' : "Rendez-vous chez votre point focal / point de contact de quartier pour déterminer le soutien apporté par la ville, le gouvernement ou les ONG. De nombreuses sources de soutien sont disponibles après une inondation. Si vous avez besoin d'aide immédiatement après un événement, contactez votre point focal. L'assistance de la Croix-Rouge ou d'autres organisations est souvent disponible et le personnel local est souvent la meilleure source d'information sur ces types de ressources. En outre, diverses sources d'aide gouvernementale peuvent être mises à la disposition des individus et des communautés se remettant des inondations et travaillant à accroître leur résilience.",
@@ -112,7 +115,7 @@ var labels = {
         'flooding-what-todo-after-step3-listitem1-desc' : "Prenez des photos de tous les dommages à votre propriété à des fins d'assurance (si vous êtes assuré) y compris les débris. Ceci est particulièrement important pour les objets qui auraient endommagé votre maison.",
         'flooding-what-todo-after-step3-listitem2-desc' : "­Conservez tous les reçus. Documentez le coût des fournitures achetées et des travaux effectués pour éviter d'autres dommages à votre maison (réparations des murs, réparations du toit, produits de nettoyage, boîtes d'emballage pour les articles récupérables ou logement temporaire). Certains de ces frais peuvent être couverts par une assurance."
     }
-}   
+}
 
 var userLangLabels = labels[userLang];
 var template = document.getElementById('template').innerHTML;

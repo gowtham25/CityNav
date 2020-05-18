@@ -9,67 +9,70 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="City Navigator">
-    
+
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./static-page.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
 <link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+    @import url("./css/common.css");
+</style>
 </head>
 <body>
 <div id="target">
 </div>
 <script id="template" type="x-tmpl-mustache">
 <div>
-    <div class="topicHeader"><h3>{{flood-faq-title}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+<div class="topicHeader bg-{{className}}-header"><h3>{{flood-faq-title}}</h3><i class="fas fa-arrow-circle-left backBtn"></i></div>
     <div class="topicDescTop">
     <ol>
     <li>
         <strong>{{flood-faq-q1}}</strong>
         <p>{{flood-faq-a1}}</p>
     </li>
-        
+
     <li>
         <strong>{{flood-faq-q2}}</strong>
         <p>{{flood-faq-a2}}</p>
     </li>
-        
+
     <li>
         <strong>{{flood-faq-q3}}</strong>
         <p>{{flood-faq-a3}}</p>
     </li>
-        
+
     <li>
         <strong>{{flood-faq-q4}}</strong>
         <p>{{flood-faq-a4}}</p>
     </li>
-        
+
     <li>
         <strong>{{flood-faq-q5}}</strong>
         <p>{{flood-faq-a5}}</p>
     </li>
-        
+
     <li>
         <strong>{{flood-faq-q6}}</strong>
         <p>{{flood-faq-a6}}</p>
     </li>
-        
+
     <li>
         <strong>{{flood-faq-q7}}</strong>
         <p>{{flood-faq-a7}}</p>
     </li>
-        
+
     <li>
         <strong>{{flood-faq-q8}}</strong>
         <p>{{flood-faq-a8}}</p>
     </li>
-        
+
     <li>
         <strong>{{flood-faq-q9}}</strong>
         <p>{{flood-faq-a9}}</p>
     </li>
-    
+
     <li>
         <strong>{{flood-faq-q10}}</strong>
         <ul>
@@ -165,7 +168,7 @@ var labels = {
         'flood-faq-a10-10' : '­Impliquez-vous dans votre communauté',
         'flood-faq-a10-11' : '­Documentez et assurer les actifs immobiliers.'
     }
-}   
+}
 
 var userLangLabels = labels[userLang];
 var template = document.getElementById('template').innerHTML;

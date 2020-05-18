@@ -9,20 +9,24 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="City Navigator">
-    
+
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./static-page.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
 <link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+  @import url("./css/normalize.css");
+  @import url("./css/common.css");
+</style>
 </head>
 <body>
 <div id="target">
 </div>
 <script id="template" type="x-tmpl-mustache">
 <div>
-    <div class="topicHeader"><h3>{{covid19-faq-header}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+  <div class="topicHeader bg-{{className}}-header"><h3>{{covid19-faq-header}}</h3><i class="fas fa-arrow-circle-left backBtn"></i></div>
     <div class="topicDescTop">
         <section>
         <h3>{{covid19-faq-from-the-who-sh}}</h3>
@@ -36,7 +40,7 @@
 
         <section>
         <h3>{{covid19-faq-what-is-covid-sh}}</h3>
-        <p>{{covid19-faq-what-is-covid-sd}}</p> 
+        <p>{{covid19-faq-what-is-covid-sd}}</p>
         </section>
 
         <section>
@@ -47,7 +51,7 @@
         <section>
         <h3>{{covid19-faq-how-spread-sh}}</h3>
         <p>{{covid19-faq-how-spread-sd}}</p>
-        
+
         <h5>{{covid19-faq-how-spread-ssh1}}</h5>
         <p>{{covid19-faq-how-spread-ssd1}}</p>
         <h5>{{covid19-faq-how-spread-ssh2}}</h5>
@@ -71,14 +75,14 @@
             </p>
 
 
-            
+
             <h5>{{covid19-faq-how-to-protect-ssh2}}</h5>
             <ul>
                 <li>{{covid19-faq-how-to-protect-measure7}}
                 <li>{{covid19-faq-how-to-protect-measure8}}
                 <li>{{covid19-faq-how-to-protect-measure9}}
             </ul>
-        </section> 
+        </section>
 
         <section>
             <h3>{{covid19-faq-catch-possibility-sh}}</h3>
@@ -116,7 +120,7 @@
             <h3>{{covid19-faq-is-sars-sh}}</h3>
             <p>{{covid19-faq-is-sars-sd}}</p>
         </section>
-        
+
         <section>
             <h3>{{covid19-faq-should-i-wear-mask-sh}}</h3>
             <p>{{covid19-faq-should-i-wear-mask-sd}}</p>
@@ -176,7 +180,7 @@
             </p>
             <p>{{covid19-faq-donts-sd1}}</p>
         </section>
-        
+
      </div>
 </div>
 </script>
@@ -277,74 +281,74 @@ var labels = {
         'covid19-faq-symptoms-sh' : "Quels sont les symptômes les plus courants de COVID-19 ?",
         'covid19-faq-symptoms-sd' : "1-	La fièvre, la fatigue et la toux sèche.<br>2-	Certains patients peuvent souffrir de congestion et d'écoulement nasal, maux de gorge ou de diarrhée. Ces symptômes sont généralement légers et commencent progressivement.<br>3-	Certaines personnes sont infectées mais ne développent aucun symptôme et ne se sentent pas mal.<br>4-	La plupart des gens (environ 80%) se remettent de la maladie sans avoir besoin d'un traitement spécial.<br>5-	Environ 1 personne sur 6 atteinte de COVID-19 tombe gravement malade et éprouve des difficultés à respirer.<br>6-	Les personnes âgées et celles qui ont des problèmes médicaux sous-jacents comme l'hypertension artérielle, des problèmes cardiaques ou le diabète sont plus susceptibles de développer une maladie grave.<br><br>NB : Les personnes souffrant de fièvre, de toux et de difficultés respiratoires doivent consulter un médecin.",
         'covid19-faq-how-spread-sh' : "Comment COVID-19 Se Propage-t-il?",
-        'covid19-faq-how-spread-sd' : "Mode de transmission:<br>La maladie peut se transmettre d'une personne à l'autre par :<br><br>1- petites gouttelettes nasales ou buccales qui se propagent lorsqu'une personne atteinte de COVID-19 tousse ou expire. Ces gouttelettes atterrissent sur les objets et les surfaces autour de la personne. En touchant ces objets ou surfaces, puis en touchant leurs yeux, leur nez ou leur bouche d'autres personnes attrapent ensuite COVID-19.<br>2- par respiration : des gouttelettes expirée par une personne atteinte, des émanations expectorée par une personne atteinte qui tousse.<br><br>Recommandation : il est important de rester à plus d'un mètre (3 pieds) d'une personne malade.", 
+        'covid19-faq-how-spread-sd' : "Mode de transmission:<br>La maladie peut se transmettre d'une personne à l'autre par :<br><br>1- petites gouttelettes nasales ou buccales qui se propagent lorsqu'une personne atteinte de COVID-19 tousse ou expire. Ces gouttelettes atterrissent sur les objets et les surfaces autour de la personne. En touchant ces objets ou surfaces, puis en touchant leurs yeux, leur nez ou leur bouche d'autres personnes attrapent ensuite COVID-19.<br>2- par respiration : des gouttelettes expirée par une personne atteinte, des émanations expectorée par une personne atteinte qui tousse.<br><br>Recommandation : il est important de rester à plus d'un mètre (3 pieds) d'une personne malade.",
         'covid19-faq-how-spread-ssh1' : "Le virus responsable du COVID-19 peut-il être transmis par voie aérienne?",
-        'covid19-faq-how-spread-ssd1' : "Les études menées à ce jour indiquent que le virus qui cause le COVID-19 est principalement transmis par contact avec des gouttelettes respiratoires plutôt que par voie aérienne.", 
-        'covid19-faq-how-spread-ssh2' : "CoVID-19 peut-il être attrapé par une personne qui ne présente aucun symptôme?", 
-        'covid19-faq-how-spread-ssd2' : "Le risque d'attraper COVID-19 d'une personne sans aucun symptôme est très faible car la maladie se propage principalement par le biais de gouttelettes respiratoires expulsées par une personne qui tousse. Cependant, de nombreuses personnes atteintes de COVID-19 ne présentent que des symptômes bénins. Cela est particulièrement vrai aux premiers stades de la maladie. Il est donc possible d'attraper COVID-19 chez un porteur sain souffrant d’une toux légère et qui ne se sent pas mal.", 
-        'covid19-faq-how-spread-ssh3' : "Puis-je attraper COVID-19 des selles d'une personne atteinte de la maladie?", 
-        'covid19-faq-how-spread-ssd3' : "Bien que les premières investigations indique que le virus peut dans certains cas être présent dans les matières fécales, la propagation par cette voie n'est pas une caractéristique principale de l'épidémie.<br>Mais cette éventualité demeure  un risque. Aussi recommande-t-on vivement de se laver régulièrement les mains, après être allé aux toilettes et avant de manger.", 
-        'covid19-faq-how-to-protect-sh' : "Que puis-je faire pour me protéger et prévenir la propagation des maladies?", 
-        'covid19-faq-how-to-protect-ssd1' : "S’informer sans arrêt des dernières évolutions sur l'épidémie de COVID-19, disponibles sur le site Web de l'OMS et par le biais de votre autorité nationale et locale de santé publique.", 
+        'covid19-faq-how-spread-ssd1' : "Les études menées à ce jour indiquent que le virus qui cause le COVID-19 est principalement transmis par contact avec des gouttelettes respiratoires plutôt que par voie aérienne.",
+        'covid19-faq-how-spread-ssh2' : "CoVID-19 peut-il être attrapé par une personne qui ne présente aucun symptôme?",
+        'covid19-faq-how-spread-ssd2' : "Le risque d'attraper COVID-19 d'une personne sans aucun symptôme est très faible car la maladie se propage principalement par le biais de gouttelettes respiratoires expulsées par une personne qui tousse. Cependant, de nombreuses personnes atteintes de COVID-19 ne présentent que des symptômes bénins. Cela est particulièrement vrai aux premiers stades de la maladie. Il est donc possible d'attraper COVID-19 chez un porteur sain souffrant d’une toux légère et qui ne se sent pas mal.",
+        'covid19-faq-how-spread-ssh3' : "Puis-je attraper COVID-19 des selles d'une personne atteinte de la maladie?",
+        'covid19-faq-how-spread-ssd3' : "Bien que les premières investigations indique que le virus peut dans certains cas être présent dans les matières fécales, la propagation par cette voie n'est pas une caractéristique principale de l'épidémie.<br>Mais cette éventualité demeure  un risque. Aussi recommande-t-on vivement de se laver régulièrement les mains, après être allé aux toilettes et avant de manger.",
+        'covid19-faq-how-to-protect-sh' : "Que puis-je faire pour me protéger et prévenir la propagation des maladies?",
+        'covid19-faq-how-to-protect-ssd1' : "S’informer sans arrêt des dernières évolutions sur l'épidémie de COVID-19, disponibles sur le site Web de l'OMS et par le biais de votre autorité nationale et locale de santé publique.",
         'covid19-faq-how-to-protect-ssh1' : "Prendre quelques précautions simples:",
         'covid19-faq-how-to-protect-measure1' : "Nettoyez régulièrement et soigneusement vos mains avec un désinfectant pour les mains à base d'alcool les avec de l'eau et du savon.  Pourquoi? Se laver les mains à l'eau et au savon ou utiliser un désinfectant pour les mains à base d'alcool tue les virus qui peuvent être sur vos mains.",
-        'covid19-faq-how-to-protect-measure2' : "Maintenir une distance d'au moins 1 mètre (3 pieds) entre vous et toute personne qui tcar elles disposeront des informations les plus récentes sur la situation dans votre région. Un appel à l'avance permettra à votre fournisseur de soins de santé de vous diriger rapidement vers le bon établissement de santé. Cela vous protégera également et aidera à prévenir la propagation de virus et d'autres infections.", 
-        'covid19-faq-how-to-protect-measure3' : "Évitez de toucher les yeux, le nez et la bouche. Pourquoi? Les mains touchent de nombreuses surfaces et peuvent détecter des virus. Une fois contaminé, les mains peut transmettre le virus aux yeux, au nez ou à la bouche. De là, le virus peut entrer dans votre corps et peut vous rendre malade.", 
-        'covid19-faq-how-to-protect-measure4' : "Assurez-vous que vous et les personnes qui vous entourent suivez une bonne hygiène respiratoire. Ça signifie couvrant votre bouche et votre nez avec votre coude ou votre tissu plié lorsque vous toussez ou éternuement. Jetez ensuite le mouchoir utilisé immédiatement. Pourquoi? Les gouttelettes propagent le virus. En suivant une bonne hygiène respiratoire, vous protégez les gens autour de vous contre les virus tels que le rhume, la grippe et le COVID-19.", 
-        'covid19-faq-how-to-protect-measure5' : "Restez à la maison si vous ne vous sentez pas bien. Si vous avez de la fièvre, de la toux et des difficultés respiratoires, soins médicaux et appeler à l'avance. Suivez les instructions de votre autorité sanitaire locale. Pourquoi? Les autorités nationales et locales disposeront des informations les plus récentes sur situation dans votre région. Appeler à l'avance permettra à votre fournisseur de soins de santé de rapidement vous diriger vers le bon établissement de santé. Cela vous protégera également et aidera à prévenir la propagation de virus et autres infections.", 
-        'covid19-faq-how-to-protect-measure6' : "Restez à jour sur les derniers hotspots COVID-19 (villes ou zones locales où COVID-19 se propage largement). Si possible, évitez de voyager dans des endroits - surtout si vous êtes une personne âgée ou souffrez de diabète, de maladies cardiaques ou pulmonaires car vous avez plus de chances d'attraper COVID-19 dans l'une de ces zones.", 
-        'covid19-faq-how-to-protect-ssh2' : "Mesures de protection pour les personnes se trouvant ou ayant récemment visité (14 derniers jours) les zones où COVID-19 se propage:", 
-        'covid19-faq-how-to-protect-measure7' : "Suivez les directives décrites ci-dessus (Mesures de protection pour tous)", 
-        'covid19-faq-how-to-protect-measure8' : "Isolez-vous en restant à la maison si vous commencez à vous sentir mal, même avec des symptômes légers comme des maux de tête, une fièvre de faible intensité (37,3 ° C ou plus) et un léger nez qui coule, jusqu'à ce que vous récupériez. S'il est essentiel pour vous que quelqu'un vous apporte des fournitures ou pour sortir, par ex. pour acheter de la nourriture, puis portez un masque pour éviter d'infecter d'autres personnes.", 
-        'covid19-faq-how-to-protect-measure9' : "Si vous développez de la fièvre, de la toux et des difficultés respiratoires, consultez rapidement un médecin car cela peut être dû à une infection respiratoire ou à une autre affection grave. Appelez à l'avance et informez votre fournisseur de tout voyage récent ou contact avec les voyageurs, car un appel à l'avance permettra à votre fournisseur de soins de santé de vous diriger rapidement vers le bon établissement de santé. Cela contribuera également à empêcher une éventuelle propagation de COVID-19 et d'autres virus.", 
-        'covid19-faq-catch-possibility-sh' : "Quelle est la probabilité que j'attrape COVID-19?", 
+        'covid19-faq-how-to-protect-measure2' : "Maintenir une distance d'au moins 1 mètre (3 pieds) entre vous et toute personne qui tcar elles disposeront des informations les plus récentes sur la situation dans votre région. Un appel à l'avance permettra à votre fournisseur de soins de santé de vous diriger rapidement vers le bon établissement de santé. Cela vous protégera également et aidera à prévenir la propagation de virus et d'autres infections.",
+        'covid19-faq-how-to-protect-measure3' : "Évitez de toucher les yeux, le nez et la bouche. Pourquoi? Les mains touchent de nombreuses surfaces et peuvent détecter des virus. Une fois contaminé, les mains peut transmettre le virus aux yeux, au nez ou à la bouche. De là, le virus peut entrer dans votre corps et peut vous rendre malade.",
+        'covid19-faq-how-to-protect-measure4' : "Assurez-vous que vous et les personnes qui vous entourent suivez une bonne hygiène respiratoire. Ça signifie couvrant votre bouche et votre nez avec votre coude ou votre tissu plié lorsque vous toussez ou éternuement. Jetez ensuite le mouchoir utilisé immédiatement. Pourquoi? Les gouttelettes propagent le virus. En suivant une bonne hygiène respiratoire, vous protégez les gens autour de vous contre les virus tels que le rhume, la grippe et le COVID-19.",
+        'covid19-faq-how-to-protect-measure5' : "Restez à la maison si vous ne vous sentez pas bien. Si vous avez de la fièvre, de la toux et des difficultés respiratoires, soins médicaux et appeler à l'avance. Suivez les instructions de votre autorité sanitaire locale. Pourquoi? Les autorités nationales et locales disposeront des informations les plus récentes sur situation dans votre région. Appeler à l'avance permettra à votre fournisseur de soins de santé de rapidement vous diriger vers le bon établissement de santé. Cela vous protégera également et aidera à prévenir la propagation de virus et autres infections.",
+        'covid19-faq-how-to-protect-measure6' : "Restez à jour sur les derniers hotspots COVID-19 (villes ou zones locales où COVID-19 se propage largement). Si possible, évitez de voyager dans des endroits - surtout si vous êtes une personne âgée ou souffrez de diabète, de maladies cardiaques ou pulmonaires car vous avez plus de chances d'attraper COVID-19 dans l'une de ces zones.",
+        'covid19-faq-how-to-protect-ssh2' : "Mesures de protection pour les personnes se trouvant ou ayant récemment visité (14 derniers jours) les zones où COVID-19 se propage:",
+        'covid19-faq-how-to-protect-measure7' : "Suivez les directives décrites ci-dessus (Mesures de protection pour tous)",
+        'covid19-faq-how-to-protect-measure8' : "Isolez-vous en restant à la maison si vous commencez à vous sentir mal, même avec des symptômes légers comme des maux de tête, une fièvre de faible intensité (37,3 ° C ou plus) et un léger nez qui coule, jusqu'à ce que vous récupériez. S'il est essentiel pour vous que quelqu'un vous apporte des fournitures ou pour sortir, par ex. pour acheter de la nourriture, puis portez un masque pour éviter d'infecter d'autres personnes.",
+        'covid19-faq-how-to-protect-measure9' : "Si vous développez de la fièvre, de la toux et des difficultés respiratoires, consultez rapidement un médecin car cela peut être dû à une infection respiratoire ou à une autre affection grave. Appelez à l'avance et informez votre fournisseur de tout voyage récent ou contact avec les voyageurs, car un appel à l'avance permettra à votre fournisseur de soins de santé de vous diriger rapidement vers le bon établissement de santé. Cela contribuera également à empêcher une éventuelle propagation de COVID-19 et d'autres virus.",
+        'covid19-faq-catch-possibility-sh' : "Quelle est la probabilité que j'attrape COVID-19?",
         'covid19-faq-catch-possibility-sd' : "Le risque dépend de l'endroit où vous vous trouvez - et plus précisément, s'il y a une épidémie de COVID-19 qui s'y déroule. Pour la plupart des gens dans la plupart des endroits, le risque d'attraper COVID-19 est encore faible.<br>Cependant, il existe désormais des endroits dans le monde (villes ou régions) où la maladie se propage. Pour les personnes vivant ou visitant ces zones, le risque d'attraper COVID-19 est plus élevé. Les gouvernements et les autorités sanitaires prennent des mesures énergiques chaque fois qu'un nouveau cas de COVID-19 est identifié. Assurez-vous de respecter toutes les restrictions locales concernant les voyages, les déplacements ou les grands rassemblements. La coopération avec les efforts de lutte contre les maladies réduira votre risque d'attraper ou de propager COVID-19. Les flambées de COVID-19 peuvent être contenues et la transmission arrêtée, comme cela a été démontré en Chine et dans certains autres pays. Malheureusement, de nouvelles flambées peuvent apparaître rapidement. Il est important de connaître la situation dans laquelle vous vous trouvez ou avez l'intention de vous rendre.",
         'covid19-faq-should-i-worry-sh' : "Dois-je m'inquiéter pour COVID-19?",
-        'covid19-faq-should-i-worry-sd' : "La maladie due à l'infection par COVID-19 est généralement bénigne, en particulier pour les enfants et les jeunes adultes. Cependant, il peut provoquer une maladie grave: environ 1 personne sur 5 qui l'attrape a besoin de soins hospitaliers. Il est donc tout à fait normal que les gens s'inquiètent de la façon dont l'épidémie de COVID-19 les affectera, eux et leurs proches.<br>Nous pouvons canaliser nos préoccupations en actions pour nous protéger, protéger nos proches et nos communautés.<br>Au premier rang de ces actions figure le lavage régulier et minutieux des mains et une bonne hygiène respiratoire.<br>Deuxièmement, restez informé et suivez les conseils des autorités sanitaires locales, y compris toute restriction mise en place sur les voyages, les déplacements et les rassemblements.", 
-        'covid19-faq-who-is-at-risk-sh' : "Qui risque de développer une maladie grave?", 
-        'covid19-faq-who-is-at-risk-sd' : "Alors que nous apprenons encore comment COVID-2019 affecte les  personnes âgées , les personnes aux des conditions médicales préexistantes (telles que l'hypertension artérielle, les maladies cardiaques, les maladies pulmonaires, le cancer ou le diabète) semblent développer une maladie grave plus souvent que d'autres.", 
+        'covid19-faq-should-i-worry-sd' : "La maladie due à l'infection par COVID-19 est généralement bénigne, en particulier pour les enfants et les jeunes adultes. Cependant, il peut provoquer une maladie grave: environ 1 personne sur 5 qui l'attrape a besoin de soins hospitaliers. Il est donc tout à fait normal que les gens s'inquiètent de la façon dont l'épidémie de COVID-19 les affectera, eux et leurs proches.<br>Nous pouvons canaliser nos préoccupations en actions pour nous protéger, protéger nos proches et nos communautés.<br>Au premier rang de ces actions figure le lavage régulier et minutieux des mains et une bonne hygiène respiratoire.<br>Deuxièmement, restez informé et suivez les conseils des autorités sanitaires locales, y compris toute restriction mise en place sur les voyages, les déplacements et les rassemblements.",
+        'covid19-faq-who-is-at-risk-sh' : "Qui risque de développer une maladie grave?",
+        'covid19-faq-who-is-at-risk-sd' : "Alors que nous apprenons encore comment COVID-2019 affecte les  personnes âgées , les personnes aux des conditions médicales préexistantes (telles que l'hypertension artérielle, les maladies cardiaques, les maladies pulmonaires, le cancer ou le diabète) semblent développer une maladie grave plus souvent que d'autres.",
         'covid19-faq-are-antibio-effective-sh' : "Les antibiotiques sont-ils efficaces pour prévenir ou traiter le COVID-19?",
-        'covid19-faq-are-antibio-effective-sd' : "Non. Les antibiotiques ne fonctionnent pas contre les virus, ils ne fonctionnent que sur les infections bactériennes. COVID-19 est causé par un virus, donc les antibiotiques ne fonctionnent pas. Les antibiotiques ne doivent pas être utilisés comme moyen de prévention ou de traitement de COVID-19. Ils ne doivent être utilisés que pour traiter une infection bactérienne selon les directives d'un médecin.", 
-        'covid19-faq-any-cure-prevent-medicines-sh' : "Existe-t-il des médicaments ou des thérapies qui peuvent prévenir ou guérir le COVID-19?", 
-        'covid19-faq-any-cure-prevent-medicines-sd' : "Bien que certains remèdes occidentaux, traditionnels ou à la maison puissent réconforter et atténuer les symptômes de COVID-19, rien ne prouve que la médecine actuelle puisse prévenir ou guérir la maladie. L'OMS ne recommande l'automédication avec aucun médicament, y compris des antibiotiques, pour prévenir ou guérir le COVID-19. Cependant, il existe plusieurs essais cliniques en cours qui incluent à la fois des médicaments occidentaux et traditionnels.", 
-        'covid19-faq-any-vaccine-sh' : "Existe-t-il un vaccin, un médicament ou un traitement pour COVID-19?", 
-        'covid19-faq-any-vaccine-sd1' : "À ce jour, il n'existe aucun vaccin et aucun médicament antiviral spécifique pour prévenir ou traiter COVID-2019. Cependant, les personnes concernées devraient recevoir des soins pour soulager les symptômes. Les personnes gravement malades doivent être hospitalisées. La plupart des patients se rétablissent grâce aux soins de soutien.", 
-        'covid19-faq-any-vaccine-sd2' : "Des vaccins possibles et certains traitements médicamenteux spécifiques sont à l'étude. Ils sont testés dans le cadre d'essais cliniques. L'OMS coordonne ses efforts pour mettre au point des vaccins et des médicaments pour prévenir et traiter le COVID-19.Les moyens les plus efficaces pour vous protéger et protéger les autres contre COVID-19 sont de vous nettoyer fréquemment les mains, de couvrir votre toux avec le coude ou le tissu et de maintenir une distance d'au moins 1 mètre (3 pieds) des personnes qui toussent ou éternuements.", 
-        'covid19-faq-any-vaccine-sd3' : "", 
-        'covid19-faq-is-sars-sh' : "COVID-19 est-il le même que le SRAS?", 
-        'covid19-faq-is-sars-sd' : "Non. Le virus qui cause COVID-19 et celui qui a provoqué l'éclosion du syndrome respiratoire aigu sévère (SRAS) en 2003 sont liés génétiquement, mais les maladies qu'ils provoquent sont très différentes.Le SRAS était plus mortel mais beaucoup moins contagieux que COVID-19. Il n'y a eu aucune flambée de SRAS dans le monde depuis 2003.", 
-        'covid19-faq-should-i-wear-mask-sh' : "Dois-je porter un masque pour me protéger?", 
-        'covid19-faq-should-i-wear-mask-sd' : "Portez un masque uniquement si vous êtes malade avec des symptômes de COVID-19 (en particulier de la toux) ou si vous prenez soin d'une personne qui pourrait avoir COVID-19. Le masque facial jetable ne peut être utilisé qu'une seule fois. Si vous n'êtes pas malade ou ne soignez pas quelqu'un qui est malade, vous perdez un masque. Il y a une pénurie mondiale de masques, donc l'OMS exhorte les gens à utiliser les masques à bon escient. L'OMS recommande l'utilisation rationnelle des masques médicaux pour éviter le gaspillage inutile de précieuses ressources et une mauvaise utilisation des masques. Les moyens les plus efficaces pour vous protéger et protéger les autres contre COVID-19 sont de vous nettoyer fréquemment les mains, de couvrir votre toux avec le coude ou le tissu et de maintenir une distance d'au moins 1 mètre (3 pieds) des personnes qui toussent ou éternuent.", 
-        'covid19-faq-how-to-use-mask-sh' : "Comment mettre, utiliser, enlever et éliminer un masque?", 
-        'covid19-faq-how-to-use-mask-step1' : "N'oubliez pas qu'un masque ne doit être utilisé que par les agents de santé, les soignants et les personnes présentant des symptômes respiratoires, tels que fièvre et toux.", 
-        'covid19-faq-how-to-use-mask-step2' : "Avant de toucher le masque, se laver les mains avec un désinfectant à base d'alcool ou du savon et de l'eau", 
-        'covid19-faq-how-to-use-mask-step3' : "Prenez le masque et inspectez-le pour détecter des déchirures ou des trous.", 
-        'covid19-faq-how-to-use-mask-step4' : "Orientez quel côté est le côté supérieur (où se trouve la bande métallique).", 
-        'covid19-faq-how-to-use-mask-step5' : "Assurez-vous que le bon côté du masque est tourné vers l'extérieur (le côté coloré).", 
-        'covid19-faq-how-to-use-mask-step6' : "Placez le masque sur votre visage. Pincez la bande métallique ou le bord rigide du masque pour qu'il épouse la forme de votre nez.", 
-        'covid19-faq-how-to-use-mask-step7' : "Tirez le bas du masque pour qu'il recouvre votre bouche et votre menton.", 
-        'covid19-faq-how-to-use-mask-step8' : "Après utilisation, retirez le masque; retirez les boucles élastiques de derrière les oreilles tout en gardant le masque loin de votre visage et de vos vêtements, pour éviter de toucher les surfaces potentiellement contaminées du masque.", 
-        'covid19-faq-how-to-use-mask-step9' : "Jetez le masque dans un bac fermé immédiatement après utilisation.", 
-        'covid19-faq-how-to-use-mask-step10' : "Procéder à l'hygiène des mains après avoir touché ou jeté le masque - Utilisez un désinfectant pour les mains à base d'alcool ou, s'il est visiblement sale, lavez-vous les mains à l'eau et au savon.", 
-        'covid19-faq-incubation-period-sh' : "Quelle est la durée d'incubation du COVID-19?", 
-        'covid19-faq-incubation-period-sd' : "La «période d'incubation» signifie le temps entre la capture du virus et le début des symptômes de la maladie. La plupart des estimations de la période d'incubation du COVID-19 vont de 1 à 14 jours, le plus souvent autour de cinq jours.", 
-        'covid19-faq-animal-to-human-sh' : "Les humains peuvent-ils être infectés par le COVID-19 d'origine animale?", 
-        'covid19-faq-animal-to-human-sd' : "Les coronavirus sont une grande famille de virus communs aux animaux. Parfois, les gens sont infectés par ces virus qui peuvent ensuite se propager à d'autres personnes. Par exemple, le SRAS-CoV était associé aux civettes et le MERS-CoV est transmis par des chameaux dromadaires.<br>Les sources animales possibles de COVID-19 n'ont pas encore été confirmées. Pour vous protéger, par exemple lorsque vous visitez des marchés d'animaux vivants, évitez tout contact direct avec les animaux et les surfaces en contact avec les animaux. Assurer en tout temps de bonnes pratiques de sécurité alimentaire. Manipulez la viande, le lait ou les organes animaux crus avec soin pour éviter la contamination des aliments non cuits et éviter de consommer des produits animaux crus ou insuffisamment cuits.", 
-        'covid19-faq-pet-to-human-sh' : "Puis-je attraper COVID-19 de mon animal de compagnie?", 
-        'covid19-faq-pet-to-human-sd' : "Bien qu'il y ait eu un cas d'infection d'un chien à Hong Kong, à ce jour, rien ne prouve qu'un chien, un chat ou un animal de compagnie puisse transmettre COVID-19car il se propage principalement par le biais de gouttelettes produites lorsqu'une personne infectée tousse, éternue ou parle. Pour vous protéger, nettoyez-vous les mains fréquemment et soigneusement.", 
-        'covid19-faq-virus-life-on-surface-sh' : "Combien de temps le virus survit-il sur les surfaces?", 
-        'covid19-faq-virus-life-on-surface-sd1' : "On ne sait pas combien de temps le virus qui cause COVID-19 survit sur les surfaces, mais il semble se comporter comme les autres coronavirus. Des études suggèrent que les coronavirus (y compris les informations préliminaires sur le virus COVID-19) peuvent persister sur les surfaces pendant quelques heures ou jusqu'à plusieurs jours. Cela peut varier dans différentes conditions (par exemple, type de surface, température ou humidité de l'environnement).", 
-        'covid19-faq-virus-life-on-surface-sd2' : "Si vous pensez qu'une surface peut être infectée, nettoyez-la avec un simple désinfectant pour tuer le virus et vous protéger ainsi que les autres.", 
-        'covid19-faq-package-receive-sh' : "Est-il sûr de recevoir un colis de toute région où COVID-19 a été signalé?", 
-        'covid19-faq-package-receive-sd' : "Oui. La probabilité qu'une personne infectée contamine des marchandises commerciales est faible et le risque d'attraper le virus qui cause le COVID-19 à partir d'un emballage qui a été déplacé, voyagé et exposé à différentes conditions et températures est également faible.", 
-        'covid19-faq-donts-sh' : "Y a-t-il quelque chose que je ne devrais pas faire?", 
-        'covid19-faq-donts-sd1' : "Les mesures suivantes NE SONT PAS efficaces contre COVID-2019 et peuvent être nocives:", 
-        'covid19-faq-donts-measure1' : "Tabagisme", 
-        'covid19-faq-donts-measure2' : "Porter plusieurs masques", 
-        'covid19-faq-donts-measure3' : "Prendre des antibiotiques (Voir la question 10 \"Existe-t-il des médicaments ou des thérapies qui peuvent prévenir ou guérir le COVID-19?\")", 
-        'covid19-faq-donts-sd2' : "Dans tous les cas, si vous avez de la fièvre, de la toux et des difficultés respiratoires, consultez un médecin tôt pour réduire le risque de développer une infection plus grave et assurez-vous de partager vos antécédents de voyage récents avec votre professionnel de la santé." 
+        'covid19-faq-are-antibio-effective-sd' : "Non. Les antibiotiques ne fonctionnent pas contre les virus, ils ne fonctionnent que sur les infections bactériennes. COVID-19 est causé par un virus, donc les antibiotiques ne fonctionnent pas. Les antibiotiques ne doivent pas être utilisés comme moyen de prévention ou de traitement de COVID-19. Ils ne doivent être utilisés que pour traiter une infection bactérienne selon les directives d'un médecin.",
+        'covid19-faq-any-cure-prevent-medicines-sh' : "Existe-t-il des médicaments ou des thérapies qui peuvent prévenir ou guérir le COVID-19?",
+        'covid19-faq-any-cure-prevent-medicines-sd' : "Bien que certains remèdes occidentaux, traditionnels ou à la maison puissent réconforter et atténuer les symptômes de COVID-19, rien ne prouve que la médecine actuelle puisse prévenir ou guérir la maladie. L'OMS ne recommande l'automédication avec aucun médicament, y compris des antibiotiques, pour prévenir ou guérir le COVID-19. Cependant, il existe plusieurs essais cliniques en cours qui incluent à la fois des médicaments occidentaux et traditionnels.",
+        'covid19-faq-any-vaccine-sh' : "Existe-t-il un vaccin, un médicament ou un traitement pour COVID-19?",
+        'covid19-faq-any-vaccine-sd1' : "À ce jour, il n'existe aucun vaccin et aucun médicament antiviral spécifique pour prévenir ou traiter COVID-2019. Cependant, les personnes concernées devraient recevoir des soins pour soulager les symptômes. Les personnes gravement malades doivent être hospitalisées. La plupart des patients se rétablissent grâce aux soins de soutien.",
+        'covid19-faq-any-vaccine-sd2' : "Des vaccins possibles et certains traitements médicamenteux spécifiques sont à l'étude. Ils sont testés dans le cadre d'essais cliniques. L'OMS coordonne ses efforts pour mettre au point des vaccins et des médicaments pour prévenir et traiter le COVID-19.Les moyens les plus efficaces pour vous protéger et protéger les autres contre COVID-19 sont de vous nettoyer fréquemment les mains, de couvrir votre toux avec le coude ou le tissu et de maintenir une distance d'au moins 1 mètre (3 pieds) des personnes qui toussent ou éternuements.",
+        'covid19-faq-any-vaccine-sd3' : "",
+        'covid19-faq-is-sars-sh' : "COVID-19 est-il le même que le SRAS?",
+        'covid19-faq-is-sars-sd' : "Non. Le virus qui cause COVID-19 et celui qui a provoqué l'éclosion du syndrome respiratoire aigu sévère (SRAS) en 2003 sont liés génétiquement, mais les maladies qu'ils provoquent sont très différentes.Le SRAS était plus mortel mais beaucoup moins contagieux que COVID-19. Il n'y a eu aucune flambée de SRAS dans le monde depuis 2003.",
+        'covid19-faq-should-i-wear-mask-sh' : "Dois-je porter un masque pour me protéger?",
+        'covid19-faq-should-i-wear-mask-sd' : "Portez un masque uniquement si vous êtes malade avec des symptômes de COVID-19 (en particulier de la toux) ou si vous prenez soin d'une personne qui pourrait avoir COVID-19. Le masque facial jetable ne peut être utilisé qu'une seule fois. Si vous n'êtes pas malade ou ne soignez pas quelqu'un qui est malade, vous perdez un masque. Il y a une pénurie mondiale de masques, donc l'OMS exhorte les gens à utiliser les masques à bon escient. L'OMS recommande l'utilisation rationnelle des masques médicaux pour éviter le gaspillage inutile de précieuses ressources et une mauvaise utilisation des masques. Les moyens les plus efficaces pour vous protéger et protéger les autres contre COVID-19 sont de vous nettoyer fréquemment les mains, de couvrir votre toux avec le coude ou le tissu et de maintenir une distance d'au moins 1 mètre (3 pieds) des personnes qui toussent ou éternuent.",
+        'covid19-faq-how-to-use-mask-sh' : "Comment mettre, utiliser, enlever et éliminer un masque?",
+        'covid19-faq-how-to-use-mask-step1' : "N'oubliez pas qu'un masque ne doit être utilisé que par les agents de santé, les soignants et les personnes présentant des symptômes respiratoires, tels que fièvre et toux.",
+        'covid19-faq-how-to-use-mask-step2' : "Avant de toucher le masque, se laver les mains avec un désinfectant à base d'alcool ou du savon et de l'eau",
+        'covid19-faq-how-to-use-mask-step3' : "Prenez le masque et inspectez-le pour détecter des déchirures ou des trous.",
+        'covid19-faq-how-to-use-mask-step4' : "Orientez quel côté est le côté supérieur (où se trouve la bande métallique).",
+        'covid19-faq-how-to-use-mask-step5' : "Assurez-vous que le bon côté du masque est tourné vers l'extérieur (le côté coloré).",
+        'covid19-faq-how-to-use-mask-step6' : "Placez le masque sur votre visage. Pincez la bande métallique ou le bord rigide du masque pour qu'il épouse la forme de votre nez.",
+        'covid19-faq-how-to-use-mask-step7' : "Tirez le bas du masque pour qu'il recouvre votre bouche et votre menton.",
+        'covid19-faq-how-to-use-mask-step8' : "Après utilisation, retirez le masque; retirez les boucles élastiques de derrière les oreilles tout en gardant le masque loin de votre visage et de vos vêtements, pour éviter de toucher les surfaces potentiellement contaminées du masque.",
+        'covid19-faq-how-to-use-mask-step9' : "Jetez le masque dans un bac fermé immédiatement après utilisation.",
+        'covid19-faq-how-to-use-mask-step10' : "Procéder à l'hygiène des mains après avoir touché ou jeté le masque - Utilisez un désinfectant pour les mains à base d'alcool ou, s'il est visiblement sale, lavez-vous les mains à l'eau et au savon.",
+        'covid19-faq-incubation-period-sh' : "Quelle est la durée d'incubation du COVID-19?",
+        'covid19-faq-incubation-period-sd' : "La «période d'incubation» signifie le temps entre la capture du virus et le début des symptômes de la maladie. La plupart des estimations de la période d'incubation du COVID-19 vont de 1 à 14 jours, le plus souvent autour de cinq jours.",
+        'covid19-faq-animal-to-human-sh' : "Les humains peuvent-ils être infectés par le COVID-19 d'origine animale?",
+        'covid19-faq-animal-to-human-sd' : "Les coronavirus sont une grande famille de virus communs aux animaux. Parfois, les gens sont infectés par ces virus qui peuvent ensuite se propager à d'autres personnes. Par exemple, le SRAS-CoV était associé aux civettes et le MERS-CoV est transmis par des chameaux dromadaires.<br>Les sources animales possibles de COVID-19 n'ont pas encore été confirmées. Pour vous protéger, par exemple lorsque vous visitez des marchés d'animaux vivants, évitez tout contact direct avec les animaux et les surfaces en contact avec les animaux. Assurer en tout temps de bonnes pratiques de sécurité alimentaire. Manipulez la viande, le lait ou les organes animaux crus avec soin pour éviter la contamination des aliments non cuits et éviter de consommer des produits animaux crus ou insuffisamment cuits.",
+        'covid19-faq-pet-to-human-sh' : "Puis-je attraper COVID-19 de mon animal de compagnie?",
+        'covid19-faq-pet-to-human-sd' : "Bien qu'il y ait eu un cas d'infection d'un chien à Hong Kong, à ce jour, rien ne prouve qu'un chien, un chat ou un animal de compagnie puisse transmettre COVID-19car il se propage principalement par le biais de gouttelettes produites lorsqu'une personne infectée tousse, éternue ou parle. Pour vous protéger, nettoyez-vous les mains fréquemment et soigneusement.",
+        'covid19-faq-virus-life-on-surface-sh' : "Combien de temps le virus survit-il sur les surfaces?",
+        'covid19-faq-virus-life-on-surface-sd1' : "On ne sait pas combien de temps le virus qui cause COVID-19 survit sur les surfaces, mais il semble se comporter comme les autres coronavirus. Des études suggèrent que les coronavirus (y compris les informations préliminaires sur le virus COVID-19) peuvent persister sur les surfaces pendant quelques heures ou jusqu'à plusieurs jours. Cela peut varier dans différentes conditions (par exemple, type de surface, température ou humidité de l'environnement).",
+        'covid19-faq-virus-life-on-surface-sd2' : "Si vous pensez qu'une surface peut être infectée, nettoyez-la avec un simple désinfectant pour tuer le virus et vous protéger ainsi que les autres.",
+        'covid19-faq-package-receive-sh' : "Est-il sûr de recevoir un colis de toute région où COVID-19 a été signalé?",
+        'covid19-faq-package-receive-sd' : "Oui. La probabilité qu'une personne infectée contamine des marchandises commerciales est faible et le risque d'attraper le virus qui cause le COVID-19 à partir d'un emballage qui a été déplacé, voyagé et exposé à différentes conditions et températures est également faible.",
+        'covid19-faq-donts-sh' : "Y a-t-il quelque chose que je ne devrais pas faire?",
+        'covid19-faq-donts-sd1' : "Les mesures suivantes NE SONT PAS efficaces contre COVID-2019 et peuvent être nocives:",
+        'covid19-faq-donts-measure1' : "Tabagisme",
+        'covid19-faq-donts-measure2' : "Porter plusieurs masques",
+        'covid19-faq-donts-measure3' : "Prendre des antibiotiques (Voir la question 10 \"Existe-t-il des médicaments ou des thérapies qui peuvent prévenir ou guérir le COVID-19?\")",
+        'covid19-faq-donts-sd2' : "Dans tous les cas, si vous avez de la fièvre, de la toux et des difficultés respiratoires, consultez un médecin tôt pour réduire le risque de développer une infection plus grave et assurez-vous de partager vos antécédents de voyage récents avec votre professionnel de la santé."
     }
-}   
+}
 
 var userLangLabels = labels[userLang];
 var template = document.getElementById('template').innerHTML;

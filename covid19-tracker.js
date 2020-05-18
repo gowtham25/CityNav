@@ -11,7 +11,7 @@ if ('serviceWorker' in navigator)
 	    console.log("Service Worker registration failed");
 	});
 }
-    
+
 function enableDisableCityFeatures(){
     for(var app in cityApps){
         //disable apps that are not available for the city
@@ -24,7 +24,7 @@ function enableDisableCityFeatures(){
         $('#transitContainer').hide();
     }
 }
-   
+
 //cityDataPromise is defined in common.js
 cityDataPromise.then(function(data){
     enableDisableCityFeatures();
@@ -50,7 +50,7 @@ var global_map;
     function handleUserClick(tag)
     {
 //        var url = 'https://hawkaidata.net/api/esriAPI.php?key=' + cityApiKey;
-        var url = 'https://hawkaidata.net/api/execCommand.php?fileId=310' 
+        var url = 'https://hawkaidata.net/api/execCommand.php?fileId=310'
         var r = $.get(url, {'command': 'Latitude Longitude Confirmed Deaths Recovered Combined_Key Last_Update'},
         function (data, textStatus, jqXHR)
         {
@@ -74,19 +74,19 @@ var global_map;
         conf_markerDisplay = 'heatmap';
 
 	var conf_marker = 'default';
-        var center_lat = cityData.cityCenter.lat; 
-        var center_lng = cityData.cityCenter.lng; 
+        var center_lat = cityData.cityCenter.lat;
+        var center_lng = cityData.cityCenter.lng;
         var zoom_level = 3;  // country zoom
 
 	L.Control.include({_refocusOnMap: L.Util.falseFn});
-        
+
 	var theMap = {};
     if(isMobile){
         theMap = L.map('map-canvas',{zoomControl: false}).setView([center_lat, center_lng], zoom_level);
     } else {
         theMap = L.map('map-canvas').setView([center_lat, center_lng], zoom_level);
     }
-    
+
         L.tileLayer(tileURL,
             {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -140,38 +140,73 @@ var global_map;
                         console.log(i + " is not defined");
                     } else {
 			global_heatData.push([point[latIndex], point[lngIndex], point[pi1]]);
-                        var title = ''; 
-                        if (pi4 != -1)
-			{
-                            title = '<b>' + point[pi4] + '</b><br>';;
-			}
-                        if (pi1 != -1)
-                        {
-                            title = title + labels[pi1Label[0]] + ': <span style="color:#ff8c00">' + point[pi1] + '</span><br>';
-                        }
-                        if (pi2 != -1)
-                        {
-                            title = title + labels[pi2Label[0]] + ': <span style="color:#dc143c">' + point[pi2] + '</span><br>';;
-                        }
-                        if (pi3 != -1)
-                        {
-                            title = title + labels[pi3Label[0]] + ': <span style="color:#32cd32">' + point[pi3] + '</span><br><br>';;
-                        }
-                        if (pi5 != -1)
-                        {
-			    var updateTime = point[pi5];
-			    if (isMobile)
-			    {
-                                title = title + "<span style='font-size:8px'>Last Update: " + updateTime.substring(0, updateTime.indexOf(' '))  + '<font-size><br>';;
-			    } else {
-                                title = title + "<span style='font-size:10px'>Last Update: " + updateTime.substring(0, updateTime.indexOf(' '))  + '<font-size><br>';;
-			    }
-                        }
+      var title = '<div class="location-details">';
+  if (pi4 != -1) {
+      title =
+          title +
+          "<b class='title'>" +
+          point[pi4] +
+          "</b><br>";
+  }
+  if (pi5 != -1) {
+      var updateTime = point[pi5];
+      if (isMobile) {
+          title =
+              title +
+              '<div class="text-muted">Last Updated: ' +
+              updateTime.substring(
+                  0,
+                  updateTime.indexOf(" ")
+              ) +
+              "</div></br>";
+      } else {
+          title =
+              title +
+              '<div class="text-muted">Last Updated: ' +
+              updateTime.substring(
+                  0,
+                  updateTime.indexOf(" ")
+              ) +
+              "</div><div class='divider'></div>";
+      }
+  }
+  title =
+      title +
+      '<div><table class="values-table" width="100%" cellspacing="2" cellpadding="0" border="0"><tbody>';
+  if (pi1 != -1) {
+      title =
+          title +
+          '<tr><td width="30px" align="left"><span class="badge badge-warning">&nbsp;</span></td><td>' +
+          labels[pi1Label[0]] +
+          ': </td><td style="color:#ff8c00">' +
+          point[pi1] +
+          "</td></tr>";
+  }
+  if (pi2 != -1) {
+      title =
+          title +
+          '<tr><td width="30px" align="left"><span class="badge badge-danger">&nbsp;</span></td><td>' +
+          labels[pi2Label[0]] +
+          ': </td><td style="color:#dc143c">' +
+          point[pi2] +
+          "</td></tr>";
+  }
+  if (pi3 != -1) {
+      title =
+          title +
+          '<tr><td width="30px" align="left"><span class="badge badge-success">&nbsp;</span></td><td>' +
+          labels[pi3Label[0]] +
+          ': </td><td style="color:#28a745">' +
+          point[pi3] +
+          "</td></tr>";
+  }
+
+  title += "</tbody><table></div>";
 if (config['marker'] === undefined || config['marker'] == 'default')
                         {
 			    var dstLat = point[latIndex];
 			    var dstLng = point[lngIndex];
-                
+
 			    var markerId = "markerId_" + config.type + "_" + i;
 			    var markerIdTransit = "markerId_" + config.type + "_" + i + "_Transit";
 
@@ -205,7 +240,7 @@ console.log(radius);
     }
 
 
-    
+
 var globalData;
 var globalSubData;
 var globalMap;
@@ -213,7 +248,7 @@ var globalMarkerType1;
 var globalMarkerType2;
 var globalMarker = null;
 var globalLine = null;
-    
+
     function markSourceAndDest(dataObj){
 
        $('#searchContainer').hide();
@@ -224,15 +259,15 @@ var globalLine = null;
        $('#chooseCategory').hide();
        $('#bottomNavGoBtn').show();
        $('#bottomNavBackBtn').show();
-    
-        
+
+
         var srcLat = dataObj.data.srcLat;
         if (srcLat) {} else { srcLat = latitude; console.log("setting srcLat to " + srcLat);}
         var srcLng = dataObj.data.srcLng;
         if (srcLng) {} else { srcLng = longitude; console.log("setting srcLng to " + srcLng);}
         var dstLat = dataObj.data.dstLat;
         var dstLng = dataObj.data.dstLng;
-        
+
 console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
         var useTransit = dataObj.data.useTransit;
         var url = 'https://hawkaidata.net/api/esriAPI.php?key=' + cityApiKey;
@@ -240,7 +275,7 @@ console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
     function (data, textStatus, jqXHR){
 //console.log(data);
           globalData = data;
-          
+
           if (useTransit == 0)
           {
           console.log(data.data1.routes[0].legs[0].steps);
@@ -259,12 +294,12 @@ console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
         });
 
     }
-    
-    
+
+
     function showLocations(collection1, marker1, collection2, marker2){
         $("#map-container").remove();
     //	$("<div id='map-container' style='width:100%;max-width:none;'><div id='map-canvas' style='height:100%'></div></div>").appendTo('#contents');
-    
+
         $("<div id='map-container' style='width:auto;max-width:none;'><div id='map-canvas' style='height:100%'></div></div>").appendTo('#contents');
 
         var openstreetTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -281,26 +316,26 @@ console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
         } else {
             map = L.map('map-canvas').addLayer(openstreetTiles);
         }
-        
+
         showMarkerForLocations(collection1, map, marker1, marker2);
         if (collection2 !== undefined) showMarkerForLocations(collection2, map, marker2);
     }
-    
-    
+
+
     function showMarkerForLocations(data, map, markerType1, markerType2)
     {
 console.log("in move Marker: " + markerType1 + "," + markerType2);
 console.log(data);
-        
+
         map.setView([data[0].lat, data[0].lng], 14);
         var route = L.polyline(data);
         map.fitBounds(route.getBounds());
-        
+
         globalLine = L.polyline([]).addTo(map);
         var srcMarker = L.marker([data[0].lat, data[0].lng], {rotationAngle: 10}).bindPopup('Start Here').addTo(map);
         var destMarker = L.marker([data[data.length-1].lat, data[data.length-1].lng], {rotationAngle: 10}).bindPopup('Your Destination').addTo(map);
-        
-        
+
+
         globalSubData = data;
         globalMap = map;
         globalMarkerType1 = markerType1;

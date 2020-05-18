@@ -18,9 +18,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="City Navigator">
-    
+
 <style>
 @import url("./css/normalize.css");
+@import url("./css/common.css");
 </style>
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -28,62 +29,40 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
 <link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
 <style>
-body{
-/*  font-size:12px; */
-  font-family:Helvetica;
-}
-.pageHeader{
-top:0;
-left:0;
-width:100vw;
-height:50px;
-background-color:#4a3175;
-color:white;
-padding:10px 0 0 10px;    
-position: fixed;
-}
-.pageBody{
-margin:55px auto 0 auto;
-padding:15px;
-}
-.fieldContainer{
-margin: 0 auto 10px 20px;    
-}
-.backBtn{
-cursor:pointer;
-position:absolute;
-right:25px;
-}
-.line-item{
-background-color:aliceblue;
-border-radius:5px;
-padding:15px;
-margin-top:20px;
-height:40px;
-line-height:40px;
-font-size: 16px;
-color:royalblue;
-font-weight:bold;
-cursor: pointer;
-}
-.nav-right-arrow{
-    position:absolute;
-    right:20px;
-    font-weight:bold;
-    line-height:40px;
-}
+    body {
+        /*  font-size:12px; */
+        font-family: Helvetica;
+    }
+    .fieldContainer {
+        margin: 0 auto 10px 20px;
+    }
+    .line-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: aliceblue;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 20px;
+        height: 40px;
+        /* line-height: 40px; */
+        font-size: 16px;
+        color: royalblue;
+        font-weight: bold;
+        cursor: pointer;
+    }
 </style>
 </head>
-<body>     
+<body>
 <div id="target">
 </div>
 <script id="template" type="x-tmpl-mustache">
-<div class="pageHeader">
-    <h3>{{covid19-header}}<i class="fa fa-angle-double-left backBtn"></i></h3>
+<div class="pageHeader bg-{{className}}-header">
+      <h3>{{covid19-header}}</h3><i class="fas fa-arrow-circle-left backBtn"></i>
 </div>
 <div class="pageBody">
     <div class="line-item" data-link-file="covid19-faqs">{{covid19-faq}} <i class="fa fa-chevron-right nav-right-arrow" aria-hidden="true"></i></div>
-    <div class="line-item" data-link-file="covid19-tracker">{{covid19-tracker}} <i class="fa fa-chevron-right nav-right-arrow" aria-hidden="true"></i></div>  
+    <div class="line-item" data-link-file="covid19-tracker">{{covid19-tracker}} <i class="fa fa-chevron-right nav-right-arrow" aria-hidden="true"></i></div>
 </div>
 </script>
 <script src="./js/jquery-3.1.0.min.js"></script>
@@ -117,7 +96,7 @@ var labels = {
         'covid19-tracker' : 'Traqueur de Covid-19',
         'covid19-faq' : 'COVID-19 FAQs'
     }
-}   
+}
 
 var userLangLabels = labels[userLang];
 var template = document.getElementById('template').innerHTML;

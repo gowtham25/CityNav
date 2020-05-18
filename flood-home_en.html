@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="City Navigator">
-    
+
 <style>
 @import url("./css/normalize.css");
 </style>
@@ -19,61 +19,44 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
 <link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
 <style>
-body{
-/*  font-size:12px; */
-  font-family:Helvetica;
-}
-.pageHeader{
-top:0;
-left:0;
-width:100vw;
-height:50px;
-background-color:#4a3175;
-color:white;
-padding:10px 0 0 10px;
-position: fixed;
-z-index: 1;
-}
-.pageBody{
-margin:55px auto 0 auto;
-padding:15px;
-}
-.fieldContainer{
-margin: 0 auto 10px 20px;    
-}
-.backBtn{
-cursor:pointer;
-position:absolute;
-right:25px;
-}
-.line-item{
-background-color:aliceblue;
-border-radius:5px;
-padding:15px;
-margin-top:20px;
-height:40px;
-line-height:40px;
-font-size: 16px;
-color:royalblue;
-font-weight:bold;
-cursor: pointer;
-position: relative;
-}
-.nav-right-arrow{
-position:absolute;
-right:20px;
-font-weight:bold;
-line-height:40px;
-}
+    @import url("./css/normalize.css");
+    @import url("./css/common.css");
+</style>
+<style>
+    body {
+        /*  font-size:12px; */
+        font-family: Helvetica;
+    }
+    .pageBody {
+        margin: 0 auto;
+        padding: 15px;
+    }
+    .fieldContainer {
+        margin: 0 auto 10px 20px;
+    }
+    .line-item {
+        background-color: aliceblue;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 20px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+        color: royalblue;
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+    }
 </style>
 </head>
-<body>     
+<body>
 <div id="target">
 
 </div>
 <script id="template" type="x-tmpl-mustache">
-<div class="pageHeader">
-    <h3>{{flood-and-safety}}<i class="fa fa-angle-double-left backBtn"></i></h3>
+<div class="pageHeader bg-{{className}}-header">
+    <h3>{{flood-and-safety}}</h3>
+    <i class="fas fa-arrow-circle-left backBtn"></i>
 </div>
 <div class="pageBody">
     <div class="line-item" data-link-file="flooding-101">{{flooding-101}} <i class="fa fa-chevron-right nav-right-arrow" aria-hidden="true"></i></div>
@@ -131,7 +114,7 @@ var labels = {
         'flooding-evacuation-route' : "Trouver un itinéraire d'évacuation",
         'flooding-faq' : 'FAQ sur les inondations',
     }
-}   
+}
 
 var userLangLabels = labels[userLang];
 var template = document.getElementById('template').innerHTML;

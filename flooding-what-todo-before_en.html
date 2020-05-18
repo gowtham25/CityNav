@@ -9,13 +9,16 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="City Navigator">
-    
+
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./static-page.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
 <link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+    @import url("./css/common.css");
+</style>
 </head>
 <body>
 <div id="target">
@@ -23,7 +26,7 @@
 </div>
 <script id="template" type="x-tmpl-mustache">
 <div>
-    <div class="topicHeader"><h3>{{flooding-todo-before-title}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+<div class="topicHeader bg-{{className}}-header"><h3>{{flooding-todo-before-title}}</h3><i class="fas fa-arrow-circle-left backBtn"></i></div>
     <div class="topicDescTop">{{flooding-todo-before-desc}}:
     </div>
     <div class="topicImage">
@@ -37,11 +40,11 @@
         <li><strong>{{flooding-todo-before-critical-step2-title}}</strong>
             <p>{{flooding-todo-before-critical-step2-desc}}</p>
         </li>
-        
+
         <li><strong>{{flooding-todo-before-critical-step3-title}}</strong>
             <p>{{flooding-todo-before-critical-step3-desc}}</p>
         </li>
-        
+
         <li><strong>{{flooding-todo-before-critical-step4-title}}</strong>
             <ul>
                 <li>{{flooding-todo-before-critical-step4-subtitle1}}
@@ -208,7 +211,7 @@ var labels = {
         'flooding-todo-before-critical-step5-desc3_16_4' : 'jouets',
         'flooding-todo-before-critical-step5-desc3_17' : "Nourriture et moyens de transport pour vos animaux domestique. Suivez également les conseils de votre équipe d'assistance locale pour mieux vous préparer."
     }
-}   
+}
 
 var userLangLabels = labels[userLang];
 var template = document.getElementById('template').innerHTML;

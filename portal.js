@@ -12,7 +12,7 @@ if ('serviceWorker' in navigator)
 	    console.log("Service Worker registration failed");
 	});
 }
-    
+
 function enableDisableCityFeatures(){
     for(var app in cityApps){
         //disable apps that are not available for the city
@@ -25,7 +25,7 @@ function enableDisableCityFeatures(){
         $('#transitContainer').hide();
     }
 }
-   
+
 //cityDataPromise is defined in common.js
 cityDataPromise.then(function(data){
     enableDisableCityFeatures();
@@ -94,7 +94,7 @@ var global_map;
 
     function getTransitNodes(tag, userLocation)
     {
-        
+
         var url = 'https://hawkaidata.net/api/esriAPI.php?key=' + cityApiKey;
         var r = $.post(url, {phoneNumber: '123456789', 'tag': tag, 'latitude': latitude, 'longitude': longitude},
         function (data, textStatus, jqXHR)
@@ -162,9 +162,9 @@ var global_map;
 	}
 
     $("#searchItem").keypress(function(){
-        searchItem($("#searchItem").val());    
-    });   
-    
+        searchItem($("#searchItem").val());
+    });
+
 
 	var conf_marker = 'default';
 /*
@@ -191,14 +191,14 @@ var global_map;
 	}
 
 	L.Control.include({_refocusOnMap: L.Util.falseFn});
-        
+
 	var theMap = {};
     if(isMobile){
         theMap = L.map('map-canvas',{zoomControl: false}).setView([center_lat, center_lng], zoom_level);
     } else {
         theMap = L.map('map-canvas').setView([center_lat, center_lng], zoom_level);
     }
-    
+
         L.tileLayer(tileURL,
             {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -337,7 +337,7 @@ if (config['marker'] === undefined || config['marker'] == 'default')
                         {
 			    var dstLat = point[latIndex];
 			    var dstLng = point[lngIndex];
-                
+
 			    var markerId = "markerId_" + config.type + "_" + i;
 			    var markerIdTransit = "markerId_" + config.type + "_" + i + "_Transit";
 			    title = title + ", <a href='#' id='" + markerId + "'>Go Here</a>";
@@ -385,67 +385,68 @@ console.log(radius);
     }
 
 function getMarkerPopup(markerId, type, name, resources, lastUpdate, category, imageURL) {
-const { bgclass = "bg-dark", color = "#000000", icon = "crosshairs", textclass = "text-black-50", title = category, types = {} } = GLOBAL_categories[category] || {};
-        const { title: subTitle = type, icon: subIcon = "crosshairs" } = types[type] || {};
-        let popupHtmlStart = "<div class='location-details'>";
+    const { bgclass = "bg-dark", color = "#000000", icon = "crosshairs", textclass = "text-black-50", title = category, types = {} } = GLOBAL_categories[category] || {};
+    const { title: subTitle = type, icon: subIcon = icon } = types[type] || {};
+    const commontoolTipcolor = 'tool-tip-common-color';
+    const commonColor = '#0099ef';
+    let popupHtmlStart = "<div class='location-details'>";
+    popupHtmlStart += "<div class='marker-title text-warning " + commontoolTipcolor + "'><i class='fad fa-" + icon + "'></i>" +
+        "<b>" + name + "</b></div>";
+    popupHtmlStart += "<div class='divider'></div>";
+    popupHtmlStart += '<div class="container marker-cattype ' + commontoolTipcolor + '">';
+    popupHtmlStart += '<div class="row"><div class="col"><i class="fad fa-' + icon + '"></i>' + title + '</div>' +
+        '<div class="col"><div class="text-right">' +
+        '<i class="fad fa-' + subIcon + '"></i>' + subTitle +
+        '</div></div></div></div>';
+    popupHtmlStart += '<div class="container">' +
+        '<div class="row">';
+    if (imageURL && (/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i).test($.trim(imageURL))){
+        popupHtmlStart += '<div class="col-md-4">';
+        popupHtmlStart += '<div class="marker-img-url-holder bg-vicious-stance"><div class="marker-img-url" style="background-image: url(\''+imageURL+'\')"></div></div>';
+        popupHtmlStart += '</div>';
+        popupHtmlStart += '<div class="col-md-8">';
+    } else {
+        popupHtmlStart += '<div class="col-md-12">';
+    }
+    popupHtmlStart += '</div></div></div>';
+    popupHtmlStart += '<div class="container text-light"> <table class="values-table" width="100%" cellspacing="2" cellpadding="2" border="0"><tbody>';
+    Object.keys(resources).forEach(function (key) {
+        var resourceColor = "bg-success";
+        if (resources[key] == 0) resourceColor = "bg-danger";
+        if (resources[key] == 1) resourceColor = "bg-warning";
         popupHtmlStart +=
-            "<div class='marker-title text-warning " + textclass + "'><i class='fad fa-" + icon + "'></i>" +
-            "<b>" + name + "</b></div>";
-        popupHtmlStart += "<div class='divider'></div>";
-        popupHtmlStart += '<div class="container marker-cattype ' + textclass + '">';
-        popupHtmlStart += '<div class="row"><div class="col"><i class="fad fa-' + icon + '"></i>' + title + '</div>' +
-            '<div class="col"><div class="text-right">' +
-            '<i class="fad fa-' + subIcon + '"></i>' + subTitle +
-            '</div></div></div></div>';
-        popupHtmlStart += '<div class="container">' +
-            '<div class="row">';
-        if (imageURL && (/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i).test($.trim(imageURL))){
-            popupHtmlStart += '<div class="col-md-4">';
-            popupHtmlStart += '<div class="marker-img-url-holder bg-vicious-stance"><div class="marker-img-url" style="background-image: url(\''+imageURL+'\')"></div></div>';
-            popupHtmlStart += '</div>';
-            popupHtmlStart += '<div class="col-md-8">';
-        } else {
-            popupHtmlStart += '<div class="col-md-12">';
-        }
-        popupHtmlStart += '</div></div></div>';
-        popupHtmlStart += '<div class="container text-light"> <table class="values-table" width="100%" cellspacing="2" cellpadding="2" border="0"><tbody>';
-        Object.keys(resources).forEach(function (key) {
-            var resourceColor = "bg-success";
-            if (resources[key] == 0) resourceColor = "bg-danger";
-            if (resources[key] == 1) resourceColor = "bg-warning";
-            popupHtmlStart +=
-                "<tr>" +
-                '<td style="text-align:left;"><span class="badge border-rounder ' +
-                resourceColor +
-                '"></span></td>' +
-                "<td>" +
-                key +
-                "</td>";
-            popupHtmlStart += "</tr>";
-        });
-        popupHtmlStart += "<tbody></table></div>";
-        popupHtmlStart += "<div class='divider'></div>";
-        let rgb = hexToRgba(color);
-        let rgbaBorder = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.5)';
-        let rgbaBackground = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.1)';
-        popupHtmlStart += '<div class="flex-container">' +
-            "<button style='background: " + rgbaBackground + ";border: 1px solid " + rgbaBorder + ";color: " + color + ";' class='go-button' id='" + markerId + "'><i class='reverse-icon fas fa-map-signs'></i>GO HERE</button>"; 
+            "<tr>" +
+            '<td style="text-align:left;"><span class="badge border-rounder ' +
+            resourceColor +
+            '"></span></td>' +
+            "<td>" +
+            key +
+            "</td>";
+        popupHtmlStart += "</tr>";
+    });
+    popupHtmlStart += "<tbody></table></div>";
+    popupHtmlStart += "<div class='divider'></div>";
+    let rgb = hexToRgba(commonColor);
+    let rgbaBorder = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.5)';
+    let rgbaBackground = 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.1)';
+    popupHtmlStart += '<div class="flex-container">' +
+        "<button style='background: " + rgbaBackground + ";border: 1px solid " + rgbaBorder + ";color: " + commonColor + ";' class='go-button' id='" + markerId + "'><i class='reverse-icon fas fa-directions'></i>GO HERE</button>";
 //            "<span><i class='text-center fas fa-calendar-check'></i> <span/>";
 
-        if (lastUpdate == 0) {
+    if (lastUpdate == 0) {
 //            popupHtmlStart += "N/A";
-            popupHtmlStart += "";
-        } else {
-            popupHtmlStart += lastUpdate;
-        }
-        popupHtmlStart += "</div></div>";
-        // convert string to an HTMLElement
-        var d = document.createElement("div");
-        // convert string to an HTMLElement
-        var d = document.createElement("div");
-        d.innerHTML = popupHtmlStart;
-        return d;
+        popupHtmlStart += "";
+    } else {
+        popupHtmlStart += lastUpdate;
     }
+    popupHtmlStart += "</div></div>";
+    // convert string to an HTMLElement
+    var d = document.createElement("div");
+    // convert string to an HTMLElement
+    var d = document.createElement("div");
+    d.innerHTML = popupHtmlStart;
+    return d;
+}
 
 
 
@@ -460,7 +461,7 @@ const { bgclass = "bg-dark", color = "#000000", icon = "crosshairs", textclass =
         // convert string to an HTMLElement
         var d = document.createElement('div');
         d.innerHTML = popupHtml;
-        return (d); 
+        return (d);
     }
 
     function showShapes(map, data, columns, config)
@@ -519,7 +520,7 @@ const { bgclass = "bg-dark", color = "#000000", icon = "crosshairs", textclass =
                         var line = [{
 			    "type": "LineString",
 			    "coordinates": point[shapeIndex]
-			}]; 
+			}];
 /*
 			L.geoJSON(line, {
 			    coordsToLatLng: function(coords) {
@@ -537,7 +538,7 @@ const { bgclass = "bg-dark", color = "#000000", icon = "crosshairs", textclass =
 			}
 			var mm = L.Marker.movingMarker(flipCoords, 10000, {autostart: true, loop:true});
 			mm.options.icon = myIcon;
-			mmLayerGroup.addLayer(mm);	
+			mmLayerGroup.addLayer(mm);
                     }
                 }
                 theMap.fitBounds(myLayer.getBounds());
@@ -545,7 +546,7 @@ const { bgclass = "bg-dark", color = "#000000", icon = "crosshairs", textclass =
                 theMap.addLayer(mmLayerGroup);
 	    }
     }
-    
+
 var globalData;
 var globalSubData;
 var globalMap;
@@ -553,7 +554,7 @@ var globalMarkerType1;
 var globalMarkerType2;
 var globalMarker = null;
 var globalLine = null;
-    
+
     function markSourceAndDest(dataObj){
 
        $('#searchContainer').hide();
@@ -564,15 +565,15 @@ var globalLine = null;
        $('#chooseCategory').hide();
        $('#bottomNavGoBtn').show();
        $('#bottomNavBackBtn').show();
-    
-        
+
+
         var srcLat = dataObj.data.srcLat;
         if (srcLat) {} else { srcLat = latitude; console.log("setting srcLat to " + srcLat);}
         var srcLng = dataObj.data.srcLng;
         if (srcLng) {} else { srcLng = longitude; console.log("setting srcLng to " + srcLng);}
         var dstLat = dataObj.data.dstLat;
         var dstLng = dataObj.data.dstLng;
-        
+
 console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
 	var userLang = localStorage.getItem('userLang');
         userLang = userLang ? userLang : "en";
@@ -583,7 +584,7 @@ console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
     function (data, textStatus, jqXHR){
 //console.log(data);
           globalData = data;
-          
+
           if (useTransit == 0)
           {
           console.log(data.data1.routes[0].legs[0].steps);
@@ -608,12 +609,12 @@ console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
         });
 
     }
-    
-    
+
+
     function showLocations(collection1, marker1, collection2, marker2){
         $("#map-container").remove();
     //	$("<div id='map-container' style='width:100%;max-width:none;'><div id='map-canvas' style='height:100%'></div></div>").appendTo('#contents');
-    
+
         $("<div id='map-container' style='width:auto;max-width:none;'><div id='map-canvas' style='height:100%'></div></div>").appendTo('#contents');
 
         var openstreetTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -630,33 +631,33 @@ console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
         } else {
             map = L.map('map-canvas').addLayer(openstreetTiles);
         }
-        
+
         showMarkerForLocations(collection1, map, marker1, marker2);
         if (collection2 !== undefined) showMarkerForLocations(collection2, map, marker2);
     }
-    
-    
+
+
     function showMarkerForLocations(data, map, markerType1, markerType2)
     {
 console.log("in move Marker: " + markerType1 + "," + markerType2);
 console.log(data);
-        
+
         map.setView([data[0].lat, data[0].lng], 14);
         var route = L.polyline(data);
         map.fitBounds(route.getBounds());
-        
+
         globalLine = L.polyline([]).addTo(map);
         var srcMarker = L.marker([data[0].lat, data[0].lng], {rotationAngle: 10}).bindPopup('Start Here').addTo(map);
         var destMarker = L.marker([data[data.length-1].lat, data[data.length-1].lng], {rotationAngle: 10}).bindPopup('Your Destination').addTo(map);
-        
-        
+
+
         globalSubData = data;
         globalMap = map;
         globalMarkerType1 = markerType1;
         globalMarkerType2 = markerType2;
 
     }
-    
+
     function drawPathBetweenLocations(){
        var subwayMarker = L.AwesomeMarkers.icon({
                 icon: 'train',
@@ -676,7 +677,7 @@ console.log(data);
 	   });
 
 	   var iconMarker = taxiMarker;
-        
+
         function redraw(point) {
             if (!globalMarker) {
                 if (globalMarkerType1 == 'walk')
@@ -699,7 +700,7 @@ console.log(data);
                 globalMarker.setIcon(iconMarker);
             }
         }
-        
+
         function update() {
             if (globalSubData.length) {
                 redraw(globalSubData.shift());
@@ -718,7 +719,7 @@ console.log(data);
         var dstLng = event.data.dstLng;
 console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
         var useTransit = event.data.useTransit;
-        
+
         var url = 'https://hawkaidata.net/api/esriAPI.php?key=' + cityApiKey;
         var r = $.post(url, {'srcLat': srcLat, 'srcLng': srcLng, 'dstLat': dstLat, 'dstLng': dstLng, 'useTransit': useTransit},
     function (data, textStatus, jqXHR){
@@ -751,7 +752,7 @@ console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
     function showDirections(collection1, marker1, collection2, marker2){
         $("#map-container").remove();
     //	$("<div id='map-container' style='width:100%;max-width:none;'><div id='map-canvas' style='height:100%'></div></div>").appendTo('#contents');
-    
+
         $("<div id='map-container' style='width:auto;max-width:none;'><div id='map-canvas' style='height:100%'></div></div>").appendTo('#contents');
 
         var openstreetTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -768,7 +769,7 @@ console.log(srcLat + ", " + srcLng + ", " + dstLat + ", " + dstLng);
         } else {
             map = L.map('map-canvas').addLayer(openstreetTiles);
         }
-        
+
         moveMarker(collection1, map, marker1, marker2);
         if (collection2 !== undefined) moveMarker(collection2, map, marker2);
     }
@@ -885,7 +886,7 @@ console.log(data);
                 source: function(request, response) {
                     var inputText = request.term;
                     inputText = inputText.replace('#', '!hash!');
-                    
+
                     var url = 'https://hawkaidata.net/api/esriAPI.php?key=' + cityApiKey;
                     var r = $.post(url, {'inputText': inputText},
                         function (data, textStatus, jqXHR)
@@ -898,9 +899,9 @@ console.log(data);
                    conf_searchLat = ui.item.lat;
                    conf_searchLng = ui.item.lng;
                    searchItem(ui.item.value);
-                    
+
                    getUserLocation();
-                    
+
                    var dataObj = {"data":{}};
                    dataObj.data.srcLat = latitude;
                    dataObj.data.srcLng = longitude;
@@ -908,16 +909,16 @@ console.log(data);
                    dataObj.data.dstLng = ui.item.lng;
                    dataObj.data.dstName = ui.item.value;
                    dataObj.data.useTransit = 0;
-                  
+
                    //drawPath(dataObj);
                    markSourceAndDest(dataObj);
-                    
+
                 }
             });
            autoCompleteSetup = true;
         }
     });
-    
+
     function checkForNewMsg(){
         let timeDiff = 0;
         let lastMsgFetchTimeStamp = localStorage.getItem(lastMsgFetchTimeStampKey);
@@ -927,7 +928,7 @@ console.log(data);
             localStorage.setItem(lastMsgFetchTimeStampKey, lastMsgFetchTimeStamp);
         } else {
             //timeDiff in ms
-            timeDiff = new Date().getTime() - new Date(localStorage.getItem(lastMsgFetchTimeStampKey)).getTime(); 
+            timeDiff = new Date().getTime() - new Date(localStorage.getItem(lastMsgFetchTimeStampKey)).getTime();
             if(timeDiff > msgCacheTimeout){ // Make the call to server to get messages
                 fetchNewMessages();
             } else {
@@ -962,7 +963,7 @@ console.log(data);
         {
             let msgsArray = resp.data;
             let msgsLen = resp.data.length;
-            
+
             for(let i=0;i<msgsLen;i++){
                 if(msgsArray[i][0] > currentMaxMsgIndex){
                     newMsgCount++;
@@ -971,7 +972,7 @@ console.log(data);
                     maxMsgIndex = msgsArray[i][0];
                 }
             }
-            
+
             if(newMsgCount > 0){
                 $('#newMsgCount').html(' ('+ newMsgCount +')');
                 localStorage.setItem(maxMsgIndexKey, maxMsgIndex);
@@ -984,33 +985,33 @@ console.log(data);
         }
         );
     }
-    
+
     $('#hamburgerIcon').click(function(){
         checkForNewMsg();
         $('#categoriesContainer').hide();
         $('#bottomBar').show();
         $('#sideNavContainer').slideDown();
     });
-    
+
     $('#sideNavCloseBtn').click(function(){
         $('#sideNavContainer').slideUp();
     });
-    
+
     $('#chooseCategory').on('click swipeup', function(){
         $('#sideNavContainer').hide();
         $('#bottomBar').hide();
         $('#categoriesContainer').slideToggle();
     });
-    
+
     $('#categoriesCloseBtn').click(function(){
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
     });
-    
+
     $('#searchIcon').click(function(){
         searchItem($('#searchItem').val());
     });
-    
+
     $('#bottomNavGoBtn').click(function(){
         drawPathBetweenLocations();
         $('#bottomNavGoBtn').hide();
@@ -1018,7 +1019,7 @@ console.log(data);
         $('#bottomBar').show();
         $('#routeDetailsBtn').show();
     });
-    
+
     $('#bottomNavBackBtn').click(function(){
         $('#bottomNavBackBtn').hide();
         $('#bottomNavGoBtn').hide();
@@ -1026,13 +1027,13 @@ console.log(data);
         $('#bottomBar').show();
         $('#routeDetailsBtn').hide();
         $('#originDestContainer').hide();
-        $('#searchContainer').show(); 
+        $('#searchContainer').show();
 //XXX        $('#searchItem').autocomplete('close');
     });
 
-    
+
     function showRouteDetails(steps, transit, steps2){
-        
+
         $("#routeDetailsContainer").html('<div id="routeDetailsCloseBtnContainer"><i class="far fa-times-circle fa-2x" id="routeDetailsCloseBtn"></i></div>');
         var numSteps = steps.length;
         for (var i=0; i < numSteps; i++){
@@ -1054,18 +1055,18 @@ console.log(data);
                 $("#routeDetailsContainer").append(text);
             }
         }
-        
+
        $('#routeDetailsCloseBtn').click(function(){
           $('#routeDetailsContainer').hide();
        });
-        
+
     }
-    
+
     $('#routeDetailsBtn').click(function(){
        $('#routeDetailsContainer').show();
-       showRouteDetails(globalData.data1.routes[0].legs[0].steps); 
+       showRouteDetails(globalData.data1.routes[0].legs[0].steps);
     });
-    
+
     $('.sideNavSubMenuItem').click(function(evt){
         evt.preventDefault();
         var fileName = $(this).attr('data-link-file');
@@ -1076,14 +1077,14 @@ console.log(data);
             //window.open('./' + fileName + '_' + userLang + '.html', '_self');
             window.open('./' + fileName + '_' + 'en' + '.html?ver=4.0', '_self'); // for now default to en
         }
-        
-        
+
+
     });
-    
+
     $('.sideNavMenuItem').click(function(evt){
         evt.preventDefault();
         var fileName = $(this).attr('data-filename');
-        
+
         if(fileName){
             if(fileName == 'new-location-sel-category'){
                 let userName = localStorage.getItem('username');
@@ -1102,7 +1103,7 @@ console.log(data);
             var userLang = localStorage.getItem('userLang');
             userLang = userLang ? userLang : "en";
             if(fileName == 'how-to-guide'){
-                window.open('http://citiesnavigator.com/guide/how_to_' + userLang + '.html', '_blank'); 
+                window.open('http://citiesnavigator.com/guide/how_to_' + userLang + '.html', '_blank');
             } else {
                 //window.open('./' + fileName + '_' + userLang + '.html', '_self');
                 window.open('./' + fileName + '_' + 'en' + '.html', '_self'); // for now default to en
@@ -1120,95 +1121,95 @@ console.log(data);
         $('#sideNavContainer').hide();
         handleUserClick('communication');
     });
-    
+
     $("#educationCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('education');
     });
- 
+
     $("#shelterCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('emergency');
     });
-    
+
     $("#healthCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('health_medical');
-    });  
-  
+    });
+
     $("#waterCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('water_sanitation');
     });
-    
+
     $("#roadCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('road_network');
     });
-    
+
     $("#energyCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('energy');
     });
-    
+
     $("#religiousCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('religious');
-    });   
-    
+    });
+
     $("#openSpaceCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('open_space');
     });
- 
+
     $("#solidWasteCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('solid_waste');
     });
-    
+
     $("#shoppingCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('shopping');
     });
-    
+
     $("#governmentCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('government');
     });
-    
+
     $("#publicSafetyCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('public_safety');
     });
-    
+
     $("#transportationCat").click(function(event) {
         $('#categoriesContainer').slideToggle();
         $('#bottomBar').show();
         $('#sideNavContainer').hide();
         handleUserClick('transportation');
-    }); 
+    });
 });

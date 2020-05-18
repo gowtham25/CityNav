@@ -37,7 +37,7 @@ let langLocaleMap = {
     "fr" : "fr-FR"
 };
 
-let categorListObj = {  
+let categorListObj = {
 '1':{'displayName':'Communication','key':'communication'},
 '2':{'displayName':'Education','key':'education'},
 '3':{'displayName':'Shelter & Services','key':'emergency'},
@@ -330,17 +330,17 @@ let GLOBAL_categories = {
             hindu_temple: {
                 title: "Hindu Temple",
                 icon: "gopuram"
-            },  
+            },
             mosque: {
                 title: "Mosque",
                 icon: "mosque"
-            },  
+            },
             synagogue: {
                 title: "Synagogue",
                 icon: "synagogue"
-            }   
-        }   
-    },  
+            }
+        }
+    },
     open_space: {
         title: "Open Space",
         icon: "globe-africa",
@@ -561,14 +561,14 @@ function populateCityDetails(data){
     cityFeatures = data.features;
     cityTransit = cityFeatures.transit;
     cityName = data.name;
-    
+
     console.log("cityApps " + JSON.stringify(cityApps));
     console.log("cityAirport " + JSON.stringify(cityAirport));
     console.log("cityCenter " + JSON.stringify(cityCenter));
     console.log("cityFeatures " + JSON.stringify(cityFeatures));
     console.log("cityTransit " + cityTransit);
     console.log("cityName " + cityName);
-    
+
 }
 
 function getCityData(){
@@ -579,7 +579,7 @@ function getCityData(){
             resolve(data);
         }).fail(function(jqXHR, textStatus, errorThrown){
             reject(errorThrown);
-        }); 
+        });
     });
 }
 function hexToRgba(hex) {

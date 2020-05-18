@@ -9,29 +9,26 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="City Navigator">
-    
+
 <style>
 @import url("./css/normalize.css");
+@import url("./css/common.css");
 </style>
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./css/prettydropdowns.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./css/fontawesome-pro-master/web/css/all.min.css" />
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
 <link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
 <style>
+    @import url("./css/normalize.css");
+    @import url("./css/toolTip.css");
+</style>
+<style>
 body{
-  font-size:12px; 
+  /* font-size:12px; */
   font-family:Helvetica;
-}
-.pageHeader{
-    top:0;
-    left:0;
-    width:100vw;
-    height:50px;
-    background-color:#4a3175;
-    color:white;
-    padding:10px 0 0 10px;    
 }
 .pageBody{
     margin:0 auto;
@@ -42,7 +39,7 @@ body{
     position:absolute;
     right:25px;
 }
-    
+
 #categoriesContainer{
     background:white;
     border-radius:5px;
@@ -57,6 +54,10 @@ body{
     justify-content: center;
     text-align:center;
 }
+#categoriesList h3 {
+    font-size: 1.75rem;
+    margin-bottom: 12px;
+}
 .category {
     margin-bottom:10px;
     cursor:pointer;
@@ -66,7 +67,7 @@ body{
     height:48px;
 }
 .categoryLabel {
-    margin-left:4px;   
+    margin-left:4px;
 }
 </style>
 </head>
@@ -74,27 +75,27 @@ body{
 <div id="target">
 
 </div>
-    
+
 <script id="template" type="x-tmpl-mustache">
 <div id="newLocationContainer">
-    <div class="pageHeader"><h3>{{select-cat}}<i class="fa fa-angle-double-left backBtn"></i></h3></div>
+  <div class="pageHeader bg-{{className}}-header"><h3>{{select-cat}}</h3><i class="fas fa-arrow-circle-left backBtn"></i></div>
     <div class="pageBody">
       <div id="categoriesContainer">
           <ul id="categoriesList">
-            <li class="category" id="communication"><img src="./icons/communication.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-communication}}</span></li>
-            <li class="category" id="education"><img src="./icons/education.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-education}}</span></li>
-            <li class="category" id="emergency"><img src="./icons/shelter.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-shelter}}</span></li>
-            <li class="category" id="health_medical"><img src="./icons/health.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-health}}</span></li>
-            <li class="category" id="water_sanitation"><img src="./icons/water.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-water}}</span></li>
-            <li class="category" id="road_network"><img src="./icons/road-network.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-road}}</span></li>
-            <li class="category" id="energy"><img src="./icons/energy.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-energy}}</span></li>
-            <li class="category" id="religious"><img src="./icons/religious.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-religious}}</span></li>
-            <li class="category" id="open_space"><img src="./icons/open-space.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-open-space}}</span></li>
-            <li class="category" id="solid_waste"><img src="./icons/solid-waste.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-solid-waste}}</span></li>
-            <li class="category" id="shopping"><img src="./icons/shopping.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-shopping}}</span></li>
-            <li class="category" id="government"><img src="./icons/government.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-government}}</span></li>
-            <li class="category" id="public_safety"><img src="./icons/public-safety.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-public-safety}}</span></li>
-            <li class="category" id="transportation"><img src="./icons/transportation.png" class="categoryIcon" /><br /><span class="categoryLabel">{{cat-transportation}}</span></li>
+            <li class="category" id="communication"><h3 class="text-danger-color"><i class="fad fa-satellite-dish"></i></h3><span class="categoryLabel">{{cat-communication}}</span></li>
+            <li class="category" id="education"><h3 class="text-warning-color"><i class="fad fa-school"></i></h3><span class="categoryLabel">{{cat-education}}</span></li>
+            <li class="category" id="emergency"><h3 class="text-deep-orange"><i class="fad fa-alarm-exclamation"></i></h3><span class="categoryLabel">{{cat-shelter}}</span></li>
+            <li class="category" id="health_medical"><h3 class="text-primary-color"><i class="fad fa-procedures"></i></h3><span class="categoryLabel">{{cat-health}}</span></li>
+            <li class="category" id="water_sanitation"><h3 class="text-secondary-color"><i class="fad fa-faucet-drip"></i></h3><span class="categoryLabel">{{cat-water}}</span></li>
+            <li class="category" id="road_network"><h3 class="text-orange"><i class="fad fa-road"></i></h3><span class="categoryLabel">{{cat-road}}</span></li>
+            <li class="category" id="energy"><h3 class="text-blue-grey"><i class="fad fa-atom"></i></h3><span class="categoryLabel">{{cat-energy}}</span></li>
+            <li class="category" id="religious"><h3 class="text-lime"><i class="fad fa-place-of-worship"></i></h3><span class="categoryLabel">{{cat-religious}}</span></li>
+            <li class="category" id="open_space"><h3 class="text-pink"><i class="fad fa-globe-africa"></i></h3><span class="categoryLabel">{{cat-open-space}}</span></li>
+            <li class="category" id="solid_waste"><h3 class="text-light-green"><i class="fad fa-dumpster"></i></h3><span class="categoryLabel">{{cat-solid-waste}}</span></li>
+            <li class="category" id="shopping"><h3 class="text-cyan"><i class="fad fa-shopping-cart"></i></h3><span class="categoryLabel">{{cat-shopping}}</span></li>
+            <li class="category" id="government"><h3 class="text-indigo"><i class="fad fa-university"></i></h3><span class="categoryLabel">{{cat-government}}</span></li>
+            <li class="category" id="public_safety"><h3 class="text-amber"><i class="fad fa-users"></i></h3><span class="categoryLabel">{{cat-public-safety}}</span></li>
+            <li class="category" id="transportation"><h3 class="text-default-color"><i class="fad fa-car-bus"></i></h3><span class="categoryLabel">{{cat-transportation}}</span></li>
           </ul>
       </div>
     </div>
@@ -123,10 +124,10 @@ $(document).ready(function(){
         //location.href = './new-location-add-details_' + userLang + '.html';
         location.href = './new-location-add-details_' + 'en' + '.html';
     });
-    
 
-    
-});    
+
+
+});
 </script>
 
 <!-- i18n specific code starts -->
@@ -167,7 +168,7 @@ var labels = {
         'cat-public-safety' : 'La sécurité publique',
         'cat-transportation' : 'Transport',
     }
-}   
+}
 var userLangLabels = labels[userLang];
 var template = document.getElementById('template').innerHTML;
 var rendered = Mustache.render(template, userLangLabels);

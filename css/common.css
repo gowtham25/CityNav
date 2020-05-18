@@ -40,34 +40,34 @@
 /* #c91225 */
 /* #f5cb16 */
 /* #1bae49 */
-/* .bg-cm-header {
+.bg-CM-header {
     background-image: linear-gradient(
         -20deg,
         #c91225 0%,
         #f5cb16 100%,
         #1bae49 100%
     ) !important;
-} */
+}
 
 /*Nigeria*/
 /* #02834f */
 /* #f8f8f8 */
 /* #02834f */
-/* .bg-ng-header {
+.bg-NG-header {
     background-image: linear-gradient(
         45deg,
         #02834f 0%,
         #f8f8f8 50%,
         #02834f 100%
     ) !important;
-} */
+}
 
 /*Ethiopia*/
 /* #489ed1 */
 /* #c91225 */
 /* #f5cb16 */
 /* #1bae49 */
-/* .bg-et-header {
+.bg-ET-header {
     background-image: linear-gradient(
         120deg,
         #c91225 0%,
@@ -75,57 +75,57 @@
         #f5cb16 65%,
         #1bae49 100%
     ) !important;
-} */
+}
 
 /*Ivory Coast*/
 /* #f17b04 */
 /* #f8f8f8 */
 /* #03995d */
-/* .bg-ci-header {
+.bg-CI-header {
     background-image: linear-gradient(
         120deg,
         #f17b04 0%,
         #f8f8f8 50%,
         #03995d 100%
     ) !important;
-} */
+}
 
 /*Ghana*/
 /* #c91225 */
 /* #f5cb16 */
 /* #1bae49 */
 /* #000 */
-/* .bg-gh-header {
+.bg-GH-header {
     background-image: linear-gradient(
         120deg,
         #c91225 0%,
         #f5cb16 50%,
         #1bae49 100%
     ) !important;
-} */
+}
 
 /*Guinea*/
 /* #c91225 */
 /* #f5cb16 */
 /* #1bae49 */
-/* .bg-gn-header {
+.bg-GN-header {
     background-image: linear-gradient(
         120deg,
         #c91225 0%,
         #f5cb16 50%,
         #1bae49 100%
     ) !important;
-} */
+}
 
 /*Nepal*/
 /* #d6153a */
 /* #02368f */
 /* #f8f8f8 */
-/* .bg-np-header {
+.bg-NP-header {
     background-image: linear-gradient(
         120deg,
         #d6153a 0%,
         #f8f8f8 50%,
         #02368f 100%
     ) !important;
-} */
+}

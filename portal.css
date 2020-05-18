@@ -221,7 +221,7 @@ body {
 
 #sideNavMenu{
     list-style:none;
-    
+
 }
 .sideNavMenuItem{
     margin:10px 0 20px 0;
@@ -356,30 +356,46 @@ body {
     cursor:pointer;
 }
 #categoriesList {
-    list-style:none;
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    align-items: flex-start;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    text-align:center;
+}
+#categoriesList h3{
+  font-size: 1.75rem;
+}
+.category:hover {
+    background: linear-gradient(
+        to bottom,
+        rgba(244, 251, 255, 1) 0%,
+        rgba(224, 243, 255, 1) 100%
+    );
 }
 .category {
-    margin-bottom:10px;
-    cursor:pointer;
+    margin-bottom: 10px;
+    cursor: pointer;
+    margin-right: 0;
+    width: 82px;
+    font-size: 11px;
+    text-align: center;
+    width: 100%;
+    align-items: center;
+    padding: 6px 0;
+    max-width: 100px;
+    min-width: 100px;
 }
 .categoryIcon {
     width:48px;
     height:48px;
 }
 .categoryLabel {
-    margin-left:4px;   
+    margin-left:4px;
 }
 .disabledText {
-    opacity:0.3;  
+    opacity:0.3;
 }
 
 #transitContainer{
  text-align:left;
  padding:5px 0 0 30px;
 }
-

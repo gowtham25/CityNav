@@ -17,7 +17,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="City Navigator">
-    
+
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./service-finder.css?v=2">
@@ -26,7 +26,7 @@
 <link rel="stylesheet" type="text/css" href="./css/MarkerCluster.Default.css">
 <link rel="stylesheet" type="text/css" href="./css/MarkerCluster.css">
 <link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
-    
+
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
 <link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
@@ -46,22 +46,8 @@ function myFunction() {
   }
 }
 </script>
-    
+
 <style type="text/css">
-.pageHeader{
-    top:0;
-    left:0;
-    width:100vw;
-    height:50px;
-    background-color:#4a3175;
-    color:white;
-    padding:10px 0 0 10px;    
-}
-.backBtn{
-    cursor:pointer;
-    position:absolute;
-    right:25px;
-}
 .topicPage{
     position:absolute;
     top:0;
@@ -90,14 +76,15 @@ padding:5px;
 </style>
 </head>
 <body>
-  
+
   <div id="target">
 
   </div>
-  
+
   <script id="template" type="x-tmpl-mustache">
-  <div class="pageHeader">
-      <h3>{{service-finder-title}}<i class="fa fa-angle-double-left backBtn"></i></h3>
+  <div class="pageHeader bg-{{className}}-header">
+      <h3>{{service-finder-title}}</h3>
+      <i class="fa fa-angle-double-left backBtn"></i>
   </div>
   <div id="categoriesContainer">
       <div id="categoriesCloseBtnContainer"><i class="far fa-times-circle fa-2x" id="categoriesCloseBtn"></i></div>
@@ -107,7 +94,7 @@ padding:5px;
         <li class="category" id="hospitalsCat"><span class="categoryIcon" style="color:grey"><i class="fas fa-ambulance"></i></span><br /><span class="categoryLabel">{{cat-hospitals}}</span></li>
       </ul>
   </div>
-    
+
   <div id="sideNavContainer">
       <div id="sideNavCloseBtnContainer"><i class="far fa-times-circle fa-2x" id="sideNavCloseBtn"></i></div>
       <ul id="sideNavMenu">
@@ -119,22 +106,22 @@ padding:5px;
               </li>
               <li class="sideNavSubMenuItem" id="garbageSubMenuItem" data-link-file="garbage-home"><img src="./icons/nav-garbage.png" class="navIcons" />{{app-garbage}}</li>
           </ul>
-          
+
         </li>
-        
+
         <li class="sideNavMenuItem" id="messagesSubMenuItem" data-filename="messages"><img src="./icons/nav-messages.png" class="navIcons" />{{messages}}<span id="newMsgCount"></span</li>
         <li class="sideNavMenuItem" id="newLocationSubMenuItem" data-filename="new-location-sel-category"><img src="./icons/nav-new-location.png" class="navIcons" />{{new-location}}</li>
         <li class="sideNavMenuItem" data-filename="settings"><img src="./icons/nav-settings.png" class="navIcons" />{{settings}}</li>
         <li class="sideNavMenuItem" data-filename="how-to-guide"><img src="./icons/nav-how-to-guide.png" class="navIcons" />{{how-to-guide}}</li>
       </ul>
   </div>
-    
-    
+
+
   <div id="searchContainer">
     <input type="text" id="searchItem" name="searchItem" placeholder="{{where-to}}" autocomplete="off" />
     <i class="fa fa-search" id="searchIcon"></i>
   </div>
-    
+
   <div id="originDestContainer">
       <div id="originContainer">
           <input type="text" id="origin" name="origin" placeholder="" autocomplete="off" />
@@ -150,17 +137,17 @@ padding:5px;
 <!--
 <div id ="logo"><a href="http://hawkai.net"><img src="../ui/images/HawkaiAppLogo.png" id="logo-image"></a></div>
 -->
-    
+
 <div id="bottomBar">
     <div id="bottomNavBackBtn"><i class="fa fa-arrow-circle-left fa-2x"></i></div>
-    <div id="chooseCategory">{{choose-a-cat}}</div>  
+    <div id="chooseCategory">{{choose-a-cat}}</div>
     <div id="routeDetailsBtn">ROUTE DETAILS</div>
     <div id="bottomNavGoBtn"><img src="./icons/bottom-nav-go.png" /></div>
 </div>
-    
-<div id="routeDetailsContainer">  
+
+<div id="routeDetailsContainer">
 </div>
-          
+
 <div id="contents" style="overflow:hidden;"></div>
 <div id="footer" class="footer_collapsed">
     <a href="#" class=active id="showDetails">Show Details</a>
@@ -206,13 +193,13 @@ var labels = {
         'cat-gas-stations' : 'Les stations-service',
         'cat-hospitals' : 'Les hôpitaux'
     }
-}   
+}
 var userLangLabels = labels[userLang];
 var template = document.getElementById('template').innerHTML;
 var rendered = Mustache.render(template, userLangLabels);
 document.getElementById('target').innerHTML = rendered;
 </script>
 <!-- i18n specific code ends -->
-    
+
 </body>
 </html>

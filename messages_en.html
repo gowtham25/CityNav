@@ -18,7 +18,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="City Navigator">
-    
+
 <style>
 @import url("./css/normalize.css");
 </style>
@@ -31,17 +31,15 @@
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
 <link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
 <style>
-
+    @import url("./css/common.css");
+</style>
+<style>
+    .pageHeader h3 {
+        margin: 15px 0 14px 12px;
+        font-size: 19px;
+    }
     .pageHeader {
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 50px;
-        background-color: #09E;
-        color: white;
-        padding: 10px 0 0 10px;
-        position: fixed;
-        z-index: 100;
+        background-color: #09e;
     }
     .pageBody {
         margin: 60px auto 0 auto;
@@ -50,167 +48,163 @@
     .fieldContainer {
         margin: 0 auto 10px 20px;
     }
-    .backBtn {
-        cursor: pointer;
-        position: absolute;
-        right: 25px;
-    }
-    .msgWrapper {
-        margin-bottom: 20px;
-        padding: 2px;
-        border-radius: 3px;
-        border-left-width: 4px !important;
-        border-top-color: #ECECEC !important;
-        border-right-color: #ECECEC !important;
-        border-bottom-color: #ECECEC !important;
-        cursor: pointer;
-        background: #ffffff;
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-        /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
-        /* IE6-9 */
-        box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
-    }
-    .msgWrapper:hover {
-        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f9fe+0,d6f0fd+100;White+3D+%232 */
-        background: #f2f9fe;
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #f2f9fe 0%, #d6f0fd 100%);
-        /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #f2f9fe 0%, #d6f0fd 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #f2f9fe 0%, #d6f0fd 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9fe', endColorstr='#d6f0fd', GradientType=0);
-        /* IE6-9 */
-    }
-    .msg-timestamp {
-        color: #09E;
-        font-size: 14px;
-        display: block;
-        text-align: left;
-        margin: 10px 10px 0;
-    }
-    .msg {
-        padding: 10px;
-        color: #666;
-        text-align: left;
-        line-height: 20px;
-    }
+  .msgWrapper {
+      margin-bottom: 20px;
+      padding: 2px;
+      border-radius: 3px;
+      border-left-width: 4px !important;
+      border-top-color: #ECECEC !important;
+      border-right-color: #ECECEC !important;
+      border-bottom-color: #ECECEC !important;
+      cursor: pointer;
+      background: #ffffff;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+      /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+      /* IE6-9 */
+      box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+  }
+  .msgWrapper:hover {
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f9fe+0,d6f0fd+100;White+3D+%232 */
+      background: #f2f9fe;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #f2f9fe 0%, #d6f0fd 100%);
+      /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, #f2f9fe 0%, #d6f0fd 100%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, #f2f9fe 0%, #d6f0fd 100%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f9fe', endColorstr='#d6f0fd', GradientType=0);
+      /* IE6-9 */
+  }
+  .msg-timestamp {
+      color: #09E;
+      font-size: 14px;
+      display: block;
+      text-align: left;
+      margin: 10px 10px 0;
+  }
+  .msg {
+      padding: 10px;
+      color: #666;
+      text-align: left;
+      line-height: 20px;
+  }
 
-    #searchAndMsgCategoryWrapper {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        flex-flow: column;
-    }
-    #msgCategoryWrapper, #searchWrapper {
-        margin-bottom: 25px;
-    }
-    #msgCategoryWrapper label.btn {
-        display: inline-block;
-        width: 110px;
-        text-transform: uppercase;
-	opacity: 0.8;
-        padding: 4px;
-        outline: none !important;
-        font-size: 12px;
-        font-weight: bold;
-	color: #FFF;
-    }
-    #searchWrapper {
-        border: 1px Solid #CCC;
-        border-radius: 3px;
-        padding-right: 6px;
-    }
-    #searchWrapper input {
-        border: none;
-        outline: none !important;
-        color: #09E;
-    }
+  #searchAndMsgCategoryWrapper {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      flex-flow: column;
+  }
+  #msgCategoryWrapper, #searchWrapper {
+      margin-bottom: 25px;
+  }
+  #msgCategoryWrapper label.btn {
+      display: inline-block;
+      width: 110px;
+      text-transform: uppercase;
+opacity: 0.8;
+      padding: 4px;
+      outline: none !important;
+      font-size: 12px;
+      font-weight: bold;
+color: #FFF;
+  }
+  #searchWrapper {
+      border: 1px Solid #CCC;
+      border-radius: 3px;
+      padding-right: 6px;
+  }
+  #searchWrapper input {
+      border: none;
+      outline: none !important;
+      color: #09E;
+  }
 
-    #msgCategoryWrapper label.active {
-        color: #FFF;
-        opacity: 1; 
-        border-color: #333;
-        box-shadow: none !important;
-    }
+  #msgCategoryWrapper label.active {
+      color: #FFF;
+      opacity: 1;
+      border-color: #333;
+      box-shadow: none !important;
+  }
 
-    #msgCategoryWrapper label.focus {
-        box-shadow: none !important;
-    }
+  #msgCategoryWrapper label.focus {
+      box-shadow: none !important;
+  }
 
-    #msgCategoryWrapper label i{
-        color: #600;
-        display: inline-block;
-        margin-right: 4px; 
-        width: 10px;
-        text-align: center;
-    }
+  #msgCategoryWrapper label i{
+      color: #600;
+      display: inline-block;
+      margin-right: 4px;
+      width: 10px;
+      text-align: center;
+  }
 
-    #msgCategoryWrapper label.active i{
-        color: #050;
-        width: 10px;
-    }
+  #msgCategoryWrapper label.active i{
+      color: #050;
+      width: 10px;
+  }
 
-    #msgCategoryWrapper label i:before{
-        content: "\f00d";
-    }
+  #msgCategoryWrapper label i:before{
+      content: "\f00d";
+  }
 
-    #msgCategoryWrapper label.active i:before{
-        content: "\f00c";
-    }
+  #msgCategoryWrapper label.active i:before{
+      content: "\f00c";
+  }
 
-    #searchBtn {
-        margin-left: 5px;
-    }
-    .unreadMsg {
-        color: #09E;
-        background: #feffff;
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
-        /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef', GradientType=0);
-        /* IE6-9 */
-        font-weight: 400;
-    }
-    .unreadMsg:hover {
-        background: #f0f9ff;
-        /* Old browsers */
-        background: -moz-linear-gradient(top, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
-        /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
-        /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
-        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff', GradientType=0);
-        /* IE6-9 */
-    }
+  #searchBtn {
+      margin-left: 5px;
+  }
+  .unreadMsg {
+      color: #09E;
+      background: #feffff;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+      /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef', GradientType=0);
+      /* IE6-9 */
+      font-weight: 400;
+  }
+  .unreadMsg:hover {
+      background: #f0f9ff;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+      /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff', GradientType=0);
+      /* IE6-9 */
+  }
 </style>
 </head>
-<body>  
+<body>
 
 <div id="target">
 
 </div>
 <script id="template" type="x-tmpl-mustache">
-<div class="pageHeader">
-    <h3>{{messages-header}}<i class="fa fa-angle-double-left backBtn"></i></h3>
+<div class="pageHeader bg-{{className}}-header">
+    <h3>{{messages-header}}</h3>
+    <i class="fas fa-arrow-circle-left backBtn"></i>
 </div>
 <div class="pageBody">
     <div id="searchAndMsgCategoryWrapper">
         <div id="msgCategoryWrapper" class="text-center">
-            
+
             <div id="messageCategory" role="group" class="btn-group-sm btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-success active">
                     <input type="checkbox" name="info" id="info" value="info" checked /> <i class="fa"></i> {{messages-cat-info}}
@@ -221,10 +215,10 @@
                 <label class="btn btn-danger">
                     <input type="checkbox" name="emergency" id="emergency" value="emergency" checked /> <i class="fa"></i> {{messages-cat-emergency}}
                 </label>
-            </div>   
-            
-            
-            
+            </div>
+
+
+
         </div>
         <div id="searchWrapper">
         <input id="search" type="text" name="search" placeholder="{{messages-search-msg}}" style="border-radius:5px;padding:5px;width:250px;" />
@@ -426,7 +420,7 @@ var labels = {
         'messages-cat-emergency' : 'urgence',
         'messages-search-msg' : 'Rechercher des messages'
     }
-}   
+}
 
 
 var userLangLabels = labels[userLang];

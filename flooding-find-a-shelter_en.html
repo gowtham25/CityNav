@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="City Navigator">
-    
+
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./portal.css">
@@ -17,10 +17,13 @@
 <link rel="stylesheet" type="text/css" href="./css/MarkerCluster.Default.css">
 <link rel="stylesheet" type="text/css" href="./css/MarkerCluster.css">
 <link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
-    
+
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/City-Nav_Android_144x144.png" />
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
 <link rel="icon" sizes="75x75" href="img/City-Nav_Android_144x144.png" />
+<style>
+   @import url("./css/common.css");
+</style>
 <script>
 /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
 function myFunction() {
@@ -32,43 +35,20 @@ function myFunction() {
   }
 }
 </script>
-    
-<style type="text/css">
-.pageHeader{
-    top:0;
-    left:0;
-    width:100vw;
-    height:50px;
-    background-color:dimgray;
-    color:white;
-    padding:10px 0 0 10px;    
-}
-.backBtn{
-    cursor:pointer;
-    position:absolute;
-    right:25px;
-}
-.nav-right-arrow{
-        position:absolute;
-        right:20px;
-        font-weight:bold;
-        line-height:40px;
-}
-</style>
 </head>
-<body>       
+<body>
 <div id="target">
 </div>
 <script id="template" type="x-tmpl-mustache">
-<div class="pageHeader">
-    <h3>{{flooding-find-a-shelter-title}}<i class="fa fa-angle-double-left backBtn"></i></h3>
+<div class="topicHeader bg-{{className}}-header">
+    <h3>{{flooding-find-a-shelter-title}}</h3><i class="fas fa-arrow-circle-left backBtn"></i>
 </div>
 <!-- seth code ends -->
 <!--
 <div id ="logo"><a href="http://hawkai.net"><img src="../ui/images/HawkaiAppLogo.png" id="logo-image"></a></div>
 -->
 
-          
+
 <div id="contents" style="overflow:hidden;"></div>
 <div id="footer" class="footer_collapsed">
     <a href="#" class=active id="showDetails">Show Details</a>
@@ -91,7 +71,7 @@ function myFunction() {
 <script src="./common.js?v=1"></script>
 <script src="./flooding-find-a-shelter.js"></script>
 <script src="./static-page.js?v=1"></script>
-    
+
 <!-- i18n specific code starts -->
 <script src="https://unpkg.com/mustache@latest"></script>
 <script>
@@ -102,7 +82,7 @@ var labels = {
     "fr" : {
       'flooding-find-a-shelter-title' : 'Trouver un refuge'
     }
-}   
+}
 
 var userLangLabels = labels[userLang];
 var template = document.getElementById('template').innerHTML;
